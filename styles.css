@@ -1,0 +1,222 @@
+/* styles.css
+   Shared styles for login, signup, and main feed pages.
+   Uses Roboto font (import in HTML). Clean, modern aesthetic.
+*/
+
+:root{
+  --bg:#0f1724;            /* deep navy */
+  --card:#0b1220;          /* dark card */
+  --muted:#94a3b8;         /* muted text */
+  --accent:#6ee7b7;        /* mint */
+  --accent-2:#60a5fa;      /* blue */
+  --surface:#0b1220;
+  --glass: rgba(255,255,255,0.04);
+  --radius: 14px;
+  --shadow: 0 8px 20px rgba(2,6,23,0.6);
+  --glass-strong: rgba(255,255,255,0.06);
+  --max-width: 1100px;
+}
+
+/* Reset / base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg,#071028 0%, #07172a 60%, #02060c 100%);
+  color: #e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  padding:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Container / card used by login/signup */
+.app-card{
+  width:100%;
+  max-width:420px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Headings */
+.h1{
+  font-size:1.5rem;
+  margin:0 0 6px 0;
+  color: #f8fafc;
+  letter-spacing: -0.2px;
+}
+.lead{
+  color:var(--muted);
+  font-size:0.95rem;
+  margin-bottom:18px;
+}
+
+/* Form elements */
+.form-group{margin-bottom:14px;}
+label{
+  display:block;
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.input{
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  color:#e6eef8;
+  outline:none;
+  transition:box-shadow .15s, border-color .12s;
+  font-size:0.95rem;
+}
+.input:focus{
+  box-shadow: 0 6px 18px rgba(48,110,255,0.12);
+  border-color: rgba(96,165,250,0.9);
+}
+
+/* Password container with toggle */
+.password-wrap{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 14px;
+  background:linear-gradient(90deg,var(--accent-2), #7dd3fc);
+  color:#022047;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  transition:transform .08s ease,opacity .12s;
+}
+.btn:active{transform:translateY(1px)}
+.link{
+  color:var(--accent-2);
+  text-decoration:none;
+  font-weight:600;
+}
+.small{
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+/* Footer note */
+.divider{
+  height:1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  margin:18px 0;
+}
+
+/* Page layout for main feed */
+.main-wrap{
+  width:100%;
+  max-width:var(--max-width);
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:24px;
+  align-items:start;
+  padding: 24px;
+  border-radius:14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: var(--shadow);
+}
+
+/* Left sidebar */
+.sidebar{
+  background:var(--surface);
+  padding:16px;
+  border-radius:12px;
+  min-height:280px;
+}
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.brand .logo{
+  width:48px;height:48px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#022047;
+}
+.nav a{
+  display:block;padding:10px;border-radius:8px;color:var(--muted);
+  text-decoration:none;margin-bottom:6px;
+}
+.nav a:hover{background:var(--glass-strong);color:#fff}
+
+/* Feed area (scroll-snap) */
+.feed{
+  background: transparent;
+  border-radius:12px;
+  padding:8px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  height:70vh;
+  overflow-y:auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.poster{
+  min-height:62vh;
+  scroll-snap-align:start;
+  border-radius:14px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  color:#021026;
+  background:linear-gradient(180deg,#fff,#f0f9ff);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Poster content */
+.poster .meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.poster h3{margin:0;font-size:1.2rem}
+.poster p{color:#334155;font-size:0.95rem; margin-top:8px}
+.poster .poster-img{
+  height: 60%;
+  border-radius:10px;
+  background:linear-gradient(135deg,#c7f9e1,#bfdbfe);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:2rem;
+}
+
+/* small caption area */
+.poster .actions{
+  display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:10px;
+}
+.icon-btn{
+  background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px;border-radius:10px;cursor:pointer;
+}
+
+/* Footer */
+.footer-note{font-size:0.9rem;color:var(--muted);text-align:center;margin-top:14px}
+
+/* Responsive */
+@media (max-width:900px){
+  body{padding:16px}
+  .main-wrap{grid-template-columns:1fr; padding:16px}
+  .sidebar{order:2}
+  .feed{order:1;height:72vh}
+  .app-card{max-width:100%}
+}

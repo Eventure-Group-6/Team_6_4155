@@ -1,0 +1,139 @@
+/** Tee Peoples was Here - 20250925 **/
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eventure — Discover Clubs</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="padding:20px;">
+
+  <div class="main-wrap" role="main" aria-label="Main feed and navigation">
+    <aside class="sidebar" aria-label="Sidebar navigation">
+      <div class="brand">
+        <span class="logo">Eventure</span>
+        <div>
+          <div style="font-weight:700">Eventure</div>
+          <div class="small" style="margin-top:4px">Clubs & Events</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#" aria-current="page">Discover</a>
+        <a href="#">My Clubs</a>
+        <a href="#">Post</a>
+        <a href="#">Events</a>
+        <a href="login.html">Sign out</a>
+      </nav>
+
+      <div style="margin-top:16px;font-size:0.95rem;color:var(--muted)">
+        <div style="margin-bottom:8px;font-weight:600">Favorites</div>
+        <div class="small">No favorites yet — tap the heart on a poster to save.</div>
+      </div>
+    </aside>
+
+    <section class="feed" aria-label="Club poster feed">
+      <!-- Poster 1: Static image style -->
+      <article class="poster" role="article" aria-labelledby="p1title">
+        <div class="meta">
+          <div>
+            <h3 id="p1title">Robotics Club</h3>
+            <div class="small">Engineering • Meets Thursdays</div>
+          </div>
+          <div class="small">4.8 ★</div>
+        </div>
+
+        <div class="poster-img" role="img" aria-label="Robotics poster">
+          🤖 Robotics Night
+        </div>
+
+        <div>
+          <p>Come build robots and compete in regional challenges. Beginners welcome.</p>
+          <div class="actions">
+            <div>
+              <button class="icon-btn" aria-pressed="false">❤ Save</button>
+              <button class="icon-btn">🔗 Share</button>
+            </div>
+            <button class="btn" onclick="openDetails('Robotics Club')">View</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Poster 2: Animated/dynamic (CSS-based) -->
+      <article class="poster" role="article" aria-labelledby="p2title" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
+        <div class="meta">
+          <div>
+            <h3 id="p2title">Improv Night</h3>
+            <div class="small">Arts • Wednesdays • 7pm</div>
+          </div>
+          <div class="small">New</div>
+        </div>
+
+        <div class="poster-img" style="background:linear-gradient(135deg,#ffd6e0,#ffd7b5);">
+          🎭 Improv Jam
+        </div>
+
+        <div>
+          <p>Drop-in improv games and laughs. No experience required — just bring energy.</p>
+          <div class="actions">
+            <div>
+              <button class="icon-btn">❤ Save</button>
+              <button class="icon-btn">🔗 Share</button>
+            </div>
+            <button class="btn" onclick="openDetails('Improv Night')">View</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Poster 3: Another style -->
+      <article class="poster" role="article" aria-labelledby="p3title" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
+        <div class="meta">
+          <div>
+            <h3 id="p3title">Film Society</h3>
+            <div class="small">Cinema • Saturday Screenings</div>
+          </div>
+          <div class="small">4.5 ★</div>
+        </div>
+
+        <div class="poster-img" style="background:linear-gradient(135deg,#e6f3ff,#f0f0ff);height:55%">
+          🎬 Weekly Screening
+        </div>
+
+        <div>
+          <p>Classic films and discussions afterward. Free popcorn on first visit.</p>
+          <div class="actions">
+            <div>
+              <button class="icon-btn">❤ Save</button>
+              <button class="icon-btn">🔗 Share</button>
+            </div>
+            <button class="btn" onclick="openDetails('Film Society')">View</button>
+          </div>
+        </div>
+      </article>
+
+      <div class="footer-note">Tip: Scroll up/down to browse — posters snap into view for easy preview.</div>
+    </section>
+  </div>
+
+<script>
+  function openDetails(name){
+    alert('Open details for: ' + name + ' (demo)');
+  }
+
+  // Example: keyboard accessibility: space/enter on Save toggles
+  document.querySelectorAll('.icon-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> {
+      const pressed = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', String(!pressed));
+      if(btn.textContent.includes('❤')) {
+        btn.textContent = pressed ? '❤ Save' : '✔ Saved';
+      }
+    });
+  });
+</script>
+</body>
+</html>

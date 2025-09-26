@@ -1,0 +1,61 @@
+/** A simple signup page for the Eventure app.
+   This page collects user's full name, college email, and password.
+   It includes basic client-side validation and a demo submission handler.
+   Tee Peoples was Here - 20250925 
+*/
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eventure — Sign up</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-card" role="main" aria-labelledby="signupTitle">
+    <h1 id="signupTitle" class="h1">Create an account</h1>
+    <p class="lead">Register with your college email so you can post as a club organizer.</p>
+
+    <form id="signupForm" novalidate>
+      <div class="form-group">
+        <label for="fullname">Full name</label>
+        <input id="fullname" name="fullname" type="text" class="input" placeholder="Jane Student" required />
+      </div>
+
+      <div class="form-group">
+        <label for="signupEmail">College email</label>
+        <input id="signupEmail" name="email" type="email" class="input" placeholder="name@charlotte.edu" required />
+      </div>
+
+      <div class="form-group">
+        <label for="signupPassword">Password (min. 6 characters)</label>
+        <input id="signupPassword" name="password" type="password" class="input" minlength="6" placeholder="Create a password" required />
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:6px">
+        <button type="submit" class="btn">Create account</button>
+        <a class="link" href="login.html">Already have an account?</a>
+      </div>
+    </form>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <p class="small">We will verify your college email before enabling posting privileges.</p>
+  </main>
+
+<script>
+  document.getElementById('signupForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const email = document.getElementById('signupEmail').value.trim();
+    const fullname = document.getElementById('fullname').value.trim();
+    const pw = document.getElementById('signupPassword').value;
+    if(!fullname || !email || pw.length < 6){ alert('Please complete the form correctly.'); return; }
+    // Demo: redirect to main
+    alert('Account created (demo). You will receive a verification email.');
+    window.location.href = 'main.html';
+  });
+</script>
+</body>
+</html>
