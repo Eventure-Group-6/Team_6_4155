@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Discussion Page</title>
+</head>
+<body>
+  <main>
+    <h2>Discussion Board</h2>
+    <div class="discussion-container">
+
+      <form id="discussionForm">
+        <textarea id="messageInput" placeholder="Write something..." required></textarea>
+        <button type="submit">Post</button>
+      </form>
+
+      <div id="discussionList">
+        <!-- Messages will appear here -->
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('discussionForm');
+    const list = document.getElementById('discussionList');
+    const input = document.getElementById('messageInput');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const div = document.createElement('div');
+      div.className = 'message';
+      div.textContent = msg;
+
+      list.prepend(div);
+      input.value = '';
+    });
+  </script>
+</body>
+</html>
