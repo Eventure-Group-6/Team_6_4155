@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "saved_flyers")
+@IdClass(SavedFlyerId.class)
 public class SavedFlyers {
+
+    public SavedFlyers() {}
 
     public SavedFlyers(Long userId, Long flyerId) {
         this.userId = userId;

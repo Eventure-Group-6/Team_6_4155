@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 @Table(name = "user_feed")
 public class UserFeed {
 
+    public UserFeed() {}
+
     public UserFeed(Long id, Long userId, Long flyerId) {
         this.id = id;
         this.userId = userId;

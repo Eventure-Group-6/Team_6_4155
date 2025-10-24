@@ -1,42 +1,46 @@
 package com.eventure.backend.controllers;
 
-import com.eventure.backend.dtos.CommentRequestDto; 
 import com.eventure.backend.entities.Comments;
-import com.eventure.backend.services.InteractionService;
+import com.eventure.backend.services.CommentServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-public class commentController {
+@CrossOrigin(origins = "*")
+public class CommentController {
 
-    private final commentController commentService;
+    private final CommentServices commentServices;
 
-    public commentController(CommentService commentService) {
-        this.commentService = commentService;
+    public CommentController(CommentServices commentServices) {
+        this.commentServices = commentServices;
     }
 
-    @PostMapping("/{flyerId}/comments")
+    @PostMapping("/flyers/{flyerId}/comments")
     public ResponseEntity<Comments> addComment(
         @PathVariable Long flyerId,
-        @RequestBody CommentRequestDto commentRequestDto) {
+        @RequestBody Map<String, Object> request) {
 
-        Comments createdComment = commentService.addComment(flyerId, commentRequestDto);
+        Long userId = Long.valueOf(request.get("userId").toString());
+        String content = request.get("content").toString();
+        
+        Comments comment = new Comments(userId, flyerId, content);
+        Comments createdComment = commentServices.createComment(comment);
         return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
     }
-
-
-    public String getContent() {
-        return content;
-    }   
-    public void setContent(String content) {
-        this.content = content;
+    
+    @GetMapping("/flyers/{flyerId}/comments")
+    public ResponseEntity<List<Comments>> getCommentsByFlyer(@PathVariable Long flyerId) {
+        List<Comments> comments = commentServices.getCommentsByFlyerId(flyerId);
+        return ResponseEntity.ok(comments);
     }
-    public Instant getTimestamp() {
-        return timestamp;
-    }
-    public void setTimestamp(Instant timestamp) {
-        this.timestamp = timestamp;
+    
+    @DeleteMapping("/comments/{id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
+        commentServices.deleteComment(id);
+        return ResponseEntity.noContent().build();
     }
 }

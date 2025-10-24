@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class Users {
 	
+	public Users() {}
+	
 	public Users(Long id, String username, String password, String email){
 		this.id = id;
 		this.username = username;

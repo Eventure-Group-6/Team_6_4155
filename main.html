@@ -120,11 +120,41 @@
   </div>
 
 <script>
+  // Check authentication on page load
+  async function checkAuth() {
+    try {
+      const response = await fetch('http://localhost:8080/api/session', {
+        credentials: 'include'
+      });
+      const data = await response.json();
+      if(!data.authenticated) {
+        window.location.href = 'login.html';
+      }
+    } catch(error) {
+      console.error('Auth check failed:', error);
+      window.location.href = 'login.html';
+    }
+  }
+  
+  // Load flyers from API
+  async function loadFlyers() {
+    try {
+      const response = await fetch('http://localhost:8080/api/flyers', {
+        credentials: 'include'
+      });
+      const flyers = await response.json();
+      // Update UI with real flyer data if needed
+      console.log('Loaded flyers:', flyers);
+    } catch(error) {
+      console.error('Failed to load flyers:', error);
+    }
+  }
+  
   function openDetails(name){
     alert('Open details for: ' + name + ' (demo)');
   }
 
-  // Example: keyboard accessibility: space/enter on Save toggles
+  // Save/unsave functionality
   document.querySelectorAll('.icon-btn').forEach(btn=>{
     btn.addEventListener('click', ()=> {
       const pressed = btn.getAttribute('aria-pressed') === 'true';
@@ -134,6 +164,24 @@
       }
     });
   });
+  
+  // Logout functionality
+  document.querySelector('a[href="login.html"]').addEventListener('click', async function(e) {
+    e.preventDefault();
+    try {
+      await fetch('http://localhost:8080/api/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+    } catch(error) {
+      console.error('Logout error:', error);
+    }
+    window.location.href = 'login.html';
+  });
+  
+  // Initialize page
+  checkAuth();
+  loadFlyers();
 </script>
 </body>
 </html>

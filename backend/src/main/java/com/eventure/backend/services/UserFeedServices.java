@@ -1,10 +1,10 @@
 package com.eventure.backend.services;
 
-
+import com.eventure.backend.entities.UserFeed;
 import com.eventure.backend.repositories.UserFeedRepo;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserFeedServices {
@@ -15,6 +15,15 @@ public class UserFeedServices {
 		this.userFeedRepo = userFeedRepo;
 	}
 	
-	//services go here
+	public UserFeed createUserFeed(UserFeed userFeed) {
+		return userFeedRepo.save(userFeed);
+	}
 	
+	public List<UserFeed> getUserFeedByUserId(Long userId) {
+		return userFeedRepo.findByUserId(userId);
+	}
+	
+	public void deleteUserFeed(Long id) {
+		userFeedRepo.deleteById(id);
+	}
 }

@@ -48,14 +48,31 @@
     else { pw.type = 'password'; this.textContent = 'Show'; this.setAttribute('aria-label','Show password'); }
   });
 
-  // Basic client-side submit handler for demo
-  document.getElementById('loginForm').addEventListener('submit', function(e){
+  // API-connected submit handler
+  document.getElementById('loginForm').addEventListener('submit', async function(e){
     e.preventDefault();
     const email = document.getElementById('email').value.trim();
     const pw = document.getElementById('password').value;
     if(!email || !pw){ alert('Please enter both email and password.'); return; }
-    // Simulate success (in real life you'd call API)
-    window.location.href = 'main.html';
+    
+    try {
+      const response = await fetch('http://localhost:8080/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password: pw })
+      });
+      
+      const data = await response.json();
+      if(data.success) {
+        window.location.href = 'main.html';
+      } else {
+        alert(data.message || 'Login failed');
+      }
+    } catch(error) {
+      console.error('Login error:', error);
+      alert('Login failed. Please try again.');
+    }
   });
 </script>
 </body>

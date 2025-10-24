@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 @Table(name = "flyers")
 public class Flyers {
 
+    public Flyers() {}
+
     public Flyers(Long id, Long orgId, String flyerAdvert, int popularityScore) {    
         this.id = id;
         this.orgId = orgId;

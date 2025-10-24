@@ -13,8 +13,10 @@ import com.eventure.backend.repositories.SavedFlyerId;
 
 public interface SavedFlyerRepo extends JpaRepository<SavedFlyers, SavedFlyerId> {
 
-
-   /// repo goes here
-    
+    List<SavedFlyers> findByUserId(Long userId);
+    List<SavedFlyers> findByFlyerId(Long flyerId);
+    void deleteByUserIdAndFlyerId(Long userId, Long flyerId);
+    long count();
+    <S extends SavedFlyers> S save(S entity);
 }
 

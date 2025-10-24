@@ -212,6 +212,37 @@ label{
 /* Footer */
 .footer-note{font-size:0.9rem;color:var(--muted);text-align:center;margin-top:14px}
 
+/* Discussion Board Styles */
+.discussion-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.discussion-container form {
+  margin-bottom: 20px;
+}
+
+.discussion-container textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #e6eef8;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.message {
+  background: rgba(255,255,255,0.08);
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border-left: 3px solid var(--accent);
+}
+
 /* Responsive */
 @media (max-width:900px){
   body{padding:16px}

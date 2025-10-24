@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface UserFeedRepo extends JpaRepository<UserFeed, Long> {
 
     Optional<UserFeed> findById(Long id);
+    List<UserFeed> findByUserId(Long userId);
+    List<UserFeed> findByFlyerId(Long flyerId);
     long count();
     <S extends UserFeed> S save(S entity);
 }

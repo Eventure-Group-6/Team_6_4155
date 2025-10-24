@@ -46,15 +46,32 @@
   </main>
 
 <script>
-  document.getElementById('signupForm').addEventListener('submit', function(e){
+  document.getElementById('signupForm').addEventListener('submit', async function(e){
     e.preventDefault();
     const email = document.getElementById('signupEmail').value.trim();
     const fullname = document.getElementById('fullname').value.trim();
     const pw = document.getElementById('signupPassword').value;
     if(!fullname || !email || pw.length < 6){ alert('Please complete the form correctly.'); return; }
-    // Demo: redirect to main
-    alert('Account created (demo). You will receive a verification email.');
-    window.location.href = 'main.html';
+    
+    try {
+      const response = await fetch('http://localhost:8080/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ username: fullname, email, password: pw })
+      });
+      
+      const data = await response.json();
+      if(data.success) {
+        alert('Account created successfully!');
+        window.location.href = 'login.html';
+      } else {
+        alert(data.message || 'Signup failed');
+      }
+    } catch(error) {
+      console.error('Signup error:', error);
+      alert('Signup failed. Please try again.');
+    }
   });
 </script>
 </body>

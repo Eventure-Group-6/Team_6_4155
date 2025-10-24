@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 @Table(name = "org")
 public class Org {
 
+    public Org() {}
+
     public Org(Long id, String orgName, String orgOwner) {
         this.id = id;
         this.orgName = orgName;
