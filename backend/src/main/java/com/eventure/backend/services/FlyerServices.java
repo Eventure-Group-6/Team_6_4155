@@ -12,10 +12,12 @@ public class FlyerServices {
 
     private final FlyerRepo flyerRepo;
     private final PopularityService popularityService;
+    private final SavedFlyerServices savedFlyerServices;
 
-    public FlyerServices(FlyerRepo flyerRepo, PopularityService popularityService) {
+    public FlyerServices(FlyerRepo flyerRepo, PopularityService popularityService, SavedFlyerServices savedFlyerServices) {
         this.flyerRepo = flyerRepo;
         this.popularityService = popularityService;
+        this.savedFlyerServices = savedFlyerServices;
     }
 
     public Flyers createFlyer(Flyers flyer) {
@@ -51,5 +53,21 @@ public class FlyerServices {
     
     public List<Flyers> getTrendingFlyers() {
         return popularityService.getTrendingFlyers();
+    }
+    
+    public void saveFlyer(Long userId, Long flyerId) {
+        savedFlyerServices.saveFlyerForUser(userId, flyerId);
+    }
+    
+    public void unsaveFlyer(Long userId, Long flyerId) {
+        savedFlyerServices.removeSavedFlyer(userId, flyerId);
+    }
+    
+    public List<Flyers> getSavedFlyers(Long userId) {
+        return savedFlyerServices.getSavedFlyersByUserId(userId).stream()
+            .map(savedFlyer -> flyerRepo.findById(savedFlyer.getFlyerId()))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .collect(Collectors.toList());
     }
 }

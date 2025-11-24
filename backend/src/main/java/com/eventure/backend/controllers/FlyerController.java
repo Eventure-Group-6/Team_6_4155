@@ -64,4 +64,21 @@ public class FlyerController {
 	public ResponseEntity<List<Flyers>> getTrendingFlyers() {
 		return ResponseEntity.ok(flyerServices.getTrendingFlyers());
 	}
+	
+	@PostMapping("/flyers/{flyerId}/save")
+	public ResponseEntity<String> saveFlyer(@PathVariable Long flyerId) {
+		flyerServices.saveFlyer(1L, flyerId); // Using user ID 1 for demo
+		return ResponseEntity.ok("Flyer saved");
+	}
+	
+	@DeleteMapping("/flyers/{flyerId}/save")
+	public ResponseEntity<String> unsaveFlyer(@PathVariable Long flyerId) {
+		flyerServices.unsaveFlyer(1L, flyerId);
+		return ResponseEntity.ok("Flyer unsaved");
+	}
+	
+	@GetMapping("/flyers/saved")
+	public ResponseEntity<List<Flyers>> getSavedFlyers() {
+		return ResponseEntity.ok(flyerServices.getSavedFlyers(1L));
+	}
 }
