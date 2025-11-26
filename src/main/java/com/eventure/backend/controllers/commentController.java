@@ -11,11 +11,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class commentController {
+public class CommentController {
 
     private final CommentServices commentServices;
 
-    public commentController(CommentServices commentServices) {
+    public CommentController(CommentServices commentServices) {
         this.commentServices = commentServices;
     }
 

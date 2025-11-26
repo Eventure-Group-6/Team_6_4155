@@ -48,13 +48,13 @@ public class DataInitializer implements CommandLineRunner {
 
             // Create sample flyers
             Flyers flyer1 = new Flyers();
-            flyer1.setOrgId(1);
+            flyer1.setOrgId(1L);
             flyer1.setFlyerAdvert("Join ACM for coding competitions!");
             flyer1.setPopularityScore(85);
             flyerRepo.save(flyer1);
 
             Flyers flyer2 = new Flyers();
-            flyer2.setOrgId(2);
+            flyer2.setOrgId(2L);
             flyer2.setFlyerAdvert("Build robots with us every Thursday!");
             flyer2.setPopularityScore(92);
             flyerRepo.save(flyer2);

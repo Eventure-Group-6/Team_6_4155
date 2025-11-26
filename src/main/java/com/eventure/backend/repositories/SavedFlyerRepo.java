@@ -11,7 +11,7 @@ import com.eventure.backend.repositories.SavedFlyerId;
 
 
 
-public interface SavedFlyerRepo extends JpaRepository<SavedFlyers, SavedFlyerId> {
+public interface SavedFlyerRepo extends JpaRepository<SavedFlyers, Long> {
 
     List<SavedFlyers> findByUserId(Long userId);
     List<SavedFlyers> findByFlyerId(Long flyerId);
