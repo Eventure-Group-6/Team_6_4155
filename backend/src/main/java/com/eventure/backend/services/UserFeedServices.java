@@ -1,6 +1,8 @@
 package com.eventure.backend.services;
 
+import com.eventure.backend.entities.Org;
 import com.eventure.backend.entities.UserFeed;
+import com.eventure.backend.entities.Users;
 import com.eventure.backend.repositories.UserFeedRepo;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -25,5 +27,10 @@ public class UserFeedServices {
 	
 	public void deleteUserFeed(Long id) {
 		userFeedRepo.deleteById(id);
+	}
+	
+	public UserFeed followOrg(Long userId, Long orgId) {
+		UserFeed userFeed = new UserFeed(userId, orgId); 
+		return userFeedRepo.save(userFeed);
 	}
 }

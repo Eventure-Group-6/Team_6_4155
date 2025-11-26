@@ -7,19 +7,26 @@ import jakarta.persistence.*;
 @Table(name = "org")
 public class Org {
 
-    public Org() {}
+    
+
+	public Org() {
+		this.orgFollowers = 0L;
+	}
 
     public Org(Long id, String orgName, String orgOwner) {
         this.id = id;
         this.orgName = orgName;
         this.orgOwner = orgOwner;
+        this.orgFollowers = 0L;
     }
 
     @Override
     public String toString() {
-        return "Org [id=" + id +
+        
+		return "Org [id=" + id +
                 ", orgName=" + orgName +
-                ", orgOwner=" + orgOwner + "]";
+                ", orgOwner=" + orgOwner +
+                ", orgFollowers=" + orgFollowers + "]";
     }
 
     @Id
@@ -31,6 +38,17 @@ public class Org {
 
     @Column(name = "org_owner", nullable = false, length = 255)
     private String orgOwner;
+    
+    @Column(name = "org_followers", nullable = false)
+    private Long orgFollowers;
+
+	public Long getOrgFollowers() {
+		return orgFollowers;
+	}
+
+	public void setOrgFollowers(Long orgFollowers) {
+		this.orgFollowers = orgFollowers;
+	}
 
 	public Long getId() {
 		return id;

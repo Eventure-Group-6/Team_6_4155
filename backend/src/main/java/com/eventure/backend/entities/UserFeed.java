@@ -9,17 +9,17 @@ public class UserFeed {
 
     public UserFeed() {}
 
-    public UserFeed(Long id, Long userId, Long flyerId) {
-        this.id = id;
+    public UserFeed(Long userId, Long orgId) {
+        
         this.userId = userId;
-        this.flyerId = flyerId;
+        this.orgId = orgId;
     }
 
     @Override
     public String toString() {
         return "UserFeed [id=" + id +
                 ", userId=" + userId +
-                ", flyerId=" + flyerId + "]";
+                ", orgId=" + orgId + "]";
     }
 
     @Id
@@ -29,8 +29,8 @@ public class UserFeed {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "flyer_id", nullable = false)
-    private Long flyerId;
+    @Column(name = "org_id", nullable = false)
+    private Long orgId;
 
 	public Long getId() {
 		return id;
@@ -48,13 +48,4 @@ public class UserFeed {
 		this.userId = userId;
 	}
 
-	public Long getFlyerId() {
-		return flyerId;
-	}
-
-	public void setFlyerId(Long flyerId) {
-		this.flyerId = flyerId;
-	}
-
-    
 }

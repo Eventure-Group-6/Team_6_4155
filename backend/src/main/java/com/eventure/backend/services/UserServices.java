@@ -1,5 +1,6 @@
 package com.eventure.backend.services;
 
+import com.eventure.backend.entities.Org;
 import com.eventure.backend.entities.Users;
 import com.eventure.backend.repositories.UserRepo;
 import org.springframework.stereotype.Service;
@@ -46,4 +47,6 @@ public class UserServices {
 	public boolean existsByEmail(String email) {
 		return userRepo.existsByEmail(email);
 	}
+	
+	
 }
