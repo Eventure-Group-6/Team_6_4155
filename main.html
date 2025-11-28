@@ -1,0 +1,582 @@
+/** Tee Peoples was Here - 20250925 **/
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eventure — Discover Clubs</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="padding:20px;">
+
+  <div class="main-wrap" role="main" aria-label="Main feed and navigation">
+    <aside class="sidebar" aria-label="Sidebar navigation">
+      <div class="brand">
+        <span class="logo">Eventure</span>
+        <div>
+          <div style="font-weight:700">Eventure</div>
+          <div class="small" style="margin-top:4px">Clubs & Events</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="main.html" aria-current="page">Discover</a>
+        <a href="#" onclick="showMyClubs()">My Clubs</a>
+        <a href="#" onclick="showPostForm()">Post</a>
+        <a href="index.html">Events</a>
+        <a href="discussion.html">Discussion</a>
+        <a href="login.html">Sign out</a>
+      </nav>
+
+      <div style="margin-top:16px;font-size:0.95rem;color:var(--muted)">
+        <div style="margin-bottom:8px;font-weight:600">Favorites</div>
+        <a href="#" onclick="showFavorites()" style="color:var(--accent-2);text-decoration:none;font-size:0.9rem;">View Saved Flyers</a>
+      </div>
+    </aside>
+
+    <section class="feed" aria-label="Club poster feed">
+      <!-- Poster 1: Static image style -->
+      <article class="poster" role="article" aria-labelledby="p1title">
+        <div class="meta">
+          <div>
+            <h3 id="p1title">Robotics Club</h3>
+            <div class="small">Engineering • Meets Thursdays</div>
+          </div>
+          <div class="small">4.8 ★</div>
+        </div>
+
+        <div class="poster-img" role="img" aria-label="Robotics poster">
+          🤖 Robotics Night
+        </div>
+
+        <div>
+          <p>Come build robots and compete in regional challenges. Beginners welcome.</p>
+          <div class="actions">
+            <div>
+              <button class="icon-btn" aria-pressed="false">❤ Save</button>
+              <button class="icon-btn">🔗 Share</button>
+            </div>
+            <button class="btn" onclick="openDetails('Robotics Club')">View</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Poster 2: Animated/dynamic (CSS-based) -->
+      <article class="poster" role="article" aria-labelledby="p2title" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
+        <div class="meta">
+          <div>
+            <h3 id="p2title">Improv Night</h3>
+            <div class="small">Arts • Wednesdays • 7pm</div>
+          </div>
+          <div class="small">New</div>
+        </div>
+
+        <div class="poster-img" style="background:linear-gradient(135deg,#ffd6e0,#ffd7b5);">
+          🎭 Improv Jam
+        </div>
+
+        <div>
+          <p>Drop-in improv games and laughs. No experience required — just bring energy.</p>
+          <div class="actions">
+            <div>
+              <button class="icon-btn">❤ Save</button>
+              <button class="icon-btn">🔗 Share</button>
+            </div>
+            <button class="btn" onclick="openDetails('Improv Night')">View</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Poster 3: Another style -->
+      <article class="poster" role="article" aria-labelledby="p3title" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
+        <div class="meta">
+          <div>
+            <h3 id="p3title">Film Society</h3>
+            <div class="small">Cinema • Saturday Screenings</div>
+          </div>
+          <div class="small">4.5 ★</div>
+        </div>
+
+        <div class="poster-img" style="background:linear-gradient(135deg,#e6f3ff,#f0f0ff);height:55%">
+          🎬 Weekly Screening
+        </div>
+
+        <div>
+          <p>Classic films and discussions afterward. Free popcorn on first visit.</p>
+          <div class="actions">
+            <div>
+              <button class="icon-btn">❤ Save</button>
+              <button class="icon-btn">🔗 Share</button>
+            </div>
+            <button class="btn" onclick="openDetails('Film Society')">View</button>
+          </div>
+        </div>
+      </article>
+
+      <div class="footer-note">Tip: Scroll up/down to browse — posters snap into view for easy preview.</div>
+    </section>
+  </div>
+
+<script>
+  // Check authentication on page load
+  async function checkAuth() {
+    try {
+      const response = await fetch('http://localhost:8080/api/session', {
+        credentials: 'include'
+      });
+      const data = await response.json();
+      if(!data.authenticated) {
+        window.location.href = 'login.html';
+      }
+    } catch(error) {
+      console.error('Auth check failed:', error);
+      window.location.href = 'login.html';
+    }
+  }
+  
+  // Load flyers from API with animation
+  async function loadFlyers() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      // Restore original content
+      feed.innerHTML = `
+        <article class="poster" role="article" aria-labelledby="p1title">
+          <div class="meta">
+            <div>
+              <h3 id="p1title">Robotics Club</h3>
+              <div class="small">Engineering • Meets Thursdays</div>
+            </div>
+            <div class="small">4.8 ★</div>
+          </div>
+          <div class="poster-img" role="img" aria-label="Robotics poster">
+            🤖 Robotics Night
+          </div>
+          <div>
+            <p>Come build robots and compete in regional challenges. Beginners welcome.</p>
+            <div class="actions">
+              <div>
+                <button class="icon-btn" aria-pressed="false" onclick="toggleSave(1, this)">❤ Save</button>
+                <button class="icon-btn">🔗 Share</button>
+              </div>
+              <button class="btn" onclick="openDetails('Robotics Club', this)">View</button>
+            </div>
+          </div>
+        </article>
+        
+        <article class="poster" role="article" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
+          <div class="meta">
+            <div>
+              <h3>Improv Night</h3>
+              <div class="small">Arts • Wednesdays • 7pm</div>
+            </div>
+            <div class="small">New</div>
+          </div>
+          <div class="poster-img" style="background:linear-gradient(135deg,#ffd6e0,#ffd7b5);">
+            🎭 Improv Jam
+          </div>
+          <div>
+            <p>Drop-in improv games and laughs. No experience required — just bring energy.</p>
+            <div class="actions">
+              <div>
+                <button class="icon-btn" onclick="toggleSave(2, this)">❤ Save</button>
+                <button class="icon-btn">🔗 Share</button>
+              </div>
+              <button class="btn" onclick="openDetails('Improv Night', this)">View</button>
+            </div>
+          </div>
+        </article>
+        
+        <article class="poster" role="article" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
+          <div class="meta">
+            <div>
+              <h3>Film Society</h3>
+              <div class="small">Cinema • Saturday Screenings</div>
+            </div>
+            <div class="small">4.5 ★</div>
+          </div>
+          <div class="poster-img" style="background:linear-gradient(135deg,#e6f3ff,#f0f0ff);height:55%">
+            🎬 Weekly Screening
+          </div>
+          <div>
+            <p>Classic films and discussions afterward. Free popcorn on first visit.</p>
+            <div class="actions">
+              <div>
+                <button class="icon-btn" onclick="toggleSave(3, this)">❤ Save</button>
+                <button class="icon-btn">🔗 Share</button>
+              </div>
+              <button class="btn" onclick="openDetails('Film Society', this)">View</button>
+            </div>
+          </div>
+        </article>
+        
+      `;
+      
+      // Add user-created posts
+      createdPosts.forEach(post => {
+        const postHTML = `
+          <article class="poster" style="min-height:300px;background:linear-gradient(180deg,#e0f2fe,#f0f9ff);border:2px solid rgba(255,255,255,0.8);">
+            <div class="meta">
+              <div>
+                <h3 style="color:#1e293b;font-weight:700;">${post.title}</h3>
+                <div class="small" style="color:#475569;">${post.org} • ${post.date}</div>
+              </div>
+              <div class="small" style="color:#059669;">✨ New</div>
+            </div>
+            <div class="poster-img" style="background:linear-gradient(135deg,#bfdbfe,#ddd6fe);">
+              🎉 ${post.title}
+            </div>
+            <div>
+              <p style="color:#475569;margin:15px 0;">${post.description}</p>
+              <div class="actions">
+                <div>
+                  <button class="icon-btn" onclick="toggleSave(${post.id}, this)">❤ Save</button>
+                  <button class="icon-btn">🔗 Share</button>
+                </div>
+                <button class="btn" onclick="openDetails('${post.title}', this)">View</button>
+              </div>
+            </div>
+          </article>
+        `;
+        feed.innerHTML = postHTML + feed.innerHTML;
+      });
+      
+      feed.innerHTML += `<div class="footer-note">Tip: Scroll up/down to browse — posters snap into view for easy preview.</div>`;
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+      
+      // Re-attach event listeners
+      document.querySelectorAll('.icon-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=> {
+          const pressed = btn.getAttribute('aria-pressed') === 'true';
+          btn.setAttribute('aria-pressed', String(!pressed));
+          if(btn.textContent.includes('❤')) {
+            btn.textContent = pressed ? '❤ Save' : '✔ Saved';
+          }
+        });
+      });
+    }, 150);
+  }
+  
+  function openDetails(name, element) {
+    // Get card position for animation origin
+    const card = element ? element.closest('.poster') : null;
+    
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'card-overlay';
+    overlay.onclick = closeDetails;
+    
+    // Create expanded card
+    const expandedCard = document.createElement('div');
+    expandedCard.className = 'expanded-card';
+    expandedCard.innerHTML = `
+      <button class="close-btn" id="closeBtn">×</button>
+      <div style="text-align:right;margin-bottom:10px;">
+        <button onclick="closeDetails()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:14px;">Close ×</button>
+      </div>
+      <div style="margin-bottom: 25px;">
+        <h2 style="color:#0f172a;font-weight:800;font-size:1.8rem;margin-bottom:8px;">${name}</h2>
+        <div style="color:#64748b;font-weight:600;font-size:1rem;">Event Details</div>
+      </div>
+      
+      <div style="background:linear-gradient(135deg,#c7f9e1,#bfdbfe);border-radius:16px;padding:45px;text-align:center;margin:25px 0;border:2px solid rgba(255,255,255,0.8);">
+        <div style="font-size:3.5rem;margin-bottom:15px;">🎉</div>
+        <h3 style="color:#0f172a;font-weight:700;font-size:1.4rem;">${name}</h3>
+      </div>
+      
+      <div style="margin:25px 0;">
+        <h4 style="color:#0f172a;font-weight:700;font-size:1.2rem;margin-bottom:15px;">About This Event</h4>
+        <p style="color:#374151;line-height:1.7;font-size:1rem;font-weight:500;">
+          ${name === 'Robotics Club' ? 'Join our weekly robotics sessions where students build, program, and compete with robots. Perfect for beginners and experienced makers alike!' : 
+            name === 'Improv Night' ? 'Drop-in improv comedy sessions every Wednesday. No experience needed - just bring your creativity and sense of humor!' :
+            name === 'Film Society' ? 'Weekly film screenings followed by discussions. We explore classic cinema, indie films, and student productions.' :
+            'An exciting event you won\'t want to miss! Join us for a great time with fellow students.'}
+        </p>
+      </div>
+      
+      <div style="margin:25px 0;background:rgba(248,250,252,0.8);padding:20px;border-radius:12px;border:1px solid rgba(226,232,240,0.8);">
+        <h4 style="color:#0f172a;font-weight:700;font-size:1.2rem;margin-bottom:15px;">Event Details</h4>
+        <div style="color:#374151;font-weight:500;">
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">When:</strong> ${name === 'Robotics Club' ? 'Thursdays 6:00 PM' : name === 'Improv Night' ? 'Wednesdays 7:00 PM' : 'Saturdays 7:30 PM'}</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Where:</strong> Student Union Building</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Cost:</strong> Free for students</p>
+        </div>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:35px;">
+        <button class="btn" style="flex:1;font-weight:600;">Join Event</button>
+        <button class="icon-btn" style="font-weight:600;">❤ Save</button>
+        <button class="icon-btn" style="font-weight:600;">🔗 Share</button>
+      </div>
+    `;
+    
+    // Add to DOM
+    document.body.appendChild(overlay);
+    document.body.appendChild(expandedCard);
+    
+    // Add close button event listener
+    const closeBtn = expandedCard.querySelector('#closeBtn');
+    closeBtn.addEventListener('click', closeDetails);
+    
+    // Trigger animation
+    setTimeout(() => {
+      overlay.classList.add('show');
+      expandedCard.classList.add('show');
+    }, 10);
+  }
+  
+  function closeDetails() {
+    const overlay = document.querySelector('.card-overlay');
+    const expandedCard = document.querySelector('.expanded-card');
+    
+    if (overlay && expandedCard) {
+      overlay.classList.remove('show');
+      expandedCard.classList.remove('show');
+      
+      setTimeout(() => {
+        overlay.remove();
+        expandedCard.remove();
+      }, 300);
+    }
+  }
+
+  // Save/unsave functionality
+  document.querySelectorAll('.icon-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> {
+      const pressed = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', String(!pressed));
+      if(btn.textContent.includes('❤')) {
+        btn.textContent = pressed ? '❤ Save' : '✔ Saved';
+      }
+    });
+  });
+  
+  // Logout functionality
+  document.querySelector('a[href="login.html"]').addEventListener('click', async function(e) {
+    e.preventDefault();
+    try {
+      await fetch('http://localhost:8080/api/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+    } catch(error) {
+      console.error('Logout error:', error);
+    }
+    window.location.href = 'login.html';
+  });
+  
+  // Tab functionality with animations
+  function showMyClubs() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      feed.innerHTML = `
+        <article class="poster" style="min-height:300px;height:auto;background:linear-gradient(180deg,#fff4f2,#fff7f0);border:2px solid rgba(255,255,255,0.8);">
+          <div class="club-header">
+            <div style="display:flex;align-items:center;">
+              <div class="club-icon">🤖</div>
+              <div class="club-info">
+                <h4 style="color:#1e293b;font-weight:700;">Robotics Club</h4>
+                <div class="small" style="color:#475569;font-weight:500;">Engineering • 150 members</div>
+              </div>
+            </div>
+            <div class="small" style="color:#059669;font-weight:600;">⭐ Saved</div>
+          </div>
+          <p style="color:#475569;font-weight:500;margin:15px 0;">Build robots and compete in regional challenges. Weekly meetings every Thursday.</p>
+          <div class="club-actions">
+            <button class="btn">Visit Club</button>
+            <button class="icon-btn">❤️ Unsave</button>
+          </div>
+        </article>
+        
+        <article class="poster" style="min-height:300px;height:auto;background:linear-gradient(180deg,#fffef2,#f5fff1);border:2px solid rgba(255,255,255,0.8);">
+          <div class="club-header">
+            <div style="display:flex;align-items:center;">
+              <div class="club-icon">🎬</div>
+              <div class="club-info">
+                <h4 style="color:#1e293b;font-weight:700;">Film Society</h4>
+                <div class="small" style="color:#475569;font-weight:500;">Arts • 89 members</div>
+              </div>
+            </div>
+            <div class="small" style="color:#059669;font-weight:600;">⭐ Saved</div>
+          </div>
+          <p style="color:#475569;font-weight:500;margin:15px 0;">Weekly movie screenings and film discussions. Free popcorn for new members!</p>
+          <div class="club-actions">
+            <button class="btn">Visit Club</button>
+            <button class="icon-btn">❤️ Unsave</button>
+          </div>
+        </article>
+        
+        <article class="poster" style="min-height:300px;height:auto;background:linear-gradient(180deg,#f0f9ff,#e0f2fe);border:2px solid rgba(255,255,255,0.8);">
+          <div class="club-header">
+            <div style="display:flex;align-items:center;">
+              <div class="club-icon">🎭</div>
+              <div class="club-info">
+                <h4 style="color:#1e293b;font-weight:700;">Drama Club</h4>
+                <div class="small" style="color:#475569;font-weight:500;">Theatre • 45 members</div>
+              </div>
+            </div>
+            <div class="small" style="color:#059669;font-weight:600;">⭐ Saved</div>
+          </div>
+          <p style="color:#475569;font-weight:500;margin:15px 0;">Perform in plays and musicals. Auditions open to all skill levels.</p>
+          <div class="club-actions">
+            <button class="btn">Visit Club</button>
+            <button class="icon-btn">❤️ Unsave</button>
+          </div>
+        </article>
+        
+        <div style="text-align:center;margin-top:20px;">
+          <button class="btn" onclick="loadFlyers()">← Back to Discover</button>
+        </div>
+      `;
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  function showPostForm() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      feed.innerHTML = `
+        <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
+          <h3 style="color:#1e293b;font-weight:700;">🎨 Create New Flyer</h3>
+          <form onsubmit="createFlyer(event)">
+            <input type="text" placeholder="Event Title" required class="input" style="width:100%;margin:10px 0;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;">
+            <input type="text" placeholder="Organization Name" required class="input" style="width:100%;margin:10px 0;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;">
+            <textarea placeholder="Event Description" required class="input" style="width:100%;margin:10px 0;height:120px;resize:vertical;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;"></textarea>
+            <input type="date" required class="input" style="width:100%;margin:10px 0;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;">
+            <button type="submit" class="btn">🚀 Post Flyer</button>
+          </form>
+          <button class="btn" onclick="loadFlyers()" style="margin-top:15px;background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">← Cancel</button>
+        </div>
+      `;
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  function createFlyer(event) {
+    event.preventDefault();
+    const form = event.target;
+    const title = form.querySelector('input[placeholder="Event Title"]').value;
+    const org = form.querySelector('input[placeholder="Organization Name"]').value;
+    const description = form.querySelector('textarea').value;
+    const date = form.querySelector('input[type="date"]').value;
+    
+    const newPost = {
+      id: Date.now(),
+      title: title,
+      org: org,
+      description: description,
+      date: date,
+      isUserCreated: true
+    };
+    
+    createdPosts.push(newPost);
+    localStorage.setItem('createdPosts', JSON.stringify(createdPosts));
+    
+    alert('Flyer created successfully!');
+    loadFlyers();
+  }
+  
+  // Save/unsave functionality with local storage
+  function toggleSave(flyerId, button) {
+    const isSaved = button.textContent.includes('Saved');
+    
+    // Check if it's a user-created post
+    const userPost = createdPosts.find(p => p.id === flyerId);
+    const flyerData = userPost || {
+      id: flyerId,
+      title: flyerId === 1 ? 'Robotics Club' : flyerId === 2 ? 'Improv Night' : 'Film Society',
+      description: flyerId === 1 ? 'Build robots and compete in challenges' : flyerId === 2 ? 'Drop-in improv games and laughs' : 'Classic films and discussions'
+    };
+    
+    if (isSaved) {
+      // Remove from saved
+      savedFlyers = savedFlyers.filter(f => f.id !== flyerId);
+      button.textContent = '❤ Save';
+      button.setAttribute('aria-pressed', 'false');
+    } else {
+      // Add to saved
+      savedFlyers.push(flyerData);
+      button.textContent = '✔ Saved';
+      button.setAttribute('aria-pressed', 'true');
+    }
+    
+    localStorage.setItem('savedFlyers', JSON.stringify(savedFlyers));
+  }
+  
+  // Local storage for saved flyers and created posts
+  let savedFlyers = JSON.parse(localStorage.getItem('savedFlyers') || '[]');
+  let createdPosts = JSON.parse(localStorage.getItem('createdPosts') || '[]');
+  
+  // Show favorites tab
+  function showFavorites() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      if (savedFlyers.length === 0) {
+        feed.innerHTML = `
+          <div class="poster" style="min-height:300px;background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;">
+            <h3 style="color:#1e293b;margin-top:50px;">❤️ No Saved Flyers</h3>
+            <p style="color:#475569;margin:20px 0;">Start saving flyers you're interested in!</p>
+            <button class="btn" onclick="loadFlyers()">Discover Flyers</button>
+          </div>
+        `;
+      } else {
+        let favoritesHTML = '';
+        savedFlyers.forEach((flyer, index) => {
+          favoritesHTML += `
+            <article class="poster" style="min-height:300px;background:linear-gradient(180deg,#fff4f2,#fff7f0);border:2px solid rgba(255,255,255,0.8);">
+              <div class="meta">
+                <div>
+                  <h3 style="color:#1e293b;font-weight:700;">${flyer.title}</h3>
+                  <div class="small" style="color:#475569;">Saved Flyer</div>
+                </div>
+                <div class="small" style="color:#059669;">⭐ Saved</div>
+              </div>
+              <div class="poster-img" style="background:linear-gradient(135deg,#ffd6e0,#ffd7b5);">
+                🎆 ${flyer.title}
+              </div>
+              <div>
+                <p style="color:#475569;margin:15px 0;">${flyer.description}</p>
+                <div class="actions">
+                  <button class="icon-btn" onclick="removeFavorite(${index})">❌ Remove</button>
+                  <button class="btn">View Details</button>
+                </div>
+              </div>
+            </article>
+          `;
+        });
+        favoritesHTML += `<div style="text-align:center;margin-top:20px;"><button class="btn" onclick="loadFlyers()">← Back to Discover</button></div>`;
+        feed.innerHTML = favoritesHTML;
+      }
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  // Remove from favorites
+  function removeFavorite(index) {
+    savedFlyers.splice(index, 1);
+    localStorage.setItem('savedFlyers', JSON.stringify(savedFlyers));
+    showFavorites(); // Refresh the view
+  }
+  
+  // Initialize page
+  checkAuth();
+  loadFlyers();
+</script>
+</body>
+</html>

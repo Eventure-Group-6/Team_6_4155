@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Discussion Page</title>
+</head>
+<body>
+  <main>
+    <h2>Discussion Board</h2>
+    <div class="discussion-container">
+
+      <form id="discussionForm">
+        <textarea id="messageInput" placeholder="Write something..." required></textarea>
+        <button type="submit">Post</button>
+      </form>
+
+      <div id="discussionList">
+        <!-- Messages will appear here -->
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('discussionForm');
+    const list = document.getElementById('discussionList');
+    const input = document.getElementById('messageInput');
+    
+    // Load existing messages
+    async function loadMessages() {
+      try {
+        // For demo purposes, using flyer ID 1 for comments
+        const response = await fetch('http://localhost:8080/api/flyers/1/comments', {
+          credentials: 'include'
+        });
+        const comments = await response.json();
+        
+        list.innerHTML = '';
+        comments.forEach(comment => {
+          const div = document.createElement('div');
+          div.className = 'message';
+          div.textContent = comment.content;
+          list.appendChild(div);
+        });
+      } catch(error) {
+        console.error('Failed to load messages:', error);
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = input.value.trim();
+      if (!msg) return;
+      
+      try {
+        const response = await fetch('http://localhost:8080/api/flyers/1/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ userId: 1, content: msg })
+        });
+        
+        if(response.ok) {
+          const div = document.createElement('div');
+          div.className = 'message';
+          div.textContent = msg;
+          list.prepend(div);
+          input.value = '';
+        }
+      } catch(error) {
+        console.error('Failed to post message:', error);
+        // Fallback to local storage
+        const div = document.createElement('div');
+        div.className = 'message';
+        div.textContent = msg;
+        list.prepend(div);
+        input.value = '';
+      }
+    });
+    
+    // Load messages on page load
+    loadMessages();
+  </script>
+</body>
+</html>

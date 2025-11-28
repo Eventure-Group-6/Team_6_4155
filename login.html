@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eventure — Login</title>
+
+  <!-- Roboto font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-card" role="main" aria-labelledby="loginTitle">
+    <h1 id="loginTitle" class="h1">Welcome back to Eventure</h1>
+    <p class="lead">Sign in to discover clubs, events, and poster feeds tailored for you.</p>
+
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="email">College email</label>
+        <input id="email" name="email" type="email" class="input" placeholder="name@charlotte.edu" required aria-required="true" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input id="password" name="password" type="password" class="input" placeholder="••••••••" minlength="6" required aria-required="true" />
+          <button type="button" id="togglePass" class="btn" aria-label="Show password">Show</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:6px">
+        <button type="submit" class="btn">Sign in</button>
+        <a class="link" href="signup.html">Create account</a>
+      </div>
+    </form>
+
+    <div class="divider" role="separator" aria-hidden="true"></div>
+
+    <p class="small">Use your Charlotte University email to register. By signing in you agree to Eventure's terms.</p>
+  </main>
+
+<script>
+  // Password toggle
+  document.getElementById('togglePass').addEventListener('click', function(){
+    const pw = document.getElementById('password');
+    if(pw.type === 'password'){ pw.type = 'text'; this.textContent = 'Hide'; this.setAttribute('aria-label','Hide password'); }
+    else { pw.type = 'password'; this.textContent = 'Show'; this.setAttribute('aria-label','Show password'); }
+  });
+
+  // API-connected submit handler
+  document.getElementById('loginForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const pw = document.getElementById('password').value;
+    if(!email || !pw){ alert('Please enter both email and password.'); return; }
+    
+    try {
+      const response = await fetch('http://localhost:8080/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password: pw })
+      });
+      
+      const data = await response.json();
+      if(data.success) {
+        window.location.href = 'main.html';
+      } else {
+        alert(data.message || 'Login failed');
+      }
+    } catch(error) {
+      console.error('Login error:', error);
+      alert('Login failed. Please try again.');
+    }
+  });
+</script>
+</body>
+</html>

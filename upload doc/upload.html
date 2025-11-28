@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Upload Flyer</title>
+</head>
+<body>
+    <header><h1>Add a Flyer!</h1></header>
+    <main>
+       <div id="uploadContainer">
+            <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+
+            <label for="flyerImage" class="upload-btn">➕</label>
+
+            <input type="file" id="flyerImage" name="flyerImage" accept="image/*" required hidden>
+
+            <br><br>
+            <input type="submit" value="Submit">
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div id="footerBar">
+            <div id="messages">
+                <a href="placeholder">💬</a>
+            </div>
+            <div id="addNew">
+                <a href="placeholder">➕</a>
+            </div>
+            <div id="profile">
+                <a href="placeholder">👤</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
