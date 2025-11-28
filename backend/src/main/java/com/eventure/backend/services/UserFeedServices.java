@@ -18,13 +18,6 @@ import java.util.Optional;
 @Service
 public class UserFeedServices {
 	
-
-
-	    
-
-	
-
-
 	private final FlyerServices flyerServices;
 	private final UserFeedRepo userFeedRepo;
 	
@@ -66,6 +59,8 @@ public class UserFeedServices {
 		return flyerList;
 		
 	}
+	
+	
 	
 	
 
