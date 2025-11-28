@@ -3,8 +3,13 @@ package com.eventure.backend.services;
 import com.eventure.backend.entities.Flyers;
 import com.eventure.backend.repositories.FlyerRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,9 +25,25 @@ public class FlyerServices {
         this.savedFlyerServices = savedFlyerServices;
     }
 
-    public Flyers createFlyer(Flyers flyer) {
-        return flyerRepo.save(flyer);
-    }
+    public Flyers createFlyer(Flyers flyer, MultipartFile file) throws  IOException{
+        
+    	String path = "C:/flyerFolder/";
+        File folder = new File(path);
+        
+        if (!folder.exists()) {
+        	folder.mkdirs();
+        }
+        
+        //creates random ids for storage so no overwrites
+        String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+        File out = new File(path + filename );
+        
+        //writes to disk
+        file.transferTo(out);
+        
+    	
+    	return flyerRepo.save(flyer);
+ }
     
     public List<Flyers> getAllFlyers() {
         return flyerRepo.findAll();
@@ -30,6 +51,9 @@ public class FlyerServices {
     
     public Optional<Flyers> getFlyerById(Long id) {
         return flyerRepo.findById(id);
+    }
+    public List<Flyers> getFlyerByOrgId(Long orgId) {
+        return flyerRepo.findByOrgId(orgId);
     }
     
     public Flyers updateFlyer(Flyers flyer) {
@@ -70,4 +94,6 @@ public class FlyerServices {
             .map(Optional::get)
             .collect(Collectors.toList());
     }
+    
+    
 }

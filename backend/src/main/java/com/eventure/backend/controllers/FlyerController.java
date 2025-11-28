@@ -3,8 +3,11 @@ package com.eventure.backend.controllers;
 import com.eventure.backend.entities.Flyers;
 import com.eventure.backend.services.FlyerServices;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,9 +34,9 @@ public class FlyerController {
 	}
 	
 	@PostMapping("/flyers")
-	public ResponseEntity<Flyers> createFlyer(@RequestBody Flyers flyer) {
-		Flyers savedFlyer = flyerServices.createFlyer(flyer);
-		return ResponseEntity.status(HttpStatus.CREATED).body(savedFlyer);
+	public ResponseEntity<Flyers> createFlyer(@RequestBody Flyers flyer, @RequestParam("file") MultipartFile file) throws IOException {
+		Flyers createdFlyer = flyerServices.createFlyer(flyer, file);
+		return ResponseEntity.status(HttpStatus.CREATED).body(createdFlyer);
 	}
 	
 	@PutMapping("/flyers/{id}")

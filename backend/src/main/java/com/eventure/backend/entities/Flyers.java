@@ -7,13 +7,16 @@ import jakarta.persistence.*;
 @Table(name = "flyers")
 public class Flyers {
 
-    public Flyers() {}
+    
 
-    public Flyers(Long id, Long orgId, String flyerAdvert, int popularityScore) {    
+	public Flyers() {}
+
+    public Flyers(Long id, Long orgId, String flyerAdvert, String filePath,  int popularityScore) {    
         this.id = id;
         this.orgId = orgId;
         this.flyerAdvert = flyerAdvert;
         this.popularityScore = popularityScore;
+        this.filePath = filePath;
     }
 
     @Override
@@ -21,6 +24,7 @@ public class Flyers {
         return "Flyer [id=" + id + 
                 ", orgId=" + orgId +
                 ", flyerAdvert=" + flyerAdvert +
+                ", filePath=" + filePath +
                 ", popularityScore=" + popularityScore + "]";
     }
 
@@ -33,6 +37,9 @@ public class Flyers {
 
     @Column(name = "flyer_advert", nullable = false, length = 255)
     private String flyerAdvert;
+    
+    @Column(name = "filePath", nullable = false, length = 255)
+    private String filePath;
 
     @Column(name = "popularity_score", nullable = false)
     private int popularityScore;

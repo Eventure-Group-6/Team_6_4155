@@ -47,5 +47,10 @@ public class UserFeed {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+	
+	public Long getOrgId() {
+		return orgId;
+		
+	}
 
 }

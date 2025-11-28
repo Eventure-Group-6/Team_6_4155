@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface FlyerRepo extends JpaRepository<Flyers, Long> {
 
     Optional<Flyers> findById(Long id);
+    List<Flyers> findByOrgId(Long OrgId);
     long count();
     <S extends Flyers> S save(S entity);
 }

@@ -1,20 +1,36 @@
 package com.eventure.backend.services;
 
+import com.eventure.backend.entities.Flyers;
 import com.eventure.backend.entities.Org;
 import com.eventure.backend.entities.UserFeed;
 import com.eventure.backend.entities.Users;
+import com.eventure.backend.services.FlyerServices;
+import com.eventure.backend.services.*;
+import com.eventure.backend.repositories.FlyerRepo;
 import com.eventure.backend.repositories.UserFeedRepo;
+import com.eventure.backend.services.PopularityService;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserFeedServices {
 	
+
+
+	    
+
+	
+
+
+	private final FlyerServices flyerServices;
 	private final UserFeedRepo userFeedRepo;
 	
-	public UserFeedServices(UserFeedRepo userFeedRepo) {
+	public UserFeedServices(UserFeedRepo userFeedRepo, FlyerServices flyerServices) {
 		this.userFeedRepo = userFeedRepo;
+		this.flyerServices = flyerServices;
 	}
 	
 	public UserFeed createUserFeed(UserFeed userFeed) {
@@ -33,4 +49,24 @@ public class UserFeedServices {
 		UserFeed userFeed = new UserFeed(userId, orgId); 
 		return userFeedRepo.save(userFeed);
 	}
+	
+	public List<Long> getFollowedOrgs(Long userId) {
+	    return getUserFeedByUserId(userId)
+	           .stream()
+	           .map(UserFeed::getOrgId)
+	           .toList();
+	}
+	 
+	public List<Flyers> getFlyerList(List<Long> orgList){
+		List<Flyers> flyerList = new ArrayList<>();
+		for(Long orgIds : orgList) {
+			flyerList.addAll(flyerServices.getFlyerByOrgId(orgIds));
+		}
+		
+		return flyerList;
+		
+	}
+	
+	
+
 }
