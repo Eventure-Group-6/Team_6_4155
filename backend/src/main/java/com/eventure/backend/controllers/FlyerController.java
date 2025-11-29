@@ -2,6 +2,10 @@ package com.eventure.backend.controllers;
 
 import com.eventure.backend.entities.Flyers;
 import com.eventure.backend.services.FlyerServices;
+import com.eventure.backend.services.UserFeedServices;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +21,11 @@ import java.util.Optional;
 public class FlyerController {
 	
 	private final FlyerServices flyerServices;
+	private final UserFeedServices userFeedServices;
 	
-	public FlyerController(FlyerServices flyerServices){
+	public FlyerController(FlyerServices flyerServices, UserFeedServices userFeedServices){
 		this.flyerServices = flyerServices;
+		this.userFeedServices = userFeedServices;
 	}
 	
 	@GetMapping("/flyers")
@@ -68,6 +74,14 @@ public class FlyerController {
 		return ResponseEntity.ok(flyerServices.getTrendingFlyers());
 	}
 	
+	@GetMapping("/flyers/popularPage")
+	public ResponseEntity<List<Flyers>> getPopularFlyers( @RequestParam int page, @RequestParam int size) {
+
+	    List<Flyers> flyers = flyerServices.getPopularFlyers(page, size);
+	    return ResponseEntity.ok(flyers);
+	}
+
+	
 	@PostMapping("/flyers/{flyerId}/save")
 	public ResponseEntity<String> saveFlyer(@PathVariable Long flyerId) {
 		flyerServices.saveFlyer(1L, flyerId); // Using user ID 1 for demo
@@ -84,4 +98,20 @@ public class FlyerController {
 	public ResponseEntity<List<Flyers>> getSavedFlyers() {
 		return ResponseEntity.ok(flyerServices.getSavedFlyers(1L));
 	}
+	
+    @GetMapping("/favorites")
+    public ResponseEntity<List<Flyers>> getFavoriteFeed(HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        
+        List<Long> orgIds = userFeedServices.getFollowedOrgs(userId);
+
+        
+        List<Flyers> flyers = userFeedServices.getFlyerList(orgIds);
+
+        return ResponseEntity.ok(flyers);
+    }
 }

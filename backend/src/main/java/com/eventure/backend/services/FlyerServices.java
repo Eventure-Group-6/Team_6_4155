@@ -2,6 +2,10 @@ package com.eventure.backend.services;
 
 import com.eventure.backend.entities.Flyers;
 import com.eventure.backend.repositories.FlyerRepo;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -69,6 +73,16 @@ public class FlyerServices {
             .sorted((f1, f2) -> Integer.compare(f2.getPopularityScore(), f1.getPopularityScore()))
             .limit(10)
             .collect(Collectors.toList());
+    }
+    
+    public List<Flyers> getPopularFlyers(int page, int size) {
+        Pageable pageable = PageRequest.of(
+            page, 
+            size, 
+            Sort.by(Sort.Direction.DESC, "popularityScore") 
+        );
+
+        return flyerRepo.findAll(pageable).getContent();
     }
     
     public void updateAllPopularityScores() {

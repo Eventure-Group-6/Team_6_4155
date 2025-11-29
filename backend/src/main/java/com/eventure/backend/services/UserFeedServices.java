@@ -12,6 +12,7 @@ import com.eventure.backend.services.PopularityService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +56,9 @@ public class UserFeedServices {
 		for(Long orgIds : orgList) {
 			flyerList.addAll(flyerServices.getFlyerByOrgId(orgIds));
 		}
+		
+		//sorts descending
+		flyerList.sort(Comparator.comparingLong(Flyers::getId).reversed());
 		
 		return flyerList;
 		
