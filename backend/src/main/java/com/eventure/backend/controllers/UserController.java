@@ -99,7 +99,7 @@ public class UserController {
 	}
 	
 	
-    @GetMapping("/user/followed-orgs")
+    @GetMapping("/user/followedOrgs")
     public ResponseEntity<List<Org>> getFollowedOrgsForCurrentUser(HttpSession session) {
         Long userId = (Long) session.getAttribute("userId");
         if (userId == null) {
