@@ -9,9 +9,15 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -117,4 +123,28 @@ public class FlyerController {
 
         return ResponseEntity.ok(flyers);
     }
+    
+    @GetMapping("/flyers/{flyerId}/image")
+    public ResponseEntity<Resource> getFlyerImage(@PathVariable Long flyerId) throws IOException {
+
+        Flyers flyer = flyerServices.getFlyerById(flyerId).orElseThrow(() -> new RuntimeException("Flyer not found"));
+
+        Path path = flyerServices.getFlyerPath(flyer); 
+
+        Resource file = new UrlResource(path.toUri());
+        if (!file.exists()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        String contentType = Files.probeContentType(path);
+        if (contentType == null) {
+            contentType = "application/octet-stream";
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .body(file);
+    }
+
+
+
 }
