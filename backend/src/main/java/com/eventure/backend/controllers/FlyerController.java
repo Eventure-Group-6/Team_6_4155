@@ -83,20 +83,26 @@ public class FlyerController {
 
 	
 	@PostMapping("/flyers/{flyerId}/save")
-	public ResponseEntity<String> saveFlyer(@PathVariable Long flyerId) {
-		flyerServices.saveFlyer(1L, flyerId); // Using user ID 1 for demo
-		return ResponseEntity.ok("Flyer saved");
+	public ResponseEntity<String> saveFlyer(@PathVariable Long flyerId, HttpSession session) {
+	    Long userId = (Long) session.getAttribute("userId");
+	    if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	    flyerServices.saveFlyer(userId, flyerId);
+	    return ResponseEntity.ok("Flyer saved");
 	}
 	
 	@DeleteMapping("/flyers/{flyerId}/save")
-	public ResponseEntity<String> unsaveFlyer(@PathVariable Long flyerId) {
-		flyerServices.unsaveFlyer(1L, flyerId);
-		return ResponseEntity.ok("Flyer unsaved");
+	public ResponseEntity<String> unsaveFlyer(@PathVariable Long flyerId, HttpSession session) {
+	    Long userId = (Long) session.getAttribute("userId");
+	    if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	    flyerServices.unsaveFlyer(userId, flyerId);
+	    return ResponseEntity.ok("Flyer unsaved");
 	}
 	
 	@GetMapping("/flyers/saved")
-	public ResponseEntity<List<Flyers>> getSavedFlyers() {
-		return ResponseEntity.ok(flyerServices.getSavedFlyers(1L));
+	public ResponseEntity<List<Flyers>> getSavedFlyers(HttpSession session) {
+	    Long userId = (Long) session.getAttribute("userId");
+	    if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	    return ResponseEntity.ok(flyerServices.getSavedFlyers(userId));
 	}
 	
     @GetMapping("/favorites")
@@ -105,11 +111,8 @@ public class FlyerController {
         if (userId == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-
         
         List<Long> orgIds = userFeedServices.getFollowedOrgs(userId);
-
-        
         List<Flyers> flyers = userFeedServices.getFlyerList(orgIds);
 
         return ResponseEntity.ok(flyers);

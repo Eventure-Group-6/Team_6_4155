@@ -67,6 +67,14 @@ public class Flyers {
 	public void setFlyerAdvert(String flyerAdvert) {
 		this.flyerAdvert = flyerAdvert;
 	}
+	
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
 	public int getPopularityScore() {
 		return popularityScore;

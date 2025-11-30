@@ -34,5 +34,7 @@ public class OrgServices {
     public void deleteOrg(Long id) {
         orgRepo.deleteById(id);
     }
+    
+    
 }
 

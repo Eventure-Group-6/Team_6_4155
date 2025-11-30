@@ -1,5 +1,6 @@
 package com.eventure.backend.controllers;
 
+import com.eventure.backend.entities.Org;
 import com.eventure.backend.entities.Users;
 import com.eventure.backend.services.UserServices;
 import com.eventure.backend.services.UserFeedServices;
@@ -96,6 +97,20 @@ public class UserController {
 		userServices.deleteUser(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	
+    @GetMapping("/user/followed-orgs")
+    public ResponseEntity<List<Org>> getFollowedOrgsForCurrentUser(HttpSession session) {
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        List<Org> orgs = userFeedServices.getFollowedOrgEntities(userId);
+        return ResponseEntity.ok(orgs);
+    }
+
+
 	
 	@GetMapping("/session")
 	public ResponseEntity<Map<String, Object>> getSession(HttpSession session) {

@@ -10,6 +10,7 @@ public interface UserFeedRepo extends JpaRepository<UserFeed, Long> {
     Optional<UserFeed> findById(Long id);
     List<UserFeed> findByUserId(Long userId);
     List<UserFeed> findByOrgId(Long orgId);
+    void deleteByUserIdAndOrgId(Long userId, Long orgId);
     long count();
     <S extends UserFeed> S save(S entity);
 }

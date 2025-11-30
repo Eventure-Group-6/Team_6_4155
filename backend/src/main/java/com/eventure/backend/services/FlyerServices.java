@@ -3,6 +3,7 @@ package com.eventure.backend.services;
 import com.eventure.backend.entities.Flyers;
 import com.eventure.backend.repositories.FlyerRepo;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,6 +19,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class FlyerServices {
+	
+	@Value("${app.flyer.base-dir}")
+    private String flyerBaseDir;
 
     private final FlyerRepo flyerRepo;
     private final PopularityService popularityService;
@@ -28,26 +32,25 @@ public class FlyerServices {
         this.popularityService = popularityService;
         this.savedFlyerServices = savedFlyerServices;
     }
+    
+    
 
-    public Flyers createFlyer(Flyers flyer, MultipartFile file) throws  IOException{
-        
-    	String path = "C:/flyerFolder/";
-        File folder = new File(path);
-        
+    public Flyers createFlyer(Flyers flyer, MultipartFile file) throws IOException {
+
+        File folder = new File(flyerBaseDir);
         if (!folder.exists()) {
-        	folder.mkdirs();
+            folder.mkdirs();
         }
-        
-        //creates random ids for storage so no overwrites
+
         String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
-        File out = new File(path + filename );
-        
-        //writes to disk
+        File out = new File(folder, filename);
+
         file.transferTo(out);
-        
-    	
-    	return flyerRepo.save(flyer);
- }
+
+        flyer.setFilePath(filename); 
+        return flyerRepo.save(flyer);
+    }
+
     
     public List<Flyers> getAllFlyers() {
         return flyerRepo.findAll();
