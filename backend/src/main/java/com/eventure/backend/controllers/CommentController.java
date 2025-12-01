@@ -10,7 +10,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*", allowCredentials = "true")
 public class CommentController {
 
     private final CommentServices commentServices;

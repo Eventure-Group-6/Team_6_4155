@@ -30,7 +30,7 @@ public class Org {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "org_name", nullable = false, length = 255)

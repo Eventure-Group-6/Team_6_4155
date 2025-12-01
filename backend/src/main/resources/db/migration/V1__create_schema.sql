@@ -20,7 +20,7 @@ CREATE TABLE flyers (
     id BIGINT NOT NULL AUTO_INCREMENT,
     org_id          BIGINT      NOT NULL,
     flyer_advert    VARCHAR(255) NOT NULL,
-    filePath        VARCHAR(255) NOT NULL,
+    file_path        VARCHAR(255) NOT NULL,
     popularity_score INT        NOT NULL,
     PRIMARY KEY (id),
     KEY fk_flyers_org (org_id),

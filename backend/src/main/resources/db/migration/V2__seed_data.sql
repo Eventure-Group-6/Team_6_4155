@@ -23,7 +23,7 @@ INSERT INTO org (id, org_name, org_owner, org_followers) VALUES
 (9,  'Music Production Club',    'Sam Patel',       0),
 (10, 'Entrepreneurship Club',    'Riley Nguyen',    0);
 
-INSERT INTO flyers (id, org_id, flyer_advert, filePath, popularity_score) VALUES
+INSERT INTO flyers (id, org_id, flyer_advert, file_path, popularity_score) VALUES
 (1,  1, 'Join ACM for coding competitions and tech talks!',          'seed_acm_flyer.png',         85),
 (2,  2, 'Build robots with us every Thursday in the lab!',           'seed_robotics_flyer.png',    92),
 (3,  3, 'Create your own games – weekly Game Dev workshops!',        'seed_gamedev_flyer.png',     78),
