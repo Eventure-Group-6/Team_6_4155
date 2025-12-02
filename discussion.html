@@ -31,8 +31,8 @@
     // Load existing messages
     async function loadMessages() {
       try {
-        // For demo purposes, using flyer ID 1 for comments
-        const response = await fetch('http://localhost:8080/api/flyers/1/comments', {
+        
+        const response = await fetch('http://localhost:8080/api/flyers/{flyerId}/comments', {
           credentials: 'include'
         });
         const comments = await response.json();
@@ -55,7 +55,7 @@
       if (!msg) return;
       
       try {
-        const response = await fetch('http://localhost:8080/api/flyers/1/comments', {
+        const response = await fetch('http://localhost:8080/api/flyers/{flyerId}/comments', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
