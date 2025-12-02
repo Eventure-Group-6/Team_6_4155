@@ -44,9 +44,18 @@ public class FlyerController {
 		return flyer.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 	
+	// File upload method commented out for H2 setup
+	/*
 	@PostMapping("/flyers")
 	public ResponseEntity<Flyers> createFlyer(@RequestBody Flyers flyer, @RequestParam("file") MultipartFile file) throws IOException {
 		Flyers createdFlyer = flyerServices.createFlyer(flyer, file);
+		return ResponseEntity.status(HttpStatus.CREATED).body(createdFlyer);
+	}
+	*/
+	
+	@PostMapping("/flyers")
+	public ResponseEntity<Flyers> createFlyer(@RequestBody Flyers flyer) {
+		Flyers createdFlyer = flyerServices.createFlyerSimple(flyer);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdFlyer);
 	}
 	
@@ -123,18 +132,16 @@ public class FlyerController {
         return ResponseEntity.ok(flyers);
     }
     
+    // Image serving method commented out for H2 setup
+    /*
     @GetMapping("/flyers/{flyerId}/image")
     public ResponseEntity<Resource> getFlyerImage(@PathVariable Long flyerId) throws IOException {
-
         Flyers flyer = flyerServices.getFlyerById(flyerId).orElseThrow(() -> new RuntimeException("Flyer not found"));
-
         Path path = flyerServices.getFlyerPath(flyer); 
-
         Resource file = new UrlResource(path.toUri());
         if (!file.exists()) {
             return ResponseEntity.notFound().build();
         }
-
         String contentType = Files.probeContentType(path);
         if (contentType == null) {
             contentType = "application/octet-stream";
@@ -143,6 +150,7 @@ public class FlyerController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .body(file);
     }
+    */
 
 
 

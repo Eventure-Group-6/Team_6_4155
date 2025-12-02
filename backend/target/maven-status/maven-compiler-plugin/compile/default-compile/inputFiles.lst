@@ -1,6 +1,6 @@
 /Users/driver/Downloads/SoftwareDesignProj/Untitled/Team_6_4155/backend/src/main/java/com/eventure/backend/BackendApplication.java
 /Users/driver/Downloads/SoftwareDesignProj/Untitled/Team_6_4155/backend/src/main/java/com/eventure/backend/config/CorsConfig.java
-/Users/driver/Downloads/SoftwareDesignProj/Untitled/Team_6_4155/backend/src/main/java/com/eventure/backend/config/DataInitializer.java
+/Users/driver/Downloads/SoftwareDesignProj/Untitled/Team_6_4155/backend/src/main/java/com/eventure/backend/config/SecurityConfig.java
 /Users/driver/Downloads/SoftwareDesignProj/Untitled/Team_6_4155/backend/src/main/java/com/eventure/backend/controllers/CommentController.java
 /Users/driver/Downloads/SoftwareDesignProj/Untitled/Team_6_4155/backend/src/main/java/com/eventure/backend/controllers/FlyerController.java
 /Users/driver/Downloads/SoftwareDesignProj/Untitled/Team_6_4155/backend/src/main/java/com/eventure/backend/controllers/OrgController.java

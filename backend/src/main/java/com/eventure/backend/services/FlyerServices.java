@@ -38,18 +38,19 @@ public class FlyerServices {
     
 
     public Flyers createFlyer(Flyers flyer, MultipartFile file) throws IOException {
-
         File folder = new File(flyerBaseDir);
         if (!folder.exists()) {
             folder.mkdirs();
         }
-
         String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
         File out = new File(folder, filename);
-
         file.transferTo(out);
-
         flyer.setFilePath(filename); 
+        return flyerRepo.save(flyer);
+    }
+    
+    // Simple flyer creation without file upload for H2 setup
+    public Flyers createFlyerSimple(Flyers flyer) {
         return flyerRepo.save(flyer);
     }
 

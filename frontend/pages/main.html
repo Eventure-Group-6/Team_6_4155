@@ -8,7 +8,7 @@
   <title>Eventure — Discover Clubs</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body style="padding:20px;">
 
@@ -27,7 +27,7 @@
         <a href="#" onclick="showMyClubs()">My Clubs</a>
         <a href="#" onclick="showPostForm()">Post</a>
         <a href="index.html">Events</a>
-        <a href="discussion.html">Discussion</a>
+        <a href="#" onclick="showDiscussion()">Discussion</a>
         <a href="login.html">Sign out</a>
       </nav>
 
@@ -117,6 +117,9 @@
       </article>
 
       <div class="footer-note">Tip: Scroll up/down to browse — posters snap into view for easy preview.</div>
+      <div style="text-align:center;margin-top:15px;">
+        <button class="btn" onclick="window.location.href='main.html'" style="background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">← Back to Main</button>
+      </div>
     </section>
   </div>
 
@@ -132,8 +135,13 @@
         window.location.href = 'login.html';
       }
     } catch(error) {
-      console.error('Auth check failed:', error);
-      window.location.href = 'login.html';
+      console.error('Backend offline, running in demo mode');
+      // Allow access in demo mode
+      const demoUser = localStorage.getItem('demoUser');
+      if(!demoUser) {
+        alert('Demo mode: Please create an account first');
+        window.location.href = 'login.html';
+      }
     }
   }
   
@@ -572,6 +580,101 @@
     savedFlyers.splice(index, 1);
     localStorage.setItem('savedFlyers', JSON.stringify(savedFlyers));
     showFavorites(); // Refresh the view
+  }
+  
+  // Show events tab
+  function showEvents() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      feed.innerHTML = `
+        <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
+          <h3 style="color:#1e293b;font-weight:700;margin-bottom:20px;text-align:center;">📅 Events Feed</h3>
+          
+          <div style="display:flex;flex-direction:column;gap:15px;">
+            <div style="background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:15px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <div style="font-weight:600;color:#1e293b;">@uncc_acm</div>
+                <div style="font-size:0.8rem;color:#64748b;">2 hours ago</div>
+              </div>
+              <div style="color:#475569;margin-bottom:10px;">Come Join Us 🎉😎</div>
+              <div style="height:120px;background:linear-gradient(135deg,#c7f9e1,#bfdbfe);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#1e293b;font-weight:600;">ACM Event Tonight!</div>
+            </div>
+            
+            <div style="background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:15px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <div style="font-weight:600;color:#1e293b;">@biasuncc</div>
+                <div style="font-size:0.8rem;color:#64748b;">4 hours ago</div>
+              </div>
+              <div style="color:#475569;margin-bottom:10px;">Special Event!!</div>
+              <div style="height:120px;background:linear-gradient(135deg,#ffd6e0,#ffd7b5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#1e293b;font-weight:600;">BIAS Workshop</div>
+            </div>
+            
+            <div style="background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:15px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <div style="font-weight:600;color:#1e293b;">@charlottehack</div>
+                <div style="font-size:0.8rem;color:#64748b;">6 hours ago</div>
+              </div>
+              <div style="color:#475569;margin-bottom:10px;">Event Tonight🌃🍕</div>
+              <div style="height:120px;background:linear-gradient(135deg,#e6f3ff,#f0f0ff);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#1e293b;font-weight:600;">Hackathon Prep</div>
+            </div>
+          </div>
+          
+          <button class="btn" onclick="loadFlyers()" style="margin-top:20px;background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">← Back to Discover</button>
+        </div>
+      `;
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  // Post message function
+  function postMessage(event) {
+    event.preventDefault();
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+    if (!message) return;
+    
+    // Get existing messages
+    let messages = JSON.parse(localStorage.getItem('discussionMessages') || '[]');
+    
+    // Add new message
+    messages.unshift({
+      id: Date.now(),
+      text: message,
+      timestamp: new Date().toLocaleString(),
+      author: 'You'
+    });
+    
+    // Save to localStorage
+    localStorage.setItem('discussionMessages', JSON.stringify(messages));
+    
+    // Clear input
+    input.value = '';
+    
+    // Reload messages
+    loadMessages();
+  }
+  
+  // Load messages function
+  function loadMessages() {
+    const messageList = document.getElementById('messageList');
+    const messages = JSON.parse(localStorage.getItem('discussionMessages') || '[]');
+    
+    if (messages.length === 0) {
+      messageList.innerHTML = '<p style="color:#475569;text-align:center;margin:20px 0;">No messages yet. Be the first to start a discussion!</p>';
+      return;
+    }
+    
+    messageList.innerHTML = messages.map(msg => `
+      <div class="message" style="background:rgba(255,255,255,0.9);color:#1e293b;border-left:3px solid var(--accent);margin:10px 0;">
+        <div style="font-weight:600;margin-bottom:5px;">${msg.author}</div>
+        <div style="margin-bottom:5px;">${msg.text}</div>
+        <div style="font-size:0.8rem;color:#64748b;">${msg.timestamp}</div>
+      </div>
+    `).join('');
   }
   
   // Initialize page
