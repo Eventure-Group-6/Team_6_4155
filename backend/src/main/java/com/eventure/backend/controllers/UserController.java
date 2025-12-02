@@ -51,18 +51,27 @@ public class UserController {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<Map<String, Object>> signup(@RequestBody Users user) {
-		Map<String, Object> response = new HashMap<>();
-		
-		if (userServices.existsByEmail(user.getEmail())) {
-			response.put("success", false);
-			response.put("message", "Email already exists");
-			return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
-		}
-		
-		Users savedUser = userServices.createUser(user);
-		response.put("success", true);
-		response.put("user", savedUser);
-		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+	    Map<String, Object> response = new HashMap<>();
+
+	    if (userServices.signUpErrorUsername(user)) {
+	        response.put("success", false);
+	        response.put("message", "Username already taken");
+	        return ResponseEntity.badRequest().body(response);
+	    }
+
+	    if (userServices.signUpErrorEmail(user)) {
+	        response.put("success", false);
+	        response.put("message", "Email already in use");
+	        return ResponseEntity.badRequest().body(response);
+	    }
+
+	    Users savedUser = userServices.createUser(user);
+
+	    response.put("success", true);
+	    response.put("userId", savedUser.getId());
+	    response.put("username", savedUser.getUsername());
+
+	    return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
 	@PostMapping("/logout")

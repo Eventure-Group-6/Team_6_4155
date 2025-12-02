@@ -3,6 +3,9 @@ package com.eventure.backend.services;
 import com.eventure.backend.entities.Org;
 import com.eventure.backend.entities.Users;
 import com.eventure.backend.repositories.UserRepo;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +39,15 @@ public class UserServices {
 		userRepo.deleteById(id);
 	}
 	
+	public boolean signUpErrorUsername(Users user) {
+		return userRepo.existsByUsername(user.getUsername());
+	}
+	
+	public boolean signUpErrorEmail(Users user) {
+		return userRepo.existsByEmail(user.getEmail());
+	}
+	
+	
 	public Optional<Users> authenticateUser(String email, String password) {
 		Optional<Users> user = userRepo.findByEmail(email);
 		if (user.isPresent() && user.get().getPassword().equals(password)) {
@@ -44,9 +56,10 @@ public class UserServices {
 		return Optional.empty();
 	}
 	
-	public boolean existsByEmail(String email) {
+	public Boolean existsByEmail(String email) {
 		return userRepo.existsByEmail(email);
 	}
+	
 	
 	
 }
