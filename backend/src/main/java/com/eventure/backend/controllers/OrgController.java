@@ -37,10 +37,16 @@ public class OrgController {
 	}
 	
 	@PostMapping("/orgs")
-	public ResponseEntity<Org> createOrg(@RequestBody Org org) {
-		Org savedOrg = orgServices.createOrg(org);
-		return ResponseEntity.status(HttpStatus.CREATED).body(savedOrg);
+	public ResponseEntity<Org> createOrg(@RequestBody Org org, HttpSession session) {
+	    String username = (String) session.getAttribute("username");
+	    if (username == null) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	    }
+
+	    Org savedOrg = orgServices.createOrg(org, username);
+	    return ResponseEntity.status(HttpStatus.CREATED).body(savedOrg);
 	}
+
 	
 	@PutMapping("/orgs/{id}")
 	public ResponseEntity<Org> updateOrg(@PathVariable Long id, @RequestBody Org org) {
@@ -55,7 +61,7 @@ public class OrgController {
 	    if (userId == null) {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	    }
-
+	    
 	    userFeedServices.followOrg(userId, orgId);
 	    return ResponseEntity.ok().build();          
 	}

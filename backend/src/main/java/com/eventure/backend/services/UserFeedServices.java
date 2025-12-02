@@ -10,6 +10,7 @@ import com.eventure.backend.repositories.FlyerRepo;
 import com.eventure.backend.repositories.OrgRepo;
 import com.eventure.backend.repositories.UserFeedRepo;
 import com.eventure.backend.services.PopularityService;
+import com.eventure.backend.services.OrgServices;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,12 +24,14 @@ public class UserFeedServices {
 	private final FlyerServices flyerServices;
 	private final UserFeedRepo userFeedRepo;
     private final OrgRepo orgRepo;
+    private final OrgServices orgServices;
 
    
-	public UserFeedServices(UserFeedRepo userFeedRepo, FlyerServices flyerServices, OrgRepo orgRepo) {
+	public UserFeedServices(UserFeedRepo userFeedRepo, FlyerServices flyerServices, OrgRepo orgRepo, OrgServices orgServices) {
 		this.userFeedRepo = userFeedRepo;
 		this.flyerServices = flyerServices;
 		this.orgRepo = orgRepo;
+		this.orgServices = orgServices;
 	}
 	
 	public UserFeed createUserFeed(UserFeed userFeed) {
@@ -45,11 +48,19 @@ public class UserFeedServices {
 	
 	public UserFeed followOrg(Long userId, Long orgId) {
 		UserFeed userFeed = new UserFeed(userId, orgId); 
+		Org org = orgServices.getOrgById(orgId);
+		
+		org.orgFollowed();
+
 		return userFeedRepo.save(userFeed);
 	}
 	
 	public void unfollowOrg(Long userId, Long orgId) {
 	    userFeedRepo.deleteByUserIdAndOrgId(userId, orgId);
+	    
+	    Org org = orgServices.getOrgById(orgId);
+		
+		org.orgUnfollowed();
 	}
 
 	

@@ -73,6 +73,14 @@ public class Org {
 	public void setOrgOwner(String orgOwner) {
 		this.orgOwner = orgOwner;
 	}
+	
+	public void orgFollowed() {
+		this.orgFollowers += 1;
+	}
+	
+	public void orgUnfollowed() {
+		this.orgFollowers -= 1;
+	}
 
     
 }
