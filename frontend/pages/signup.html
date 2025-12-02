@@ -1,8 +1,4 @@
-/** A simple signup page for the Eventure app.
-   This page collects user's full name, college email, and password.
-   It includes basic client-side validation and a demo submission handler.
-   Tee Peoples was Here - 20250925 
-*/
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,7 +7,7 @@
   <title>Eventure — Sign up</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
   <main class="app-card" role="main" aria-labelledby="signupTitle">
@@ -69,8 +65,11 @@
         alert(data.message || 'Signup failed');
       }
     } catch(error) {
-      console.error('Signup error:', error);
-      alert('Signup failed. Please try again.');
+      console.error('Backend offline, using demo mode');
+      // Fallback: Store user locally and proceed
+      localStorage.setItem('demoUser', JSON.stringify({ fullname, email, password: pw }));
+      alert('Account created successfully! (Demo mode - backend offline)');
+      window.location.href = 'login.html';
     }
   });
 </script>

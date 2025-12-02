@@ -3,10 +3,10 @@
    Uses Roboto font (import in HTML). Clean, modern aesthetic.
 */
 
-:root{
+:root {
   --bg:#0f1724;            /* deep navy */
   --card:#0b1220;          /* dark card */
-  --muted:#94a3b8;         /* muted text */
+  --muted: #94a3b8;        /* muted text */
   --accent:#6ee7b7;        /* mint */
   --accent-2:#60a5fa;      /* blue */
   --surface:#0b1220;
@@ -170,6 +170,7 @@ label{
   overflow-y:auto;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .poster{
   min-height:62vh;
@@ -251,10 +252,6 @@ label{
 }
 
 /* Tab animations */
-.feed {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
 .feed.fade-out {
   opacity: 0;
   transform: translateY(-10px);
