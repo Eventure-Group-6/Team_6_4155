@@ -168,24 +168,25 @@ label{
   gap:16px;
   height:70vh;
   overflow-y:auto;
-  scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .poster{
-  min-height:62vh;
-  scroll-snap-align:start;
   border-radius:14px;
   border: 2px solid rgba(255,255,255,0.6);
   padding:18px;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  gap:12px;
   color:#0f172a;
   background:linear-gradient(180deg,#ffffff,#f1f5f9);
   box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
   position:relative;
-  overflow:hidden;
+}
+.poster img{
+  width:100%;
+  height:auto;
+  border-radius:10px;
 }
 
 /* Poster content */
@@ -388,6 +389,11 @@ label{
   background: rgba(239,68,68,0.2);
   border-color: rgba(239,68,68,0.4);
   transform: scale(1.1);
+}
+
+.discussion-post:hover {
+  transform: translateY(-8px) rotateX(5deg);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 0 2px rgba(255,255,255,0.3);
 }
 
 /* Responsive */

@@ -26,7 +26,7 @@
         <a href="main.html" aria-current="page">Discover</a>
         <a href="#" onclick="showMyClubs()">My Clubs</a>
         <a href="#" onclick="showPostForm()">Post</a>
-        <a href="index.html">Events</a>
+        <a href="#" onclick="showEvents()">Events</a>
         <a href="#" onclick="showDiscussion()">Discussion</a>
         <a href="login.html">Sign out</a>
       </nav>
@@ -42,24 +42,23 @@
       <article class="poster" role="article" aria-labelledby="p1title">
         <div class="meta">
           <div>
-            <h3 id="p1title">Robotics Club</h3>
-            <div class="small">Engineering • Meets Thursdays</div>
+            <h3 id="p1title">Data Science Society</h3>
+            <div class="small">Technology • Meets Tuesdays</div>
           </div>
-          <div class="small">4.8 ★</div>
+          <div class="small">4.9 ★</div>
         </div>
 
-        <div class="poster-img" role="img" aria-label="Robotics poster">
-          🤖 Robotics Night
-        </div>
+        <img src="../assets/image.png" alt="Data Science Society poster">
 
         <div>
-          <p>Come build robots and compete in regional challenges. Beginners welcome.</p>
+          <p>Explore data analytics, machine learning, and AI. All skill levels welcome.</p>
           <div class="actions">
             <div>
               <button class="icon-btn" aria-pressed="false">❤ Save</button>
-              <button class="icon-btn">🔗 Share</button>
+              <button class="icon-btn" onclick="addToEvents('Data Science Society', 'Tuesdays 5:30 PM')">📅 Add Event</button>
+              <button class="icon-btn" onclick="shareFlyer('Data Science Society')">🔗 Share</button>
             </div>
-            <button class="btn" onclick="openDetails('Robotics Club')">View</button>
+            <button class="btn" onclick="openDetails('Data Science Society')">View</button>
           </div>
         </div>
       </article>
@@ -68,24 +67,23 @@
       <article class="poster" role="article" aria-labelledby="p2title" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
         <div class="meta">
           <div>
-            <h3 id="p2title">Improv Night</h3>
-            <div class="small">Arts • Wednesdays • 7pm</div>
+            <h3 id="p2title">Fencing Club</h3>
+            <div class="small">Sports • Mondays & Thursdays</div>
           </div>
-          <div class="small">New</div>
+          <div class="small">4.7 ★</div>
         </div>
 
-        <div class="poster-img" style="background:linear-gradient(135deg,#ffd6e0,#ffd7b5);">
-          🎭 Improv Jam
-        </div>
+        <img src="../assets/image copy.png" alt="Fencing Club poster">
 
         <div>
-          <p>Drop-in improv games and laughs. No experience required — just bring energy.</p>
+          <p>Learn the art of fencing. Equipment provided for beginners. Join our competitive team.</p>
           <div class="actions">
             <div>
               <button class="icon-btn">❤ Save</button>
-              <button class="icon-btn">🔗 Share</button>
+              <button class="icon-btn" onclick="addToEvents('Fencing Club', 'Mondays & Thursdays 6:00 PM')">📅 Add Event</button>
+              <button class="icon-btn" onclick="shareFlyer('Fencing Club')">🔗 Share</button>
             </div>
-            <button class="btn" onclick="openDetails('Improv Night')">View</button>
+            <button class="btn" onclick="openDetails('Fencing Club')">View</button>
           </div>
         </div>
       </article>
@@ -94,24 +92,23 @@
       <article class="poster" role="article" aria-labelledby="p3title" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
         <div class="meta">
           <div>
-            <h3 id="p3title">Film Society</h3>
-            <div class="small">Cinema • Saturday Screenings</div>
+            <h3 id="p3title">Association of Computing Machinery</h3>
+            <div class="small">Technology • Wednesdays</div>
           </div>
-          <div class="small">4.5 ★</div>
+          <div class="small">5.0 ★</div>
         </div>
 
-        <div class="poster-img" style="background:linear-gradient(135deg,#e6f3ff,#f0f0ff);height:55%">
-          🎬 Weekly Screening
-        </div>
+        <img src="../assets/image copy 2.png" alt="ACM poster">
 
         <div>
-          <p>Classic films and discussions afterward. Free popcorn on first visit.</p>
+          <p>Join ACM for coding workshops, hackathons, and tech talks. Network with industry professionals.</p>
           <div class="actions">
             <div>
               <button class="icon-btn">❤ Save</button>
-              <button class="icon-btn">🔗 Share</button>
+              <button class="icon-btn" onclick="addToEvents('Association of Computing Machinery', 'Wednesdays 7:00 PM')">📅 Add Event</button>
+              <button class="icon-btn" onclick="shareFlyer('Association of Computing Machinery')">🔗 Share</button>
             </div>
-            <button class="btn" onclick="openDetails('Film Society')">View</button>
+            <button class="btn" onclick="openDetails('Association of Computing Machinery')">View</button>
           </div>
         </div>
       </article>
@@ -156,22 +153,21 @@
         <article class="poster" role="article" aria-labelledby="p1title">
           <div class="meta">
             <div>
-              <h3 id="p1title">Robotics Club</h3>
-              <div class="small">Engineering • Meets Thursdays</div>
+              <h3 id="p1title">Data Science Society</h3>
+              <div class="small">Technology • Meets Tuesdays</div>
             </div>
-            <div class="small">4.8 ★</div>
+            <div class="small">4.9 ★</div>
           </div>
-          <div class="poster-img" role="img" aria-label="Robotics poster">
-            🤖 Robotics Night
-          </div>
+          <img src="../assets/image.png" alt="Data Science Society poster">
           <div>
-            <p>Come build robots and compete in regional challenges. Beginners welcome.</p>
+            <p>Explore data analytics, machine learning, and AI. All skill levels welcome.</p>
             <div class="actions">
               <div>
                 <button class="icon-btn" aria-pressed="false" onclick="toggleSave(1, this)">❤ Save</button>
-                <button class="icon-btn">🔗 Share</button>
+                <button class="icon-btn" onclick="addToEvents('Data Science Society', 'Tuesdays 5:30 PM')">📅 Add Event</button>
+                <button class="icon-btn" onclick="shareFlyer('Data Science Society')">🔗 Share</button>
               </div>
-              <button class="btn" onclick="openDetails('Robotics Club', this)">View</button>
+              <button class="btn" onclick="openDetails('Data Science Society', this)">View</button>
             </div>
           </div>
         </article>
@@ -179,22 +175,21 @@
         <article class="poster" role="article" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
           <div class="meta">
             <div>
-              <h3>Improv Night</h3>
-              <div class="small">Arts • Wednesdays • 7pm</div>
+              <h3>Fencing Club</h3>
+              <div class="small">Sports • Mondays & Thursdays</div>
             </div>
-            <div class="small">New</div>
+            <div class="small">4.7 ★</div>
           </div>
-          <div class="poster-img" style="background:linear-gradient(135deg,#ffd6e0,#ffd7b5);">
-            🎭 Improv Jam
-          </div>
+          <img src="../assets/image copy.png" alt="Fencing Club poster">
           <div>
-            <p>Drop-in improv games and laughs. No experience required — just bring energy.</p>
+            <p>Learn the art of fencing. Equipment provided for beginners. Join our competitive team.</p>
             <div class="actions">
               <div>
                 <button class="icon-btn" onclick="toggleSave(2, this)">❤ Save</button>
-                <button class="icon-btn">🔗 Share</button>
+                <button class="icon-btn" onclick="addToEvents('Fencing Club', 'Mondays & Thursdays 6:00 PM')">📅 Add Event</button>
+                <button class="icon-btn" onclick="shareFlyer('Fencing Club')">🔗 Share</button>
               </div>
-              <button class="btn" onclick="openDetails('Improv Night', this)">View</button>
+              <button class="btn" onclick="openDetails('Fencing Club', this)">View</button>
             </div>
           </div>
         </article>
@@ -202,22 +197,21 @@
         <article class="poster" role="article" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
           <div class="meta">
             <div>
-              <h3>Film Society</h3>
-              <div class="small">Cinema • Saturday Screenings</div>
+              <h3>Association of Computing Machinery</h3>
+              <div class="small">Technology • Wednesdays</div>
             </div>
-            <div class="small">4.5 ★</div>
+            <div class="small">5.0 ★</div>
           </div>
-          <div class="poster-img" style="background:linear-gradient(135deg,#e6f3ff,#f0f0ff);height:55%">
-            🎬 Weekly Screening
-          </div>
+          <img src="../assets/image copy 2.png" alt="ACM poster">
           <div>
-            <p>Classic films and discussions afterward. Free popcorn on first visit.</p>
+            <p>Join ACM for coding workshops, hackathons, and tech talks. Network with industry professionals.</p>
             <div class="actions">
               <div>
                 <button class="icon-btn" onclick="toggleSave(3, this)">❤ Save</button>
-                <button class="icon-btn">🔗 Share</button>
+                <button class="icon-btn" onclick="addToEvents('Association of Computing Machinery', 'Wednesdays 7:00 PM')">📅 Add Event</button>
+                <button class="icon-btn" onclick="shareFlyer('Association of Computing Machinery')">🔗 Share</button>
               </div>
-              <button class="btn" onclick="openDetails('Film Society', this)">View</button>
+              <button class="btn" onclick="openDetails('Association of Computing Machinery', this)">View</button>
             </div>
           </div>
         </article>
@@ -226,8 +220,10 @@
       
       // Add user-created posts
       createdPosts.forEach(post => {
+        const imageHTML = post.image ? `<img src="${post.image}" alt="${post.title}">` : `<div class="poster-img" style="background:linear-gradient(135deg,#bfdbfe,#ddd6fe);">🎉 ${post.title}</div>`;
+        const eventButton = post.eventTime ? `<button class="icon-btn" onclick="addToEvents('${post.title}', '${post.eventTime}')">📅 Add Event</button>` : '';
         const postHTML = `
-          <article class="poster" style="min-height:300px;background:linear-gradient(180deg,#e0f2fe,#f0f9ff);border:2px solid rgba(255,255,255,0.8);">
+          <article class="poster" style="background:linear-gradient(180deg,#e0f2fe,#f0f9ff);border:2px solid rgba(255,255,255,0.8);">
             <div class="meta">
               <div>
                 <h3 style="color:#1e293b;font-weight:700;">${post.title}</h3>
@@ -235,15 +231,14 @@
               </div>
               <div class="small" style="color:#059669;">✨ New</div>
             </div>
-            <div class="poster-img" style="background:linear-gradient(135deg,#bfdbfe,#ddd6fe);">
-              🎉 ${post.title}
-            </div>
+            ${imageHTML}
             <div>
               <p style="color:#475569;margin:15px 0;">${post.description}</p>
               <div class="actions">
                 <div>
                   <button class="icon-btn" onclick="toggleSave(${post.id}, this)">❤ Save</button>
-                  <button class="icon-btn">🔗 Share</button>
+                  ${eventButton}
+                  <button class="icon-btn" onclick="shareFlyer('${post.title}')">🔗 Share</button>
                 </div>
                 <button class="btn" onclick="openDetails('${post.title}', this)">View</button>
               </div>
@@ -301,9 +296,9 @@
       <div style="margin:25px 0;">
         <h4 style="color:#0f172a;font-weight:700;font-size:1.2rem;margin-bottom:15px;">About This Event</h4>
         <p style="color:#374151;line-height:1.7;font-size:1rem;font-weight:500;">
-          ${name === 'Robotics Club' ? 'Join our weekly robotics sessions where students build, program, and compete with robots. Perfect for beginners and experienced makers alike!' : 
-            name === 'Improv Night' ? 'Drop-in improv comedy sessions every Wednesday. No experience needed - just bring your creativity and sense of humor!' :
-            name === 'Film Society' ? 'Weekly film screenings followed by discussions. We explore classic cinema, indie films, and student productions.' :
+          ${name === 'Data Science Society' ? 'Dive into the world of data science with hands-on workshops covering Python, R, machine learning algorithms, and data visualization. Work on real-world projects, participate in Kaggle competitions, and connect with industry professionals. Whether you\'re a beginner or advanced, we have something for everyone!' : 
+            name === 'Fencing Club' ? 'Experience the elegance and intensity of fencing! Our club welcomes all skill levels from complete beginners to competitive fencers. Learn foil, épée, and sabre techniques from certified coaches. Equipment is provided for newcomers. Join our team for local and regional tournaments, or just fence for fun and fitness!' :
+            name === 'Association of Computing Machinery' ? 'ACM is the premier computing organization on campus. Attend weekly tech talks from industry leaders, participate in hackathons, work on open-source projects, and prepare for technical interviews. Network with recruiters from top tech companies and collaborate on innovative software projects with fellow members.' :
             'An exciting event you won\'t want to miss! Join us for a great time with fellow students.'}
         </p>
       </div>
@@ -311,16 +306,16 @@
       <div style="margin:25px 0;background:rgba(248,250,252,0.8);padding:20px;border-radius:12px;border:1px solid rgba(226,232,240,0.8);">
         <h4 style="color:#0f172a;font-weight:700;font-size:1.2rem;margin-bottom:15px;">Event Details</h4>
         <div style="color:#374151;font-weight:500;">
-          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">When:</strong> ${name === 'Robotics Club' ? 'Thursdays 6:00 PM' : name === 'Improv Night' ? 'Wednesdays 7:00 PM' : 'Saturdays 7:30 PM'}</p>
-          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Where:</strong> Student Union Building</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">When:</strong> ${name === 'Data Science Society' ? 'Tuesdays 5:30 PM' : name === 'Fencing Club' ? 'Mondays & Thursdays 6:00 PM' : name === 'Association of Computing Machinery' ? 'Wednesdays 7:00 PM' : 'TBD'}</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Where:</strong> ${name === 'Data Science Society' ? 'Woodward Hall 335' : name === 'Fencing Club' ? 'Recreation Center Gym 2' : name === 'Association of Computing Machinery' ? 'Student Union 340' : 'Student Union Building'}</p>
           <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Cost:</strong> Free for students</p>
         </div>
       </div>
       
       <div style="display:flex;gap:12px;margin-top:35px;">
-        <button class="btn" style="flex:1;font-weight:600;">Join Event</button>
+        ${(name === 'Data Science Society' || name === 'Fencing Club' || name === 'Association of Computing Machinery') ? `<button class="btn" style="flex:1;font-weight:600;" onclick="addToEvents('${name}', '${name === 'Data Science Society' ? 'Tuesdays 5:30 PM' : name === 'Fencing Club' ? 'Mondays & Thursdays 6:00 PM' : 'Wednesdays 7:00 PM'}'); closeDetails();">Add Event</button>` : ''}
         <button class="icon-btn" style="font-weight:600;">❤ Save</button>
-        <button class="icon-btn" style="font-weight:600;">🔗 Share</button>
+        <button class="icon-btn" style="font-weight:600;" onclick="shareFlyer('${name}')">🔗 Share</button>
       </div>
     `;
     
@@ -385,65 +380,49 @@
     feed.classList.add('fade-out');
     
     setTimeout(() => {
-      feed.innerHTML = `
-        <article class="poster" style="min-height:300px;height:auto;background:linear-gradient(180deg,#fff4f2,#fff7f0);border:2px solid rgba(255,255,255,0.8);">
-          <div class="club-header">
-            <div style="display:flex;align-items:center;">
-              <div class="club-icon">🤖</div>
-              <div class="club-info">
-                <h4 style="color:#1e293b;font-weight:700;">Robotics Club</h4>
-                <div class="small" style="color:#475569;font-weight:500;">Engineering • 150 members</div>
+      const clubs = [
+        {id: 1, name: 'Data Science Society', icon: '📊', category: 'Technology', members: 200, description: 'Explore data analytics, machine learning, and AI. All skill levels welcome.'},
+        {id: 2, name: 'Fencing Club', icon: '🤺', category: 'Sports', members: 75, description: 'Learn the art of fencing. Equipment provided for beginners. Join our competitive team.'},
+        {id: 3, name: 'Association of Computing Machinery', icon: '💻', category: 'Technology', members: 350, description: 'Join ACM for coding workshops, hackathons, and tech talks. Network with industry professionals.'}
+      ];
+      
+      const savedClubs = clubs.filter(club => savedFlyers.some(f => f.id === club.id));
+      
+      if (savedClubs.length === 0) {
+        feed.innerHTML = `
+          <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;padding:40px;">
+            <h3 style="color:#1e293b;margin-bottom:15px;">🏛️ My Clubs</h3>
+            <p style="color:#475569;margin:20px 0;">No clubs saved yet. Save clubs from the Discover tab!</p>
+            <button class="btn" onclick="loadFlyers()">Discover Clubs</button>
+          </div>
+        `;
+      } else {
+        let clubsHTML = '';
+        savedClubs.forEach(club => {
+          clubsHTML += `
+            <article class="poster" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);border:2px solid rgba(255,255,255,0.8);padding:20px;">
+              <div class="club-header" style="margin-bottom:12px;">
+                <div style="display:flex;align-items:center;">
+                  <div class="club-icon">${club.icon}</div>
+                  <div class="club-info">
+                    <h4 style="color:#1e293b;font-weight:700;">${club.name}</h4>
+                    <div class="small" style="color:#475569;font-weight:500;">${club.category} • ${club.members} members</div>
+                  </div>
+                </div>
+                <div class="small" style="color:#059669;font-weight:600;">⭐ Saved</div>
               </div>
-            </div>
-            <div class="small" style="color:#059669;font-weight:600;">⭐ Saved</div>
-          </div>
-          <p style="color:#475569;font-weight:500;margin:15px 0;">Build robots and compete in regional challenges. Weekly meetings every Thursday.</p>
-          <div class="club-actions">
-            <button class="btn">Visit Club</button>
-            <button class="icon-btn">❤️ Unsave</button>
-          </div>
-        </article>
-        
-        <article class="poster" style="min-height:300px;height:auto;background:linear-gradient(180deg,#fffef2,#f5fff1);border:2px solid rgba(255,255,255,0.8);">
-          <div class="club-header">
-            <div style="display:flex;align-items:center;">
-              <div class="club-icon">🎬</div>
-              <div class="club-info">
-                <h4 style="color:#1e293b;font-weight:700;">Film Society</h4>
-                <div class="small" style="color:#475569;font-weight:500;">Arts • 89 members</div>
+              <p style="color:#475569;font-weight:500;margin:0 0 12px 0;">${club.description}</p>
+              <div class="club-actions">
+                <button class="btn" onclick="openDetails('${club.name}', this)">Visit Club</button>
+                <button class="icon-btn" onclick="unsaveFromMyClubs(${club.id})">❤️ Unsave</button>
               </div>
-            </div>
-            <div class="small" style="color:#059669;font-weight:600;">⭐ Saved</div>
-          </div>
-          <p style="color:#475569;font-weight:500;margin:15px 0;">Weekly movie screenings and film discussions. Free popcorn for new members!</p>
-          <div class="club-actions">
-            <button class="btn">Visit Club</button>
-            <button class="icon-btn">❤️ Unsave</button>
-          </div>
-        </article>
-        
-        <article class="poster" style="min-height:300px;height:auto;background:linear-gradient(180deg,#f0f9ff,#e0f2fe);border:2px solid rgba(255,255,255,0.8);">
-          <div class="club-header">
-            <div style="display:flex;align-items:center;">
-              <div class="club-icon">🎭</div>
-              <div class="club-info">
-                <h4 style="color:#1e293b;font-weight:700;">Drama Club</h4>
-                <div class="small" style="color:#475569;font-weight:500;">Theatre • 45 members</div>
-              </div>
-            </div>
-            <div class="small" style="color:#059669;font-weight:600;">⭐ Saved</div>
-          </div>
-          <p style="color:#475569;font-weight:500;margin:15px 0;">Perform in plays and musicals. Auditions open to all skill levels.</p>
-          <div class="club-actions">
-            <button class="btn">Visit Club</button>
-            <button class="icon-btn">❤️ Unsave</button>
-          </div>
-        </article>
-        
-        <div style="text-align:center;margin-top:20px;">
-          <button class="btn" onclick="loadFlyers()">← Back to Discover</button>
-        </div>
-      `;
+            </article>
+          `;
+        });
+        clubsHTML += `<div style="text-align:center;margin-top:20px;"><button class="btn" onclick="loadFlyers()">← Back to Discover</button></div>`;
+        feed.innerHTML = clubsHTML;
+      }
+      
       feed.classList.remove('fade-out');
       feed.classList.add('fade-in');
     }, 150);
@@ -457,11 +436,15 @@
       feed.innerHTML = `
         <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
           <h3 style="color:#1e293b;font-weight:700;">🎨 Create New Flyer</h3>
-          <form onsubmit="createFlyer(event)">
+          <form onsubmit="createFlyer(event)" id="flyerForm">
             <input type="text" placeholder="Event Title" required class="input" style="width:100%;margin:10px 0;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;">
             <input type="text" placeholder="Organization Name" required class="input" style="width:100%;margin:10px 0;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;">
             <textarea placeholder="Event Description" required class="input" style="width:100%;margin:10px 0;height:120px;resize:vertical;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;"></textarea>
             <input type="date" required class="input" style="width:100%;margin:10px 0;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;">
+            <label style="display:block;color:#1e293b;font-weight:500;margin:10px 0 5px 0;">Event Details (optional)</label>
+            <input type="text" placeholder="Event Time (e.g., Mondays 6:00 PM)" id="eventTime" class="input" style="width:100%;margin:10px 0;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;">
+            <label style="display:block;color:#1e293b;font-weight:500;margin:10px 0 5px 0;">Attach Image (optional)</label>
+            <input type="file" accept="image/*" id="imageUpload" class="input" style="width:100%;margin:10px 0;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.2);color:#1e293b;padding:8px;">
             <button type="submit" class="btn">🚀 Post Flyer</button>
           </form>
           <button class="btn" onclick="loadFlyers()" style="margin-top:15px;background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">← Cancel</button>
@@ -479,6 +462,8 @@
     const org = form.querySelector('input[placeholder="Organization Name"]').value;
     const description = form.querySelector('textarea').value;
     const date = form.querySelector('input[type="date"]').value;
+    const eventTime = form.querySelector('#eventTime').value;
+    const imageFile = form.querySelector('#imageUpload').files[0];
     
     const newPost = {
       id: Date.now(),
@@ -486,14 +471,26 @@
       org: org,
       description: description,
       date: date,
+      eventTime: eventTime,
       isUserCreated: true
     };
     
-    createdPosts.push(newPost);
-    localStorage.setItem('createdPosts', JSON.stringify(createdPosts));
-    
-    alert('Flyer created successfully!');
-    loadFlyers();
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        newPost.image = e.target.result;
+        createdPosts.push(newPost);
+        localStorage.setItem('createdPosts', JSON.stringify(createdPosts));
+        alert('Flyer created successfully!');
+        loadFlyers();
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      createdPosts.push(newPost);
+      localStorage.setItem('createdPosts', JSON.stringify(createdPosts));
+      alert('Flyer created successfully!');
+      loadFlyers();
+    }
   }
   
   // Save/unsave functionality with local storage
@@ -504,8 +501,9 @@
     const userPost = createdPosts.find(p => p.id === flyerId);
     const flyerData = userPost || {
       id: flyerId,
-      title: flyerId === 1 ? 'Robotics Club' : flyerId === 2 ? 'Improv Night' : 'Film Society',
-      description: flyerId === 1 ? 'Build robots and compete in challenges' : flyerId === 2 ? 'Drop-in improv games and laughs' : 'Classic films and discussions'
+      title: flyerId === 1 ? 'Data Science Society' : flyerId === 2 ? 'Fencing Club' : 'Association of Computing Machinery',
+      description: flyerId === 1 ? 'Explore data analytics, machine learning, and AI' : flyerId === 2 ? 'Learn the art of fencing' : 'Join ACM for coding workshops and hackathons',
+      image: flyerId === 1 ? '../assets/image.png' : flyerId === 2 ? '../assets/image copy.png' : '../assets/image copy 2.png'
     };
     
     if (isSaved) {
@@ -526,6 +524,7 @@
   // Local storage for saved flyers and created posts
   let savedFlyers = JSON.parse(localStorage.getItem('savedFlyers') || '[]');
   let createdPosts = JSON.parse(localStorage.getItem('createdPosts') || '[]');
+  let myEvents = JSON.parse(localStorage.getItem('myEvents') || '[]');
   
   // Show favorites tab
   function showFavorites() {
@@ -545,7 +544,7 @@
         let favoritesHTML = '';
         savedFlyers.forEach((flyer, index) => {
           favoritesHTML += `
-            <article class="poster" style="min-height:300px;background:linear-gradient(180deg,#fff4f2,#fff7f0);border:2px solid rgba(255,255,255,0.8);">
+            <article class="poster" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);border:2px solid rgba(255,255,255,0.8);">
               <div class="meta">
                 <div>
                   <h3 style="color:#1e293b;font-weight:700;">${flyer.title}</h3>
@@ -553,14 +552,12 @@
                 </div>
                 <div class="small" style="color:#059669;">⭐ Saved</div>
               </div>
-              <div class="poster-img" style="background:linear-gradient(135deg,#ffd6e0,#ffd7b5);">
-                🎆 ${flyer.title}
-              </div>
+              ${flyer.image ? `<img src="${flyer.image}" alt="${flyer.title}">` : `<div class="poster-img" style="background:linear-gradient(135deg,#ffd6e0,#ffd7b5);">🎆 ${flyer.title}</div>`}
               <div>
                 <p style="color:#475569;margin:15px 0;">${flyer.description}</p>
                 <div class="actions">
                   <button class="icon-btn" onclick="removeFavorite(${index})">❌ Remove</button>
-                  <button class="btn">View Details</button>
+                  <button class="btn" onclick="openDetails('${flyer.title}', this)">View Details</button>
                 </div>
               </div>
             </article>
@@ -582,52 +579,108 @@
     showFavorites(); // Refresh the view
   }
   
-  // Show events tab
-  function showEvents() {
+  // Show discussion tab
+  function showDiscussion() {
     const feed = document.querySelector('.feed');
     feed.classList.add('fade-out');
     
     setTimeout(() => {
       feed.innerHTML = `
         <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
-          <h3 style="color:#1e293b;font-weight:700;margin-bottom:20px;text-align:center;">📅 Events Feed</h3>
-          
-          <div style="display:flex;flex-direction:column;gap:15px;">
-            <div style="background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:15px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                <div style="font-weight:600;color:#1e293b;">@uncc_acm</div>
-                <div style="font-size:0.8rem;color:#64748b;">2 hours ago</div>
-              </div>
-              <div style="color:#475569;margin-bottom:10px;">Come Join Us 🎉😎</div>
-              <div style="height:120px;background:linear-gradient(135deg,#c7f9e1,#bfdbfe);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#1e293b;font-weight:600;">ACM Event Tonight!</div>
-            </div>
-            
-            <div style="background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:15px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                <div style="font-weight:600;color:#1e293b;">@biasuncc</div>
-                <div style="font-size:0.8rem;color:#64748b;">4 hours ago</div>
-              </div>
-              <div style="color:#475569;margin-bottom:10px;">Special Event!!</div>
-              <div style="height:120px;background:linear-gradient(135deg,#ffd6e0,#ffd7b5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#1e293b;font-weight:600;">BIAS Workshop</div>
-            </div>
-            
-            <div style="background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.1);border-radius:10px;padding:15px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-                <div style="font-weight:600;color:#1e293b;">@charlottehack</div>
-                <div style="font-size:0.8rem;color:#64748b;">6 hours ago</div>
-              </div>
-              <div style="color:#475569;margin-bottom:10px;">Event Tonight🌃🍕</div>
-              <div style="height:120px;background:linear-gradient(135deg,#e6f3ff,#f0f0ff);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#1e293b;font-weight:600;">Hackathon Prep</div>
-            </div>
-          </div>
-          
-          <button class="btn" onclick="loadFlyers()" style="margin-top:20px;background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">← Back to Discover</button>
+          <h3 style="color:#1e293b;font-weight:700;margin-bottom:15px;">💬 Discussion Board</h3>
+          <form onsubmit="postMessage(event)" style="display:flex;flex-direction:column;gap:10px;">
+            <textarea id="messageInput" placeholder="Share your thoughts..." required style="width:100%;min-height:100px;padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.15);background:rgba(255,255,255,0.9);color:#1e293b;resize:vertical;font-family:inherit;"></textarea>
+            <button type="submit" class="btn" style="align-self:flex-start;">Post Message</button>
+          </form>
         </div>
+        <div id="messageList"></div>
       `;
       
       feed.classList.remove('fade-out');
       feed.classList.add('fade-in');
+      
+      loadMessages();
     }, 150);
+  }
+  
+  // Add event to my events
+  function addToEvents(eventName, eventTime) {
+    const eventExists = myEvents.find(e => e.name === eventName);
+    if (eventExists) {
+      alert('Event already added!');
+      return;
+    }
+    
+    myEvents.push({
+      id: Date.now(),
+      name: eventName,
+      time: eventTime,
+      addedDate: new Date().toLocaleDateString()
+    });
+    
+    localStorage.setItem('myEvents', JSON.stringify(myEvents));
+    alert('Event added to your calendar!');
+  }
+  
+  // Show events tab
+  function showEvents() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      if (myEvents.length === 0) {
+        feed.innerHTML = `
+          <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;padding:40px;">
+            <h3 style="color:#1e293b;margin-bottom:15px;">📅 My Events</h3>
+            <p style="color:#475569;margin:20px 0;">No events added yet. Add events from the Discover tab!</p>
+          </div>
+        `;
+      } else {
+        let eventsHTML = '';
+        myEvents.forEach((event, index) => {
+          eventsHTML += `
+            <article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                <h3 style="color:#1e293b;font-weight:700;margin:0;">${event.name}</h3>
+                <button class="icon-btn" onclick="removeEvent(${index})" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#dc2626;">❌</button>
+              </div>
+              <div style="color:#475569;font-weight:500;margin-bottom:8px;">
+                <div style="margin-bottom:6px;">🕐 ${event.time}</div>
+                <div style="font-size:0.85rem;color:#64748b;">Added: ${event.addedDate}</div>
+              </div>
+            </article>
+          `;
+        });
+        feed.innerHTML = eventsHTML;
+      }
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  // Remove event
+  function removeEvent(index) {
+    myEvents.splice(index, 1);
+    localStorage.setItem('myEvents', JSON.stringify(myEvents));
+    showEvents();
+  }
+  
+  // Unsave from My Clubs
+  function unsaveFromMyClubs(flyerId) {
+    savedFlyers = savedFlyers.filter(f => f.id !== flyerId);
+    localStorage.setItem('savedFlyers', JSON.stringify(savedFlyers));
+    showMyClubs();
+  }
+  
+  // Share flyer
+  function shareFlyer(clubName) {
+    const shareUrl = `${window.location.origin}${window.location.pathname}?club=${encodeURIComponent(clubName)}`;
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      alert(`Link copied to clipboard! Share this link: ${shareUrl}`);
+    }).catch(() => {
+      alert(`Share this link: ${shareUrl}`);
+    });
   }
   
   // Post message function
@@ -669,10 +722,12 @@
     }
     
     messageList.innerHTML = messages.map(msg => `
-      <div class="message" style="background:rgba(255,255,255,0.9);color:#1e293b;border-left:3px solid var(--accent);margin:10px 0;">
-        <div style="font-weight:600;margin-bottom:5px;">${msg.author}</div>
-        <div style="margin-bottom:5px;">${msg.text}</div>
-        <div style="font-size:0.8rem;color:#64748b;">${msg.timestamp}</div>
+      <div class="poster discussion-post" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);padding:16px;transition:transform 0.3s ease, box-shadow 0.3s ease;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <div style="font-weight:700;color:#1e293b;font-size:1rem;">${msg.author}</div>
+          <div style="font-size:0.8rem;color:#64748b;">${msg.timestamp}</div>
+        </div>
+        <div style="color:#475569;font-weight:500;">${msg.text}</div>
       </div>
     `).join('');
   }
