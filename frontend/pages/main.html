@@ -24,25 +24,27 @@
 
       <nav class="nav" aria-label="Main navigation">
         <a href="main.html" aria-current="page">Discover</a>
+        <a href="#" onclick="showFeeds()">Feeds</a>
+        <a href="#" onclick="showOrganizations()">Organizations</a>
         <a href="#" onclick="showMyClubs()">My Clubs</a>
-        <a href="#" onclick="showPostForm()">Post</a>
         <a href="#" onclick="showEvents()">Events</a>
+        <a href="#" onclick="showFavorites()">Favorites</a>
+        <a href="#" onclick="showPostForm()">Post</a>
         <a href="#" onclick="showDiscussion()">Discussion</a>
         <a href="login.html">Sign out</a>
       </nav>
-
-      <div style="margin-top:16px;font-size:0.95rem;color:var(--muted)">
-        <div style="margin-bottom:8px;font-weight:600">Favorites</div>
-        <a href="#" onclick="showFavorites()" style="color:var(--accent-2);text-decoration:none;font-size:0.9rem;">View Saved Flyers</a>
-      </div>
     </aside>
 
     <section class="feed" aria-label="Club poster feed">
+      <div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">✨ Discover</h2><p style="color:var(--muted);margin:0;">Explore clubs and events</p></div>
       <!-- Poster 1: Static image style -->
       <article class="poster" role="article" aria-labelledby="p1title">
         <div class="meta">
           <div>
-            <h3 id="p1title">Data Science Society</h3>
+            <h3 id="p1title" style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(1)">
+              <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">📊</div>
+              <span>Data Science Society</span>
+            </h3>
             <div class="small">Technology • Meets Tuesdays</div>
           </div>
           <div class="small">4.9 ★</div>
@@ -54,11 +56,11 @@
           <p>Explore data analytics, machine learning, and AI. All skill levels welcome.</p>
           <div class="actions">
             <div>
-              <button class="icon-btn" aria-pressed="false">❤ Save</button>
+              <button class="icon-btn" aria-pressed="false" onclick="toggleSave(1, this)">❤ Save</button>
               <button class="icon-btn" onclick="addToEvents('Data Science Society', 'Tuesdays 5:30 PM')">📅 Add Event</button>
               <button class="icon-btn" onclick="shareFlyer('Data Science Society')">🔗 Share</button>
             </div>
-            <button class="btn" onclick="openDetails('Data Science Society')">View</button>
+            <button class="btn" onclick="openDetails('Data Science Society', this)">View</button>
           </div>
         </div>
       </article>
@@ -67,7 +69,10 @@
       <article class="poster" role="article" aria-labelledby="p2title" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
         <div class="meta">
           <div>
-            <h3 id="p2title">Fencing Club</h3>
+            <h3 id="p2title" style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(2)">
+              <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">🤺</div>
+              <span>Fencing Club</span>
+            </h3>
             <div class="small">Sports • Mondays & Thursdays</div>
           </div>
           <div class="small">4.7 ★</div>
@@ -79,11 +84,11 @@
           <p>Learn the art of fencing. Equipment provided for beginners. Join our competitive team.</p>
           <div class="actions">
             <div>
-              <button class="icon-btn">❤ Save</button>
+              <button class="icon-btn" onclick="toggleSave(2, this)">❤ Save</button>
               <button class="icon-btn" onclick="addToEvents('Fencing Club', 'Mondays & Thursdays 6:00 PM')">📅 Add Event</button>
               <button class="icon-btn" onclick="shareFlyer('Fencing Club')">🔗 Share</button>
             </div>
-            <button class="btn" onclick="openDetails('Fencing Club')">View</button>
+            <button class="btn" onclick="openDetails('Fencing Club', this)">View</button>
           </div>
         </div>
       </article>
@@ -92,7 +97,10 @@
       <article class="poster" role="article" aria-labelledby="p3title" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
         <div class="meta">
           <div>
-            <h3 id="p3title">Association of Computing Machinery</h3>
+            <h3 id="p3title" style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(3)">
+              <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">💻</div>
+              <span>Association of Computing Machinery</span>
+            </h3>
             <div class="small">Technology • Wednesdays</div>
           </div>
           <div class="small">5.0 ★</div>
@@ -104,19 +112,16 @@
           <p>Join ACM for coding workshops, hackathons, and tech talks. Network with industry professionals.</p>
           <div class="actions">
             <div>
-              <button class="icon-btn">❤ Save</button>
+              <button class="icon-btn" onclick="toggleSave(3, this)">❤ Save</button>
               <button class="icon-btn" onclick="addToEvents('Association of Computing Machinery', 'Wednesdays 7:00 PM')">📅 Add Event</button>
               <button class="icon-btn" onclick="shareFlyer('Association of Computing Machinery')">🔗 Share</button>
             </div>
-            <button class="btn" onclick="openDetails('Association of Computing Machinery')">View</button>
+            <button class="btn" onclick="openDetails('Association of Computing Machinery', this)">View</button>
           </div>
         </div>
       </article>
 
       <div class="footer-note">Tip: Scroll up/down to browse — posters snap into view for easy preview.</div>
-      <div style="text-align:center;margin-top:15px;">
-        <button class="btn" onclick="window.location.href='main.html'" style="background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">← Back to Main</button>
-      </div>
     </section>
   </div>
 
@@ -150,10 +155,14 @@
     setTimeout(() => {
       // Restore original content
       feed.innerHTML = `
+        <div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">✨ Discover</h2><p style="color:var(--muted);margin:0;">Explore clubs and events</p></div>
         <article class="poster" role="article" aria-labelledby="p1title">
           <div class="meta">
             <div>
-              <h3 id="p1title">Data Science Society</h3>
+              <h3 id="p1title" style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(1)">
+                <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">📊</div>
+                <span>Data Science Society</span>
+              </h3>
               <div class="small">Technology • Meets Tuesdays</div>
             </div>
             <div class="small">4.9 ★</div>
@@ -175,7 +184,10 @@
         <article class="poster" role="article" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
           <div class="meta">
             <div>
-              <h3>Fencing Club</h3>
+              <h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(2)">
+                <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">🤺</div>
+                <span>Fencing Club</span>
+              </h3>
               <div class="small">Sports • Mondays & Thursdays</div>
             </div>
             <div class="small">4.7 ★</div>
@@ -197,7 +209,10 @@
         <article class="poster" role="article" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
           <div class="meta">
             <div>
-              <h3>Association of Computing Machinery</h3>
+              <h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(3)">
+                <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">💻</div>
+                <span>Association of Computing Machinery</span>
+              </h3>
               <div class="small">Technology • Wednesdays</div>
             </div>
             <div class="small">5.0 ★</div>
@@ -220,13 +235,15 @@
       
       // Add user-created posts
       createdPosts.forEach(post => {
+        const org = organizations.find(o => o.name === post.org);
         const imageHTML = post.image ? `<img src="${post.image}" alt="${post.title}">` : `<div class="poster-img" style="background:linear-gradient(135deg,#bfdbfe,#ddd6fe);">🎉 ${post.title}</div>`;
         const eventButton = post.eventTime ? `<button class="icon-btn" onclick="addToEvents('${post.title}', '${post.eventTime}')">📅 Add Event</button>` : '';
+        const titleWithOrg = org ? `<h3 style="color:#1e293b;font-weight:700;margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(${org.id})"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">${org.icon}</div><span>${post.org}</span></h3><h4 style="color:#1e293b;font-weight:600;margin:5px 0 12px 0;">${post.title}</h4>` : `<h3 style="color:#1e293b;font-weight:700;margin:0 0 12px 0;">${post.title}</h3>`;
         const postHTML = `
           <article class="poster" style="background:linear-gradient(180deg,#e0f2fe,#f0f9ff);border:2px solid rgba(255,255,255,0.8);">
             <div class="meta">
               <div>
-                <h3 style="color:#1e293b;font-weight:700;">${post.title}</h3>
+                ${titleWithOrg}
                 <div class="small" style="color:#475569;">${post.org} • ${post.date}</div>
               </div>
               <div class="small" style="color:#059669;">✨ New</div>
@@ -252,17 +269,6 @@
       
       feed.classList.remove('fade-out');
       feed.classList.add('fade-in');
-      
-      // Re-attach event listeners
-      document.querySelectorAll('.icon-btn').forEach(btn=>{
-        btn.addEventListener('click', ()=> {
-          const pressed = btn.getAttribute('aria-pressed') === 'true';
-          btn.setAttribute('aria-pressed', String(!pressed));
-          if(btn.textContent.includes('❤')) {
-            btn.textContent = pressed ? '❤ Save' : '✔ Saved';
-          }
-        });
-      });
     }, 150);
   }
   
@@ -280,9 +286,6 @@
     expandedCard.className = 'expanded-card';
     expandedCard.innerHTML = `
       <button class="close-btn" id="closeBtn">×</button>
-      <div style="text-align:right;margin-bottom:10px;">
-        <button onclick="closeDetails()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:14px;">Close ×</button>
-      </div>
       <div style="margin-bottom: 25px;">
         <h2 style="color:#0f172a;font-weight:800;font-size:1.8rem;margin-bottom:8px;">${name}</h2>
         <div style="color:#64748b;font-weight:600;font-size:1rem;">Event Details</div>
@@ -317,6 +320,17 @@
         <button class="icon-btn" style="font-weight:600;">❤ Save</button>
         <button class="icon-btn" style="font-weight:600;" onclick="shareFlyer('${name}')">🔗 Share</button>
       </div>
+      
+      <div style="margin-top:35px;border-top:2px solid rgba(226,232,240,0.8);padding-top:25px;">
+        <h4 style="color:#0f172a;font-weight:700;font-size:1.2rem;margin-bottom:15px;">💬 Comments</h4>
+        <form onsubmit="postComment(event, '${name}')" style="margin-bottom:20px;">
+          <textarea placeholder="Add a comment..." required style="width:100%;min-height:80px;padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.15);background:rgba(255,255,255,0.9);color:#1e293b;resize:vertical;font-family:inherit;margin-bottom:10px;"></textarea>
+          <button type="submit" class="btn">Post Comment</button>
+        </form>
+        <div id="commentsSection" style="max-height:300px;overflow-y:auto;">
+          <p style="color:#64748b;text-align:center;padding:20px 0;">No comments yet. Be the first to comment!</p>
+        </div>
+      </div>
     `;
     
     // Add to DOM
@@ -349,16 +363,7 @@
     }
   }
 
-  // Save/unsave functionality
-  document.querySelectorAll('.icon-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=> {
-      const pressed = btn.getAttribute('aria-pressed') === 'true';
-      btn.setAttribute('aria-pressed', String(!pressed));
-      if(btn.textContent.includes('❤')) {
-        btn.textContent = pressed ? '❤ Save' : '✔ Saved';
-      }
-    });
-  });
+
   
   // Logout functionality
   document.querySelector('a[href="login.html"]').addEventListener('click', async function(e) {
@@ -380,49 +385,37 @@
     feed.classList.add('fade-out');
     
     setTimeout(() => {
-      const clubs = [
-        {id: 1, name: 'Data Science Society', icon: '📊', category: 'Technology', members: 200, description: 'Explore data analytics, machine learning, and AI. All skill levels welcome.'},
-        {id: 2, name: 'Fencing Club', icon: '🤺', category: 'Sports', members: 75, description: 'Learn the art of fencing. Equipment provided for beginners. Join our competitive team.'},
-        {id: 3, name: 'Association of Computing Machinery', icon: '💻', category: 'Technology', members: 350, description: 'Join ACM for coding workshops, hackathons, and tech talks. Network with industry professionals.'}
-      ];
+      const followedClubs = organizations.filter(org => followedOrgs.includes(org.id));
       
-      const savedClubs = clubs.filter(club => savedFlyers.some(f => f.id === club.id));
+      let clubsHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">⭐ My Clubs</h2><p style="color:var(--muted);margin:0;">Organizations you follow</p></div>';
       
-      if (savedClubs.length === 0) {
-        feed.innerHTML = `
+      if (followedClubs.length === 0) {
+        clubsHTML += `
           <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;padding:40px;">
-            <h3 style="color:#1e293b;margin-bottom:15px;">🏛️ My Clubs</h3>
-            <p style="color:#475569;margin:20px 0;">No clubs saved yet. Save clubs from the Discover tab!</p>
-            <button class="btn" onclick="loadFlyers()">Discover Clubs</button>
+            <h3 style="color:#1e293b;margin-bottom:15px;">⭐ No Clubs Yet</h3>
+            <p style="color:#475569;margin:20px 0;">No clubs followed yet. Follow clubs from the Organizations tab!</p>
+            <button class="btn" onclick="showOrganizations()">Browse Organizations</button>
           </div>
         `;
       } else {
-        let clubsHTML = '';
-        savedClubs.forEach(club => {
+        followedClubs.forEach(club => {
           clubsHTML += `
             <article class="poster" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);border:2px solid rgba(255,255,255,0.8);padding:20px;">
-              <div class="club-header" style="margin-bottom:12px;">
-                <div style="display:flex;align-items:center;">
-                  <div class="club-icon">${club.icon}</div>
-                  <div class="club-info">
-                    <h4 style="color:#1e293b;font-weight:700;">${club.name}</h4>
-                    <div class="small" style="color:#475569;font-weight:500;">${club.category} • ${club.members} members</div>
-                  </div>
+              <div style="display:flex;align-items:center;gap:15px;margin-bottom:12px;">
+                <div style="width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;cursor:pointer;" onclick="showOrgProfile(${club.id})">${club.icon}</div>
+                <div style="flex:1;cursor:pointer;" onclick="showOrgProfile(${club.id})">
+                  <h4 style="color:#1e293b;font-weight:700;margin:0 0 5px 0;">${club.name}</h4>
+                  <div class="small" style="color:#475569;font-weight:500;">${club.category} • ${club.members} members</div>
                 </div>
-                <div class="small" style="color:#059669;font-weight:600;">⭐ Saved</div>
+                <button class="btn" onclick="toggleFollow(${club.id}, true); showMyClubs();" style="background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">Unfollow</button>
               </div>
-              <p style="color:#475569;font-weight:500;margin:0 0 12px 0;">${club.description}</p>
-              <div class="club-actions">
-                <button class="btn" onclick="openDetails('${club.name}', this)">Visit Club</button>
-                <button class="icon-btn" onclick="unsaveFromMyClubs(${club.id})">❤️ Unsave</button>
-              </div>
+              <p style="color:#475569;font-weight:500;margin:0;cursor:pointer;" onclick="showOrgProfile(${club.id})">${club.description}</p>
             </article>
           `;
         });
-        clubsHTML += `<div style="text-align:center;margin-top:20px;"><button class="btn" onclick="loadFlyers()">← Back to Discover</button></div>`;
-        feed.innerHTML = clubsHTML;
       }
       
+      feed.innerHTML = clubsHTML;
       feed.classList.remove('fade-out');
       feed.classList.add('fade-in');
     }, 150);
@@ -434,6 +427,7 @@
     
     setTimeout(() => {
       feed.innerHTML = `
+        <div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">➕ Post</h2><p style="color:var(--muted);margin:0;">Create a new flyer</p></div>
         <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
           <h3 style="color:#1e293b;font-weight:700;">🎨 Create New Flyer</h3>
           <form onsubmit="createFlyer(event)" id="flyerForm">
@@ -493,8 +487,8 @@
     }
   }
   
-  // Save/unsave functionality with local storage
-  function toggleSave(flyerId, button) {
+  // Save/unsave functionality with backend integration
+  async function toggleSave(flyerId, button) {
     const isSaved = button.textContent.includes('Saved');
     
     // Check if it's a user-created post
@@ -506,16 +500,37 @@
       image: flyerId === 1 ? '../assets/image.png' : flyerId === 2 ? '../assets/image copy.png' : '../assets/image copy 2.png'
     };
     
-    if (isSaved) {
-      // Remove from saved
-      savedFlyers = savedFlyers.filter(f => f.id !== flyerId);
-      button.textContent = '❤ Save';
-      button.setAttribute('aria-pressed', 'false');
-    } else {
-      // Add to saved
-      savedFlyers.push(flyerData);
-      button.textContent = '✔ Saved';
-      button.setAttribute('aria-pressed', 'true');
+    try {
+      if (isSaved) {
+        // Remove from saved
+        await fetch(`http://localhost:8080/api/flyers/${flyerId}/save`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+        savedFlyers = savedFlyers.filter(f => f.id !== flyerId);
+        button.textContent = '❤ Save';
+        button.setAttribute('aria-pressed', 'false');
+      } else {
+        // Add to saved
+        await fetch(`http://localhost:8080/api/flyers/${flyerId}/save`, {
+          method: 'POST',
+          credentials: 'include'
+        });
+        savedFlyers.push(flyerData);
+        button.textContent = '✔ Saved';
+        button.setAttribute('aria-pressed', 'true');
+      }
+    } catch(error) {
+      console.log('Backend offline, using localStorage only');
+      if (isSaved) {
+        savedFlyers = savedFlyers.filter(f => f.id !== flyerId);
+        button.textContent = '❤ Save';
+        button.setAttribute('aria-pressed', 'false');
+      } else {
+        savedFlyers.push(flyerData);
+        button.textContent = '✔ Saved';
+        button.setAttribute('aria-pressed', 'true');
+      }
     }
     
     localStorage.setItem('savedFlyers', JSON.stringify(savedFlyers));
@@ -526,14 +541,49 @@
   let createdPosts = JSON.parse(localStorage.getItem('createdPosts') || '[]');
   let myEvents = JSON.parse(localStorage.getItem('myEvents') || '[]');
   
+  // Load saved flyers from backend
+  async function loadSavedFlyersFromBackend() {
+    try {
+      const response = await fetch('http://localhost:8080/api/flyers/saved', {
+        credentials: 'include'
+      });
+      if (response.ok) {
+        const backendFlyers = await response.json();
+        // Merge with localStorage
+        savedFlyers = [...savedFlyers, ...backendFlyers.filter(bf => !savedFlyers.some(sf => sf.id === bf.id))];
+        localStorage.setItem('savedFlyers', JSON.stringify(savedFlyers));
+      }
+    } catch(error) {
+      console.log('Backend offline, using localStorage only');
+    }
+  }
+  
+  // Load followed orgs from backend
+  async function loadFollowedOrgsFromBackend() {
+    try {
+      const response = await fetch('http://localhost:8080/api/user/followedOrgs', {
+        credentials: 'include'
+      });
+      if (response.ok) {
+        const orgs = await response.json();
+        followedOrgs = orgs.map(o => o.id);
+        localStorage.setItem('followedOrgs', JSON.stringify(followedOrgs));
+      }
+    } catch(error) {
+      console.log('Backend offline, using localStorage only');
+    }
+  }
+  
   // Show favorites tab
   function showFavorites() {
     const feed = document.querySelector('.feed');
     feed.classList.add('fade-out');
     
     setTimeout(() => {
+      let favoritesHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">❤️ Favorites</h2><p style="color:var(--muted);margin:0;">Your saved flyers</p></div>';
+      
       if (savedFlyers.length === 0) {
-        feed.innerHTML = `
+        favoritesHTML += `
           <div class="poster" style="min-height:300px;background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;">
             <h3 style="color:#1e293b;margin-top:50px;">❤️ No Saved Flyers</h3>
             <p style="color:#475569;margin:20px 0;">Start saving flyers you're interested in!</p>
@@ -541,13 +591,14 @@
           </div>
         `;
       } else {
-        let favoritesHTML = '';
         savedFlyers.forEach((flyer, index) => {
+          const org = organizations.find(o => o.name === flyer.title);
+          const titleWithOrg = org ? `<h3 style="color:#1e293b;font-weight:700;margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(${org.id})"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">${org.icon}</div><span>${flyer.title}</span></h3>` : `<h3 style="color:#1e293b;font-weight:700;margin:0 0 12px 0;">${flyer.title}</h3>`;
           favoritesHTML += `
             <article class="poster" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);border:2px solid rgba(255,255,255,0.8);">
               <div class="meta">
                 <div>
-                  <h3 style="color:#1e293b;font-weight:700;">${flyer.title}</h3>
+                  ${titleWithOrg}
                   <div class="small" style="color:#475569;">Saved Flyer</div>
                 </div>
                 <div class="small" style="color:#059669;">⭐ Saved</div>
@@ -563,10 +614,9 @@
             </article>
           `;
         });
-        favoritesHTML += `<div style="text-align:center;margin-top:20px;"><button class="btn" onclick="loadFlyers()">← Back to Discover</button></div>`;
-        feed.innerHTML = favoritesHTML;
       }
       
+      feed.innerHTML = favoritesHTML;
       feed.classList.remove('fade-out');
       feed.classList.add('fade-in');
     }, 150);
@@ -586,8 +636,9 @@
     
     setTimeout(() => {
       feed.innerHTML = `
+        <div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">💬 Discussion</h2><p style="color:var(--muted);margin:0;">Community discussion board</p></div>
         <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
-          <h3 style="color:#1e293b;font-weight:700;margin-bottom:15px;">💬 Discussion Board</h3>
+          <h3 style="color:#1e293b;font-weight:700;margin-bottom:15px;">Post a Message</h3>
           <form onsubmit="postMessage(event)" style="display:flex;flex-direction:column;gap:10px;">
             <textarea id="messageInput" placeholder="Share your thoughts..." required style="width:100%;min-height:100px;padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.15);background:rgba(255,255,255,0.9);color:#1e293b;resize:vertical;font-family:inherit;"></textarea>
             <button type="submit" class="btn" style="align-self:flex-start;">Post Message</button>
@@ -628,15 +679,16 @@
     feed.classList.add('fade-out');
     
     setTimeout(() => {
+      let eventsHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">📅 Events</h2><p style="color:var(--muted);margin:0;">Your saved events</p></div>';
+      
       if (myEvents.length === 0) {
-        feed.innerHTML = `
+        eventsHTML += `
           <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;padding:40px;">
-            <h3 style="color:#1e293b;margin-bottom:15px;">📅 My Events</h3>
+            <h3 style="color:#1e293b;margin-bottom:15px;">📅 No Events Yet</h3>
             <p style="color:#475569;margin:20px 0;">No events added yet. Add events from the Discover tab!</p>
           </div>
         `;
       } else {
-        let eventsHTML = '';
         myEvents.forEach((event, index) => {
           eventsHTML += `
             <article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
@@ -651,9 +703,9 @@
             </article>
           `;
         });
-        feed.innerHTML = eventsHTML;
       }
       
+      feed.innerHTML = eventsHTML;
       feed.classList.remove('fade-out');
       feed.classList.add('fade-in');
     }, 150);
@@ -666,12 +718,7 @@
     showEvents();
   }
   
-  // Unsave from My Clubs
-  function unsaveFromMyClubs(flyerId) {
-    savedFlyers = savedFlyers.filter(f => f.id !== flyerId);
-    localStorage.setItem('savedFlyers', JSON.stringify(savedFlyers));
-    showMyClubs();
-  }
+
   
   // Share flyer
   function shareFlyer(clubName) {
@@ -681,6 +728,256 @@
     }).catch(() => {
       alert(`Share this link: ${shareUrl}`);
     });
+  }
+  
+  // Organizations data
+  const organizations = [
+    {id: 1, name: 'Data Science Society', category: 'Technology', members: 200, description: 'Explore data analytics, machine learning, and AI', icon: '📊', eventTime: 'Tuesdays 5:30 PM', image: '../assets/image.png', fullDescription: 'The Data Science Society is dedicated to fostering a community of data enthusiasts. We organize weekly workshops covering Python, R, SQL, and machine learning frameworks. Members work on real-world datasets, participate in Kaggle competitions, and collaborate on research projects. Our alumni have gone on to work at top tech companies and research institutions.', founded: '2018', location: 'Woodward Hall 335', contact: 'datasci@charlotte.edu'},
+    {id: 2, name: 'Fencing Club', category: 'Sports', members: 75, description: 'Learn the art of fencing', icon: '🤺', eventTime: 'Mondays & Thursdays 6:00 PM', image: '../assets/image copy.png', fullDescription: 'Our Fencing Club welcomes all skill levels from complete beginners to competitive athletes. We provide all equipment for newcomers and offer instruction in foil, épée, and sabre. Our certified coaches have national and international competition experience. We compete in regional tournaments and host an annual invitational. Join us to develop discipline, strategy, and athleticism.', founded: '2015', location: 'Recreation Center Gym 2', contact: 'fencing@charlotte.edu'},
+    {id: 3, name: 'Association of Computing Machinery', category: 'Technology', members: 350, description: 'Join ACM for coding workshops and hackathons', icon: '💻', eventTime: 'Wednesdays 7:00 PM', image: '../assets/image copy 2.png', fullDescription: 'ACM is the largest computing organization on campus. We host weekly tech talks featuring industry professionals, organize hackathons with prizes up to $10,000, and maintain several open-source projects. Our members have access to exclusive internship opportunities, interview prep sessions, and networking events with recruiters from Fortune 500 companies. Special interest groups focus on AI, cybersecurity, web development, and game design.', founded: '2010', location: 'Student Union 340', contact: 'acm@charlotte.edu'}
+  ];
+  
+  let followedOrgs = JSON.parse(localStorage.getItem('followedOrgs') || '[]');
+  
+  // Show Organizations tab
+  function showOrganizations() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      let orgsHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">🏛️ Organizations</h2><p style="color:var(--muted);margin:0;">Discover and follow organizations</p></div>';
+      
+      organizations.forEach(org => {
+        const isFollowing = followedOrgs.includes(org.id);
+        orgsHTML += `
+          <article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);cursor:pointer;" onclick="showOrgProfile(${org.id})">
+            <div style="display:flex;align-items:center;gap:15px;margin-bottom:15px;">
+              <div style="width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;">${org.icon}</div>
+              <div style="flex:1;">
+                <h3 style="color:#1e293b;font-weight:700;margin:0 0 5px 0;">${org.name}</h3>
+                <div style="color:#64748b;font-size:0.9rem;">${org.category} • ${org.members} members</div>
+              </div>
+              <button class="btn" onclick="event.stopPropagation(); toggleFollow(${org.id})" style="${isFollowing ? 'background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);' : ''}">${isFollowing ? 'Following' : 'Follow'}</button>
+            </div>
+            <p style="color:#475569;font-weight:500;margin:0;">${org.description}</p>
+          </article>
+        `;
+      });
+      
+      feed.innerHTML = orgsHTML;
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  // Toggle follow organization
+  async function toggleFollow(orgId, skipRefresh) {
+    const index = followedOrgs.indexOf(orgId);
+    const isFollowing = index > -1;
+    
+    try {
+      if (isFollowing) {
+        await fetch(`http://localhost:8080/api/orgs/${orgId}/follow`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+        followedOrgs.splice(index, 1);
+      } else {
+        await fetch(`http://localhost:8080/api/orgs/${orgId}/follow`, {
+          method: 'POST',
+          credentials: 'include'
+        });
+        followedOrgs.push(orgId);
+      }
+      localStorage.setItem('followedOrgs', JSON.stringify(followedOrgs));
+      if (!skipRefresh) showOrganizations();
+    } catch(error) {
+      console.error('Backend offline, using localStorage only');
+      if (isFollowing) {
+        followedOrgs.splice(index, 1);
+      } else {
+        followedOrgs.push(orgId);
+      }
+      localStorage.setItem('followedOrgs', JSON.stringify(followedOrgs));
+      if (!skipRefresh) showOrganizations();
+    }
+  }
+  
+  // Show organization profile
+  function showOrgProfile(orgId) {
+    const org = organizations.find(o => o.id === orgId);
+    if (!org) return;
+    
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      const isFollowing = followedOrgs.includes(org.id);
+      const orgPosts = createdPosts.filter(p => p.org === org.name);
+      
+      let postsHTML = '';
+      if (orgPosts.length > 0) {
+        orgPosts.forEach(post => {
+          const imageHTML = post.image ? `<img src="${post.image}" alt="${post.title}">` : `<div class="poster-img" style="background:linear-gradient(135deg,#bfdbfe,#ddd6fe);">🎉 ${post.title}</div>`;
+          postsHTML += `
+            <article class="poster" style="background:linear-gradient(180deg,#e0f2fe,#f0f9ff);border:2px solid rgba(255,255,255,0.8);">
+              <div class="meta">
+                <div>
+                  <h3 style="color:#1e293b;font-weight:700;">${post.title}</h3>
+                  <div class="small" style="color:#475569;">${post.date}</div>
+                </div>
+              </div>
+              ${imageHTML}
+              <div>
+                <p style="color:#475569;margin:15px 0;">${post.description}</p>
+              </div>
+            </article>
+          `;
+        });
+      } else {
+        postsHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">No posts yet from this organization</p>';
+      }
+      
+      feed.innerHTML = `
+        <div class="poster" style="background:var(--surface);border:2px solid rgba(255,255,255,0.8);padding:24px;">
+          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+            <div style="width:110px;height:110px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:bold;color:#022047;margin-bottom:14px;">${org.icon}</div>
+            <h2 style="color:#f8fafc;font-weight:700;font-size:1.6rem;margin:0 0 6px 0;">${org.name}</h2>
+            <div style="color:var(--muted);font-size:0.95rem;margin-bottom:10px;">${org.category} • ${org.members} members</div>
+            <p style="color:var(--muted);font-size:0.95rem;line-height:1.4;margin-bottom:16px;">${org.description}</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+              <button class="btn" onclick="toggleFollow(${org.id}, true); showOrgProfile(${org.id});" style="${isFollowing ? 'background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);' : ''}">${isFollowing ? 'Following' : 'Follow'}</button>
+              ${org.eventTime ? `<button class="btn" onclick="addToEvents('${org.name}', '${org.eventTime}')" style="background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">📅 Add Event</button>` : ''}
+              <button class="btn" onclick="showOrgLearnMore(${org.id})" style="background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">📖 Learn More</button>
+              <button class="btn" onclick="showOrganizations()" style="background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">← Back</button>
+            </div>
+          </div>
+        </div>
+        <div style="margin:20px 0;"><h3 style="color:#e6eef8;font-weight:700;">Recent Posts</h3></div>
+        ${postsHTML}
+      `;
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  // Show Personal Feed with backend integration
+  async function showPersonalFeed() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/favorites', {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const backendFlyers = await response.json();
+          
+          let feedHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">📰 Personal Feed</h2><p style="color:var(--muted);margin:0;">Posts from organizations you follow</p></div>';
+          
+          if (backendFlyers.length === 0 && followedOrgs.length === 0) {
+            feedHTML = `
+              <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;padding:40px;">
+                <h3 style="color:#1e293b;margin-bottom:15px;">📰 Personal Feed</h3>
+                <p style="color:#475569;margin:20px 0;">Follow organizations to see their posts in your personal feed!</p>
+                <button class="btn" onclick="showOrganizations()">Browse Organizations</button>
+              </div>
+            `;
+          } else if (backendFlyers.length > 0) {
+            backendFlyers.forEach(flyer => {
+              const org = organizations.find(o => o.id === flyer.orgId);
+              feedHTML += `
+                <article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
+                  <div class="meta">
+                    <div>
+                      ${org ? `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;cursor:pointer;" onclick="showOrgProfile(${org.id})"><div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">${org.icon}</div><span style="color:#1e293b;font-weight:600;">${org.name}</span></div>` : ''}
+                      <h3 style="color:#1e293b;font-weight:700;margin:0 0 12px 0;">${flyer.flyerAdvert}</h3>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="actions">
+                      <div>
+                        <button class="icon-btn" onclick="toggleSave(${flyer.id}, this)">❤ Save</button>
+                        <button class="icon-btn" onclick="shareFlyer('${org?.name || 'Event'}')">🔗 Share</button>
+                      </div>
+                      <button class="btn" onclick="openDetails('${org?.name || 'Event'}', this)">View</button>
+                    </div>
+                  </div>
+                </article>
+              `;
+            });
+          } else {
+            feedHTML += '<p style="color:var(--muted);text-align:center;padding:40px 0;">No posts yet from followed organizations</p>';
+          }
+          
+          feed.innerHTML = feedHTML;
+          feed.classList.remove('fade-out');
+          feed.classList.add('fade-in');
+          return;
+        }
+      } catch(error) {
+        console.log('Backend offline, using localStorage');
+      }
+      
+      // Fallback to localStorage
+      if (followedOrgs.length === 0) {
+        feed.innerHTML = `
+          <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;padding:40px;">
+            <h3 style="color:#1e293b;margin-bottom:15px;">📰 Personal Feed</h3>
+            <p style="color:#475569;margin:20px 0;">Follow organizations to see their posts in your personal feed!</p>
+            <button class="btn" onclick="showOrganizations()">Browse Organizations</button>
+          </div>
+        `;
+      } else {
+        const followedOrgNames = organizations.filter(o => followedOrgs.includes(o.id)).map(o => o.name);
+        const feedPosts = createdPosts.filter(p => followedOrgNames.includes(p.org));
+        
+        let feedHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">📰 Personal Feed</h2><p style="color:var(--muted);margin:0;">Posts from organizations you follow</p></div>';
+        
+        if (feedPosts.length === 0) {
+          feedHTML += '<p style="color:var(--muted);text-align:center;padding:40px 0;">No posts yet from followed organizations</p>';
+        } else {
+          feedPosts.forEach(post => {
+            const org = organizations.find(o => o.name === post.org);
+            const imageHTML = post.image ? `<img src="${post.image}" alt="${post.title}">` : `<div class="poster-img" style="background:linear-gradient(135deg,#bfdbfe,#ddd6fe);">🎉 ${post.title}</div>`;
+            feedHTML += `
+              <article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
+                <div class="meta">
+                  <div>
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;cursor:pointer;" onclick="showOrgProfile(${org?.id})">
+                      <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">${org?.icon || '🏛️'}</div>
+                      <span style="color:#1e293b;font-weight:600;">${post.org}</span>
+                    </div>
+                    <h3 style="color:#1e293b;font-weight:700;margin:0 0 5px 0;">${post.title}</h3>
+                    <div class="small" style="color:#475569;">${post.date}</div>
+                  </div>
+                </div>
+                ${imageHTML}
+                <div>
+                  <p style="color:#475569;margin:15px 0;">${post.description}</p>
+                  <div class="actions">
+                    <div>
+                      <button class="icon-btn" onclick="toggleSave(${post.id}, this)">❤ Save</button>
+                      ${post.eventTime ? `<button class="icon-btn" onclick="addToEvents('${post.title}', '${post.eventTime}')">📅 Add Event</button>` : ''}
+                      <button class="icon-btn" onclick="shareFlyer('${post.title}')">🔗 Share</button>
+                    </div>
+                    <button class="btn" onclick="openDetails('${post.title}', this)">View</button>
+                  </div>
+                </div>
+              </article>
+            `;
+          });
+        }
+        
+        feed.innerHTML = feedHTML;
+      }
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
   }
   
   // Post message function
@@ -732,9 +1029,386 @@
     `).join('');
   }
   
+  // Post comment with backend integration
+  async function postComment(event, eventName) {
+    event.preventDefault();
+    const form = event.target;
+    const textarea = form.querySelector('textarea');
+    const comment = textarea.value.trim();
+    if (!comment) return;
+    
+    // Find flyer ID based on event name
+    const org = organizations.find(o => o.name === eventName);
+    const flyerId = org?.id || Date.now();
+    
+    try {
+      const response = await fetch(`http://localhost:8080/api/flyers/${flyerId}/comments`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({
+          userId: 1, // Would come from session
+          content: comment
+        })
+      });
+      
+      if (response.ok) {
+        textarea.value = '';
+        loadComments(eventName, flyerId);
+        return;
+      }
+    } catch(error) {
+      console.log('Backend offline, using localStorage');
+    }
+    
+    // Fallback to localStorage
+    let comments = JSON.parse(localStorage.getItem(`comments_${eventName}`) || '[]');
+    comments.unshift({
+      id: Date.now(),
+      text: comment,
+      author: 'You',
+      timestamp: new Date().toLocaleString()
+    });
+    localStorage.setItem(`comments_${eventName}`, JSON.stringify(comments));
+    
+    textarea.value = '';
+    loadComments(eventName, flyerId);
+  }
+  
+  // Load comments with backend integration
+  async function loadComments(eventName, flyerId) {
+    const commentsSection = document.getElementById('commentsSection');
+    
+    try {
+      const response = await fetch(`http://localhost:8080/api/flyers/${flyerId}/comments`, {
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        const backendComments = await response.json();
+        if (backendComments.length > 0) {
+          commentsSection.innerHTML = backendComments.map(comment => `
+            <div style="background:rgba(248,250,252,0.8);padding:15px;border-radius:10px;margin-bottom:10px;border:1px solid rgba(226,232,240,0.8);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                <span style="font-weight:600;color:#1e293b;">User ${comment.userId}</span>
+                <span style="font-size:0.85rem;color:#64748b;">${new Date(comment.createdAt).toLocaleString()}</span>
+              </div>
+              <p style="color:#374151;margin:0;">${comment.content}</p>
+            </div>
+          `).join('');
+          return;
+        }
+      }
+    } catch(error) {
+      console.log('Backend offline, using localStorage');
+    }
+    
+    // Fallback to localStorage
+    const comments = JSON.parse(localStorage.getItem(`comments_${eventName}`) || '[]');
+    
+    if (comments.length === 0) {
+      commentsSection.innerHTML = '<p style="color:#64748b;text-align:center;padding:20px 0;">No comments yet. Be the first to comment!</p>';
+      return;
+    }
+    
+    commentsSection.innerHTML = comments.map(comment => `
+      <div style="background:rgba(248,250,252,0.8);padding:15px;border-radius:10px;margin-bottom:10px;border:1px solid rgba(226,232,240,0.8);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span style="font-weight:600;color:#1e293b;">${comment.author}</span>
+          <span style="font-size:0.85rem;color:#64748b;">${comment.timestamp}</span>
+        </div>
+        <p style="color:#374151;margin:0;">${comment.text}</p>
+      </div>
+    `).join('');
+  }
+  
+  // Show Popular flyers
+  async function showPopular() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/flyers/popular', {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const flyers = await response.json();
+          let flyersHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">🔥 Popular</h2><p style="color:var(--muted);margin:0;">Most popular flyers right now</p></div>';
+          
+          if (flyers.length === 0) {
+            flyersHTML += '<p style="color:var(--muted);text-align:center;padding:40px 0;">No popular flyers yet</p>';
+          } else {
+            flyers.forEach(flyer => {
+              const org = organizations.find(o => o.id === flyer.orgId);
+              flyersHTML += `
+                <article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
+                  <div class="meta">
+                    <div>
+                      ${org ? `<h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(${org.id})"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">${org.icon}</div><span>${org.name}</span></h3>` : ''}
+                      <div class="small" style="color:#475569;">🔥 Popularity: ${flyer.popularityScore}</div>
+                    </div>
+                  </div>
+                  <div>
+                    <p style="color:#475569;margin:15px 0;">${flyer.flyerAdvert}</p>
+                    <div class="actions">
+                      <div>
+                        <button class="icon-btn" onclick="toggleSave(${flyer.id}, this)">❤ Save</button>
+                        <button class="icon-btn" onclick="shareFlyer('${org?.name || 'Event'}')">🔗 Share</button>
+                      </div>
+                      <button class="btn" onclick="openDetails('${org?.name || 'Event'}', this)">View</button>
+                    </div>
+                  </div>
+                </article>
+              `;
+            });
+          }
+          
+          feed.innerHTML = flyersHTML;
+        } else {
+          feed.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Unable to load popular flyers</p>';
+        }
+      } catch(error) {
+        feed.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Backend offline. Popular flyers unavailable.</p>';
+      }
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  // Show Trending flyers
+  async function showTrending() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/flyers/trending', {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const flyers = await response.json();
+          let flyersHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">📈 Trending</h2><p style="color:var(--muted);margin:0;">Trending flyers this week</p></div>';
+          
+          if (flyers.length === 0) {
+            flyersHTML += '<p style="color:var(--muted);text-align:center;padding:40px 0;">No trending flyers yet</p>';
+          } else {
+            flyers.forEach(flyer => {
+              const org = organizations.find(o => o.id === flyer.orgId);
+              flyersHTML += `
+                <article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);">
+                  <div class="meta">
+                    <div>
+                      ${org ? `<h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(${org.id})"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">${org.icon}</div><span>${org.name}</span></h3>` : ''}
+                      <div class="small" style="color:#475569;">📈 Trending</div>
+                    </div>
+                  </div>
+                  <div>
+                    <p style="color:#475569;margin:15px 0;">${flyer.flyerAdvert}</p>
+                    <div class="actions">
+                      <div>
+                        <button class="icon-btn" onclick="toggleSave(${flyer.id}, this)">❤ Save</button>
+                        <button class="icon-btn" onclick="shareFlyer('${org?.name || 'Event'}')">🔗 Share</button>
+                      </div>
+                      <button class="btn" onclick="openDetails('${org?.name || 'Event'}', this)">View</button>
+                    </div>
+                  </div>
+                </article>
+              `;
+            });
+          }
+          
+          feed.innerHTML = flyersHTML;
+        } else {
+          feed.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Unable to load trending flyers</p>';
+        }
+      } catch(error) {
+        feed.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Backend offline. Trending flyers unavailable.</p>';
+      }
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+    }, 150);
+  }
+  
+  // Show organization learn more popup
+  function showOrgLearnMore(orgId) {
+    const org = organizations.find(o => o.id === orgId);
+    if (!org) return;
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'card-overlay';
+    overlay.onclick = closeDetails;
+    
+    const expandedCard = document.createElement('div');
+    expandedCard.className = 'expanded-card';
+    expandedCard.innerHTML = `
+      <button class="close-btn" id="closeBtn">×</button>
+      <div style="margin-bottom: 25px;text-align:center;">
+        <div style="width:80px;height:80px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:bold;color:#022047;margin:0 auto 15px;">${org.icon}</div>
+        <h2 style="color:#0f172a;font-weight:800;font-size:1.8rem;margin-bottom:8px;">${org.name}</h2>
+        <div style="color:#64748b;font-weight:600;font-size:1rem;">${org.category} • ${org.members} members</div>
+      </div>
+      
+      <div style="margin:25px 0;">
+        <h4 style="color:#0f172a;font-weight:700;font-size:1.2rem;margin-bottom:15px;">About</h4>
+        <p style="color:#374151;line-height:1.7;font-size:1rem;font-weight:500;">${org.fullDescription}</p>
+      </div>
+      
+      <div style="margin:25px 0;background:rgba(248,250,252,0.8);padding:20px;border-radius:12px;border:1px solid rgba(226,232,240,0.8);">
+        <h4 style="color:#0f172a;font-weight:700;font-size:1.2rem;margin-bottom:15px;">Details</h4>
+        <div style="color:#374151;font-weight:500;">
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Founded:</strong> ${org.founded}</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Meetings:</strong> ${org.eventTime}</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Location:</strong> ${org.location}</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Contact:</strong> ${org.contact}</p>
+        </div>
+      </div>
+      
+      <div style="display:flex;gap:12px;margin-top:35px;">
+        <button class="btn" style="flex:1;font-weight:600;" onclick="toggleFollow(${org.id}, true); closeDetails(); showOrgProfile(${org.id});">${followedOrgs.includes(org.id) ? 'Unfollow' : 'Follow'}</button>
+        <button class="icon-btn" style="font-weight:600;" onclick="addToEvents('${org.name}', '${org.eventTime}'); closeDetails();">📅 Add Event</button>
+      </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    document.body.appendChild(expandedCard);
+    
+    const closeBtn = expandedCard.querySelector('#closeBtn');
+    closeBtn.addEventListener('click', closeDetails);
+    
+    setTimeout(() => {
+      overlay.classList.add('show');
+      expandedCard.classList.add('show');
+    }, 10);
+  }
+  
+  // Show Feeds tab with sub-navigation
+  function showFeeds() {
+    const feed = document.querySelector('.feed');
+    feed.classList.add('fade-out');
+    
+    setTimeout(() => {
+      feed.innerHTML = `
+        <div style="margin-bottom:20px;">
+          <h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">📰 Feeds</h2>
+          <p style="color:var(--muted);margin:0 0 15px 0;">View different feed types</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn" onclick="loadFeedType('personal')">Personal</button>
+            <button class="btn" onclick="loadFeedType('popular')" style="background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">Popular</button>
+            <button class="btn" onclick="loadFeedType('trending')" style="background:rgba(255,255,255,0.8);color:#374151;border:1px solid rgba(0,0,0,0.15);">Trending</button>
+          </div>
+        </div>
+        <div id="feedContent"></div>
+      `;
+      
+      feed.classList.remove('fade-out');
+      feed.classList.add('fade-in');
+      
+      // Auto-load personal feed
+      setTimeout(() => loadFeedType('personal'), 50);
+    }, 150);
+  }
+  
+  // Load specific feed type
+  async function loadFeedType(type) {
+    const feedContent = document.getElementById('feedContent');
+    if (!feedContent) return;
+    
+    if (type === 'personal') {
+      await loadPersonalFeedContent(feedContent);
+    } else if (type === 'popular') {
+      await loadPopularContent(feedContent);
+    } else if (type === 'trending') {
+      await loadTrendingContent(feedContent);
+    }
+  }
+  
+  async function loadPersonalFeedContent(container) {
+    try {
+      const response = await fetch('http://localhost:8080/api/favorites', { credentials: 'include' });
+      if (response.ok) {
+        const backendFlyers = await response.json();
+        if (backendFlyers.length === 0 && followedOrgs.length === 0) {
+          container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Follow organizations to see their posts!</p>';
+        } else if (backendFlyers.length > 0) {
+          container.innerHTML = backendFlyers.map(flyer => {
+            const org = organizations.find(o => o.id === flyer.orgId);
+            return `<article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);"><div class="meta"><div>${org ? `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;cursor:pointer;" onclick="showOrgProfile(${org.id})"><div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">${org.icon}</div><span style="color:#1e293b;font-weight:600;">${org.name}</span></div>` : ''}<h3 style="color:#1e293b;font-weight:700;margin:0 0 12px 0;">${flyer.flyerAdvert}</h3></div></div><div><div class="actions"><div><button class="icon-btn" onclick="toggleSave(${flyer.id}, this)">❤ Save</button><button class="icon-btn" onclick="shareFlyer('${org?.name || 'Event'}'">🔗 Share</button></div><button class="btn" onclick="openDetails('${org?.name || 'Event'}', this)">View</button></div></div></article>`;
+          }).join('');
+        } else {
+          container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">No posts yet from followed organizations</p>';
+        }
+        return;
+      }
+    } catch(error) {}
+    
+    if (followedOrgs.length === 0) {
+      container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Follow organizations to see their posts!</p>';
+    } else {
+      const followedOrgNames = organizations.filter(o => followedOrgs.includes(o.id)).map(o => o.name);
+      const feedPosts = createdPosts.filter(p => followedOrgNames.includes(p.org));
+      if (feedPosts.length === 0) {
+        container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">No posts yet from followed organizations</p>';
+      } else {
+        container.innerHTML = feedPosts.map(post => {
+          const org = organizations.find(o => o.name === post.org);
+          const imageHTML = post.image ? `<img src="${post.image}" alt="${post.title}">` : `<div class="poster-img" style="background:linear-gradient(135deg,#bfdbfe,#ddd6fe);">🎉 ${post.title}</div>`;
+          return `<article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);"><div class="meta"><div><div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;cursor:pointer;" onclick="showOrgProfile(${org?.id})"><div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;">${org?.icon || '🏛️'}</div><span style="color:#1e293b;font-weight:600;">${post.org}</span></div><h3 style="color:#1e293b;font-weight:700;margin:0 0 5px 0;">${post.title}</h3><div class="small" style="color:#475569;">${post.date}</div></div></div>${imageHTML}<div><p style="color:#475569;margin:15px 0;">${post.description}</p><div class="actions"><div><button class="icon-btn" onclick="toggleSave(${post.id}, this)">❤ Save</button>${post.eventTime ? `<button class="icon-btn" onclick="addToEvents('${post.title}', '${post.eventTime}')">📅 Add Event</button>` : ''}<button class="icon-btn" onclick="shareFlyer('${post.title}')">🔗 Share</button></div><button class="btn" onclick="openDetails('${post.title}', this)">View</button></div></div></article>`;
+        }).join('');
+      }
+    }
+  }
+  
+  async function loadPopularContent(container) {
+    try {
+      const response = await fetch('http://localhost:8080/api/flyers/popular', { credentials: 'include' });
+      if (response.ok) {
+        const flyers = await response.json();
+        if (flyers.length === 0) {
+          container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">No popular flyers yet</p>';
+        } else {
+          container.innerHTML = flyers.map(flyer => {
+            const org = organizations.find(o => o.id === flyer.orgId);
+            return `<article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);"><div class="meta"><div>${org ? `<h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(${org.id})"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">${org.icon}</div><span>${org.name}</span></h3>` : ''}<div class="small" style="color:#475569;">🔥 Popularity: ${flyer.popularityScore}</div></div></div><div><p style="color:#475569;margin:15px 0;">${flyer.flyerAdvert}</p><div class="actions"><div><button class="icon-btn" onclick="toggleSave(${flyer.id}, this)">❤ Save</button><button class="icon-btn" onclick="shareFlyer('${org?.name || 'Event'}')">🔗 Share</button></div><button class="btn" onclick="openDetails('${org?.name || 'Event'}', this)">View</button></div></div></article>`;
+          }).join('');
+        }
+      } else {
+        container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Unable to load popular flyers</p>';
+      }
+    } catch(error) {
+      container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Backend offline. Popular flyers unavailable.</p>';
+    }
+  }
+  
+  async function loadTrendingContent(container) {
+    try {
+      const response = await fetch('http://localhost:8080/api/flyers/trending', { credentials: 'include' });
+      if (response.ok) {
+        const flyers = await response.json();
+        if (flyers.length === 0) {
+          container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">No trending flyers yet</p>';
+        } else {
+          container.innerHTML = flyers.map(flyer => {
+            const org = organizations.find(o => o.id === flyer.orgId);
+            return `<article class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);"><div class="meta"><div>${org ? `<h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(${org.id})"><div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">${org.icon}</div><span>${org.name}</span></h3>` : ''}<div class="small" style="color:#475569;">📈 Trending</div></div></div><div><p style="color:#475569;margin:15px 0;">${flyer.flyerAdvert}</p><div class="actions"><div><button class="icon-btn" onclick="toggleSave(${flyer.id}, this)">❤ Save</button><button class="icon-btn" onclick="shareFlyer('${org?.name || 'Event'}')">🔗 Share</button></div><button class="btn" onclick="openDetails('${org?.name || 'Event'}', this)">View</button></div></div></article>`;
+          }).join('');
+        }
+      } else {
+        container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Unable to load trending flyers</p>';
+      }
+    } catch(error) {
+      container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0;">Backend offline. Trending flyers unavailable.</p>';
+    }
+  }
+  
   // Initialize page
   checkAuth();
-  loadFlyers();
+  loadSavedFlyersFromBackend();
+  loadFollowedOrgsFromBackend();
 </script>
 </body>
 </html>
