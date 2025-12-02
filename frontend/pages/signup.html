@@ -41,6 +41,8 @@
     <p class="small">We will verify your college email before enabling posting privileges.</p>
   </main>
 
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/storage.js"></script>
 <script>
   document.getElementById('signupForm').addEventListener('submit', async function(e){
     e.preventDefault();
@@ -50,14 +52,7 @@
     if(!fullname || !email || pw.length < 6){ alert('Please complete the form correctly.'); return; }
     
     try {
-      const response = await fetch('http://localhost:8080/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ username: fullname, email, password: pw })
-      });
-      
-      const data = await response.json();
+      const data = await api.signup(fullname, email, pw);
       if(data.success) {
         alert('Account created successfully!');
         window.location.href = 'login.html';
@@ -66,8 +61,7 @@
       }
     } catch(error) {
       console.error('Backend offline, using demo mode');
-      // Fallback: Store user locally and proceed
-      localStorage.setItem('demoUser', JSON.stringify({ fullname, email, password: pw }));
+      storage.set('demoUser', { fullname, email, password: pw });
       alert('Account created successfully! (Demo mode - backend offline)');
       window.location.href = 'login.html';
     }

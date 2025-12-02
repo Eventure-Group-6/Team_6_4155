@@ -40,6 +40,8 @@
     <p class="small">Use your Charlotte University email to register. By signing in you agree to Eventure's terms.</p>
   </main>
 
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/storage.js"></script>
 <script>
   // Password toggle
   document.getElementById('togglePass').addEventListener('click', function(){
@@ -56,14 +58,7 @@
     if(!email || !pw){ alert('Please enter both email and password.'); return; }
     
     try {
-      const response = await fetch('http://localhost:8080/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ email, password: pw })
-      });
-      
-      const data = await response.json();
+      const data = await api.login(email, pw);
       if(data.success) {
         window.location.href = 'main.html';
       } else {
@@ -71,8 +66,7 @@
       }
     } catch(error) {
       console.error('Backend offline, checking demo user');
-      // Fallback: Check local demo user
-      const demoUser = JSON.parse(localStorage.getItem('demoUser') || '{}');
+      const demoUser = storage.get('demoUser', {});
       if(demoUser.email === email && demoUser.password === pw) {
         alert('Login successful! (Demo mode - backend offline)');
         window.location.href = 'main.html';

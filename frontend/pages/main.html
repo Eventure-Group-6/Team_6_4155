@@ -35,92 +35,8 @@
       </nav>
     </aside>
 
-    <section class="feed" aria-label="Club poster feed">
+    <section class="feed" aria-label="Club poster feed" id="mainFeed">
       <div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">✨ Discover</h2><p style="color:var(--muted);margin:0;">Explore clubs and events</p></div>
-      <!-- Poster 1: Static image style -->
-      <article class="poster" role="article" aria-labelledby="p1title">
-        <div class="meta">
-          <div>
-            <h3 id="p1title" style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(1)">
-              <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">📊</div>
-              <span>Data Science Society</span>
-            </h3>
-            <div class="small">Technology • Meets Tuesdays</div>
-          </div>
-          <div class="small">4.9 ★</div>
-        </div>
-
-        <img src="../assets/image.png" alt="Data Science Society poster">
-
-        <div>
-          <p>Explore data analytics, machine learning, and AI. All skill levels welcome.</p>
-          <div class="actions">
-            <div>
-              <button class="icon-btn" aria-pressed="false" onclick="toggleSave(1, this)">❤ Save</button>
-              <button class="icon-btn" onclick="addToEvents('Data Science Society', 'Tuesdays 5:30 PM')">📅 Add Event</button>
-              <button class="icon-btn" onclick="shareFlyer('Data Science Society')">🔗 Share</button>
-            </div>
-            <button class="btn" onclick="openDetails('Data Science Society', this)">View</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Poster 2: Animated/dynamic (CSS-based) -->
-      <article class="poster" role="article" aria-labelledby="p2title" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
-        <div class="meta">
-          <div>
-            <h3 id="p2title" style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(2)">
-              <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">🤺</div>
-              <span>Fencing Club</span>
-            </h3>
-            <div class="small">Sports • Mondays & Thursdays</div>
-          </div>
-          <div class="small">4.7 ★</div>
-        </div>
-
-        <img src="../assets/image copy.png" alt="Fencing Club poster">
-
-        <div>
-          <p>Learn the art of fencing. Equipment provided for beginners. Join our competitive team.</p>
-          <div class="actions">
-            <div>
-              <button class="icon-btn" onclick="toggleSave(2, this)">❤ Save</button>
-              <button class="icon-btn" onclick="addToEvents('Fencing Club', 'Mondays & Thursdays 6:00 PM')">📅 Add Event</button>
-              <button class="icon-btn" onclick="shareFlyer('Fencing Club')">🔗 Share</button>
-            </div>
-            <button class="btn" onclick="openDetails('Fencing Club', this)">View</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Poster 3: Another style -->
-      <article class="poster" role="article" aria-labelledby="p3title" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
-        <div class="meta">
-          <div>
-            <h3 id="p3title" style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(3)">
-              <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">💻</div>
-              <span>Association of Computing Machinery</span>
-            </h3>
-            <div class="small">Technology • Wednesdays</div>
-          </div>
-          <div class="small">5.0 ★</div>
-        </div>
-
-        <img src="../assets/image copy 2.png" alt="ACM poster">
-
-        <div>
-          <p>Join ACM for coding workshops, hackathons, and tech talks. Network with industry professionals.</p>
-          <div class="actions">
-            <div>
-              <button class="icon-btn" onclick="toggleSave(3, this)">❤ Save</button>
-              <button class="icon-btn" onclick="addToEvents('Association of Computing Machinery', 'Wednesdays 7:00 PM')">📅 Add Event</button>
-              <button class="icon-btn" onclick="shareFlyer('Association of Computing Machinery')">🔗 Share</button>
-            </div>
-            <button class="btn" onclick="openDetails('Association of Computing Machinery', this)">View</button>
-          </div>
-        </div>
-      </article>
-
       <div class="footer-note">Tip: Scroll up/down to browse — posters snap into view for easy preview.</div>
     </section>
   </div>
@@ -153,85 +69,8 @@
     feed.classList.add('fade-out');
     
     setTimeout(() => {
-      // Restore original content
-      feed.innerHTML = `
-        <div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">✨ Discover</h2><p style="color:var(--muted);margin:0;">Explore clubs and events</p></div>
-        <article class="poster" role="article" aria-labelledby="p1title">
-          <div class="meta">
-            <div>
-              <h3 id="p1title" style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(1)">
-                <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">📊</div>
-                <span>Data Science Society</span>
-              </h3>
-              <div class="small">Technology • Meets Tuesdays</div>
-            </div>
-            <div class="small">4.9 ★</div>
-          </div>
-          <img src="../assets/image.png" alt="Data Science Society poster">
-          <div>
-            <p>Explore data analytics, machine learning, and AI. All skill levels welcome.</p>
-            <div class="actions">
-              <div>
-                <button class="icon-btn" aria-pressed="false" onclick="toggleSave(1, this)">❤ Save</button>
-                <button class="icon-btn" onclick="addToEvents('Data Science Society', 'Tuesdays 5:30 PM')">📅 Add Event</button>
-                <button class="icon-btn" onclick="shareFlyer('Data Science Society')">🔗 Share</button>
-              </div>
-              <button class="btn" onclick="openDetails('Data Science Society', this)">View</button>
-            </div>
-          </div>
-        </article>
-        
-        <article class="poster" role="article" style="background:linear-gradient(180deg,#fff4f2,#fff7f0);">
-          <div class="meta">
-            <div>
-              <h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(2)">
-                <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">🤺</div>
-                <span>Fencing Club</span>
-              </h3>
-              <div class="small">Sports • Mondays & Thursdays</div>
-            </div>
-            <div class="small">4.7 ★</div>
-          </div>
-          <img src="../assets/image copy.png" alt="Fencing Club poster">
-          <div>
-            <p>Learn the art of fencing. Equipment provided for beginners. Join our competitive team.</p>
-            <div class="actions">
-              <div>
-                <button class="icon-btn" onclick="toggleSave(2, this)">❤ Save</button>
-                <button class="icon-btn" onclick="addToEvents('Fencing Club', 'Mondays & Thursdays 6:00 PM')">📅 Add Event</button>
-                <button class="icon-btn" onclick="shareFlyer('Fencing Club')">🔗 Share</button>
-              </div>
-              <button class="btn" onclick="openDetails('Fencing Club', this)">View</button>
-            </div>
-          </div>
-        </article>
-        
-        <article class="poster" role="article" style="background:linear-gradient(180deg,#fffef2,#f5fff1);">
-          <div class="meta">
-            <div>
-              <h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(3)">
-                <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">💻</div>
-                <span>Association of Computing Machinery</span>
-              </h3>
-              <div class="small">Technology • Wednesdays</div>
-            </div>
-            <div class="small">5.0 ★</div>
-          </div>
-          <img src="../assets/image copy 2.png" alt="ACM poster">
-          <div>
-            <p>Join ACM for coding workshops, hackathons, and tech talks. Network with industry professionals.</p>
-            <div class="actions">
-              <div>
-                <button class="icon-btn" onclick="toggleSave(3, this)">❤ Save</button>
-                <button class="icon-btn" onclick="addToEvents('Association of Computing Machinery', 'Wednesdays 7:00 PM')">📅 Add Event</button>
-                <button class="icon-btn" onclick="shareFlyer('Association of Computing Machinery')">🔗 Share</button>
-              </div>
-              <button class="btn" onclick="openDetails('Association of Computing Machinery', this)">View</button>
-            </div>
-          </div>
-        </article>
-        
-      `;
+      let clubsHTML = '<div style="margin-bottom:20px;"><h2 style="color:#e6eef8;font-weight:700;margin:0 0 10px 0;">✨ Discover</h2><p style="color:var(--muted);margin:0;">Explore clubs and events</p></div>';
+      clubsHTML += organizations.map(org => renderClubCard(org)).join('');
       
       // Add user-created posts
       createdPosts.forEach(post => {
@@ -265,7 +104,8 @@
         feed.innerHTML = postHTML + feed.innerHTML;
       });
       
-      feed.innerHTML += `<div class="footer-note">Tip: Scroll up/down to browse — posters snap into view for easy preview.</div>`;
+      clubsHTML += `<div class="footer-note">Tip: Scroll up/down to browse — posters snap into view for easy preview.</div>`;
+      feed.innerHTML = clubsHTML;
       
       feed.classList.remove('fade-out');
       feed.classList.add('fade-in');
@@ -302,6 +142,9 @@
           ${name === 'Data Science Society' ? 'Dive into the world of data science with hands-on workshops covering Python, R, machine learning algorithms, and data visualization. Work on real-world projects, participate in Kaggle competitions, and connect with industry professionals. Whether you\'re a beginner or advanced, we have something for everyone!' : 
             name === 'Fencing Club' ? 'Experience the elegance and intensity of fencing! Our club welcomes all skill levels from complete beginners to competitive fencers. Learn foil, épée, and sabre techniques from certified coaches. Equipment is provided for newcomers. Join our team for local and regional tournaments, or just fence for fun and fitness!' :
             name === 'Association of Computing Machinery' ? 'ACM is the premier computing organization on campus. Attend weekly tech talks from industry leaders, participate in hackathons, work on open-source projects, and prepare for technical interviews. Network with recruiters from top tech companies and collaborate on innovative software projects with fellow members.' :
+            name === 'Niner Game Development' ? 'Niner Game Development brings together aspiring game developers, artists, and designers. We organize weekly game jams, Unity and Unreal Engine workshops, and collaborative project teams. Members learn game design principles, programming patterns, 3D modeling, and animation. Join us to build indie games or prepare for careers at major studios!' :
+            name === 'The Guild' ? 'The Guild is your friendly neighborhood board game club where students gather to unwind, strategize, and have fun. We play everything from classic favorites like Settlers of Catan and Ticket to Ride to modern strategy games and party games. No experience needed - we teach new players and welcome all skill levels. Snacks and drinks provided every session.' :
+            name === 'Niner Notes' ? 'Niner Notes is the premier music production club on campus where aspiring producers, beatmakers, and audio engineers come together to create original music. Our weekly sessions cover everything from basic DAW operation to advanced mixing and mastering techniques. Members have access to professional-grade equipment and software.' :
             'An exciting event you won\'t want to miss! Join us for a great time with fellow students.'}
         </p>
       </div>
@@ -309,14 +152,14 @@
       <div style="margin:25px 0;background:rgba(248,250,252,0.8);padding:20px;border-radius:12px;border:1px solid rgba(226,232,240,0.8);">
         <h4 style="color:#0f172a;font-weight:700;font-size:1.2rem;margin-bottom:15px;">Event Details</h4>
         <div style="color:#374151;font-weight:500;">
-          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">When:</strong> ${name === 'Data Science Society' ? 'Tuesdays 5:30 PM' : name === 'Fencing Club' ? 'Mondays & Thursdays 6:00 PM' : name === 'Association of Computing Machinery' ? 'Wednesdays 7:00 PM' : 'TBD'}</p>
-          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Where:</strong> ${name === 'Data Science Society' ? 'Woodward Hall 335' : name === 'Fencing Club' ? 'Recreation Center Gym 2' : name === 'Association of Computing Machinery' ? 'Student Union 340' : 'Student Union Building'}</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">When:</strong> ${name === 'Data Science Society' ? 'Tuesdays 5:30 PM' : name === 'Fencing Club' ? 'Mondays & Thursdays 6:00 PM' : name === 'Association of Computing Machinery' ? 'Wednesdays 7:00 PM' : name === 'Niner Game Development' ? 'Wednesdays 6:00 PM' : name === 'The Guild' ? 'Fridays 3:00 PM - 6:00 PM' : name === 'Niner Notes' ? 'Thursdays 6:00 PM' : 'TBD'}</p>
+          <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Where:</strong> ${name === 'Data Science Society' ? 'Woodward Hall 335' : name === 'Fencing Club' ? 'Recreation Center Gym 2' : name === 'Association of Computing Machinery' ? 'Student Union 340' : name === 'Niner Game Development' ? 'College of Computing and Informatics Room 223' : name === 'The Guild' ? 'CHHS 128' : name === 'Niner Notes' ? 'Atkins G35' : 'Student Union Building'}</p>
           <p style="margin:8px 0;font-size:1rem;"><strong style="color:#1e293b;">Cost:</strong> Free for students</p>
         </div>
       </div>
       
       <div style="display:flex;gap:12px;margin-top:35px;">
-        ${(name === 'Data Science Society' || name === 'Fencing Club' || name === 'Association of Computing Machinery') ? `<button class="btn" style="flex:1;font-weight:600;" onclick="addToEvents('${name}', '${name === 'Data Science Society' ? 'Tuesdays 5:30 PM' : name === 'Fencing Club' ? 'Mondays & Thursdays 6:00 PM' : 'Wednesdays 7:00 PM'}'); closeDetails();">Add Event</button>` : ''}
+        ${(name === 'Data Science Society' || name === 'Fencing Club' || name === 'Association of Computing Machinery' || name === 'Niner Game Development' || name === 'The Guild' || name === 'Niner Notes') ? `<button class="btn" style="flex:1;font-weight:600;" onclick="addToEvents('${name}', '${name === 'Data Science Society' ? 'Tuesdays 5:30 PM' : name === 'Fencing Club' ? 'Mondays & Thursdays 6:00 PM' : name === 'Association of Computing Machinery' ? 'Wednesdays 7:00 PM' : name === 'Niner Game Development' ? 'Wednesdays 6:00 PM' : name === 'The Guild' ? 'Fridays 3:00 PM - 6:00 PM' : 'Thursdays 6:00 PM'}'); closeDetails();">Add Event</button>` : ''}
         <button class="icon-btn" style="font-weight:600;">❤ Save</button>
         <button class="icon-btn" style="font-weight:600;" onclick="shareFlyer('${name}')">🔗 Share</button>
       </div>
@@ -584,8 +427,8 @@
       
       if (savedFlyers.length === 0) {
         favoritesHTML += `
-          <div class="poster" style="min-height:300px;background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;">
-            <h3 style="color:#1e293b;margin-top:50px;">❤️ No Saved Flyers</h3>
+          <div class="poster" style="background:linear-gradient(180deg,#ffffff,#f1f5f9);border:2px solid rgba(255,255,255,0.8);text-align:center;padding:40px;">
+            <h3 style="color:#1e293b;margin-bottom:15px;">❤️ No Saved Flyers</h3>
             <p style="color:#475569;margin:20px 0;">Start saving flyers you're interested in!</p>
             <button class="btn" onclick="loadFlyers()">Discover Flyers</button>
           </div>
@@ -730,11 +573,55 @@
     });
   }
   
+  // Render club card function
+  function renderClubCard(org) {
+    const gradients = {
+      1: 'linear-gradient(180deg,#ffffff,#f1f5f9)',
+      2: 'linear-gradient(180deg,#fff4f2,#fff7f0)',
+      3: 'linear-gradient(180deg,#fffef2,#f5fff1)',
+      4: 'linear-gradient(180deg,#f0f9ff,#e0f2fe)',
+      5: 'linear-gradient(180deg,#fef2f2,#fff1f2)',
+      6: 'linear-gradient(180deg,#f3e8ff,#faf5ff)'
+    };
+    const ratings = {1: '4.9', 2: '4.7', 3: '5.0', 4: '4.8', 5: '4.9', 6: '4.8'};
+    const meetingDay = org.eventTime.split(' ')[0];
+    
+    return `
+      <article class="poster" role="article" style="background:${gradients[org.id] || 'linear-gradient(180deg,#ffffff,#f1f5f9)'};">
+        <div class="meta">
+          <div>
+            <h3 style="margin:0 0 12px 0;cursor:pointer;display:flex;align-items:center;gap:8px;" onclick="showOrgProfile(${org.id})">
+              <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:1rem;">${org.icon}</div>
+              <span>${org.name}</span>
+            </h3>
+            <div class="small">${org.category} • ${meetingDay}</div>
+          </div>
+          <div class="small">${ratings[org.id] || '4.8'} ★</div>
+        </div>
+        <img src="${org.image}" alt="${org.name} poster">
+        <div>
+          <p>${org.description}${org.id === 4 ? '. Learn Unity, Unreal Engine, and game design principles.' : org.id === 1 ? '. All skill levels welcome.' : org.id === 2 ? '. Equipment provided for beginners. Join our competitive team.' : '. Network with industry professionals.'}</p>
+          <div class="actions">
+            <div>
+              <button class="icon-btn" onclick="toggleSave(${org.id}, this)">❤ Save</button>
+              <button class="icon-btn" onclick="addToEvents('${org.name}', '${org.eventTime}')">📅 Add Event</button>
+              <button class="icon-btn" onclick="shareFlyer('${org.name}')">🔗 Share</button>
+            </div>
+            <button class="btn" onclick="openDetails('${org.name}', this)">View</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+  
   // Organizations data
   const organizations = [
     {id: 1, name: 'Data Science Society', category: 'Technology', members: 200, description: 'Explore data analytics, machine learning, and AI', icon: '📊', eventTime: 'Tuesdays 5:30 PM', image: '../assets/image.png', fullDescription: 'The Data Science Society is dedicated to fostering a community of data enthusiasts. We organize weekly workshops covering Python, R, SQL, and machine learning frameworks. Members work on real-world datasets, participate in Kaggle competitions, and collaborate on research projects. Our alumni have gone on to work at top tech companies and research institutions.', founded: '2018', location: 'Woodward Hall 335', contact: 'datasci@charlotte.edu'},
     {id: 2, name: 'Fencing Club', category: 'Sports', members: 75, description: 'Learn the art of fencing', icon: '🤺', eventTime: 'Mondays & Thursdays 6:00 PM', image: '../assets/image copy.png', fullDescription: 'Our Fencing Club welcomes all skill levels from complete beginners to competitive athletes. We provide all equipment for newcomers and offer instruction in foil, épée, and sabre. Our certified coaches have national and international competition experience. We compete in regional tournaments and host an annual invitational. Join us to develop discipline, strategy, and athleticism.', founded: '2015', location: 'Recreation Center Gym 2', contact: 'fencing@charlotte.edu'},
-    {id: 3, name: 'Association of Computing Machinery', category: 'Technology', members: 350, description: 'Join ACM for coding workshops and hackathons', icon: '💻', eventTime: 'Wednesdays 7:00 PM', image: '../assets/image copy 2.png', fullDescription: 'ACM is the largest computing organization on campus. We host weekly tech talks featuring industry professionals, organize hackathons with prizes up to $10,000, and maintain several open-source projects. Our members have access to exclusive internship opportunities, interview prep sessions, and networking events with recruiters from Fortune 500 companies. Special interest groups focus on AI, cybersecurity, web development, and game design.', founded: '2010', location: 'Student Union 340', contact: 'acm@charlotte.edu'}
+    {id: 3, name: 'Association of Computing Machinery', category: 'Technology', members: 350, description: 'Join ACM for coding workshops and hackathons', icon: '💻', eventTime: 'Wednesdays 7:00 PM', image: '../assets/image copy 2.png', fullDescription: 'ACM is the largest computing organization on campus. We host weekly tech talks featuring industry professionals, organize hackathons with prizes up to $10,000, and maintain several open-source projects. Our members have access to exclusive internship opportunities, interview prep sessions, and networking events with recruiters from Fortune 500 companies. Special interest groups focus on AI, cybersecurity, web development, and game design.', founded: '2010', location: 'Student Union 340', contact: 'acm@charlotte.edu'},
+    {id: 4, name: 'Niner Game Development', category: 'Technology', members: 180, description: 'Create games and interactive experiences', icon: '🎮', eventTime: 'Wednesdays 6:00 PM', image: '../assets/image copy 3.png', fullDescription: 'Niner Game Development brings together aspiring game developers, artists, and designers. We organize weekly game jams, Unity and Unreal Engine workshops, and collaborative project teams. Members learn game design principles, programming patterns, 3D modeling, and animation. We participate in Global Game Jam and showcase student projects at annual exhibitions. Whether you want to build indie games or work for major studios, we provide the skills and community to help you succeed.', founded: '2019', location: 'College of Computing and Informatics Room 223', contact: 'gamedev@charlotte.edu'},
+    {id: 5, name: 'The Guild', category: 'Recreation', members: 95, description: 'Relax with board games and snacks', icon: '🎲', eventTime: 'Fridays 3:00 PM - 6:00 PM', image: '../assets/image copy 4.png', fullDescription: 'The Guild is your friendly neighborhood board game club where students gather to unwind, strategize, and have fun. We play everything from classic favorites like Settlers of Catan and Ticket to Ride to modern strategy games and party games. No experience needed - we teach new players and welcome all skill levels. Snacks and drinks provided every session. Come make friends, learn new games, and escape the stress of classes for a few hours each week.', founded: '2020', location: 'CHHS 128', contact: 'theguild@charlotte.edu'},
+    {id: 6, name: 'Niner Notes', category: 'Music', members: 65, description: 'Produce your own tracks', icon: '🎵', eventTime: 'Thursdays 6:00 PM', image: '../assets/image copy 6.png', fullDescription: 'Niner Notes is the premier music production club on campus where aspiring producers, beatmakers, and audio engineers come together to create original music. Our weekly sessions cover everything from basic DAW operation to advanced mixing and mastering techniques. Members have access to professional-grade equipment and software, collaborate on original compositions, and learn from guest producers and industry professionals. Whether you\'re into hip-hop, electronic, rock, or any other genre, join us to turn your musical ideas into reality.', founded: '2021', location: 'Atkins G35', contact: 'ninernotes@charlotte.edu'}
   ];
   
   let followedOrgs = JSON.parse(localStorage.getItem('followedOrgs') || '[]');
@@ -1409,6 +1296,15 @@
   checkAuth();
   loadSavedFlyersFromBackend();
   loadFollowedOrgsFromBackend();
+  
+  // Render initial clubs on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const feed = document.getElementById('mainFeed');
+    const title = feed.querySelector('div');
+    const footer = feed.querySelector('.footer-note');
+    const clubsHTML = organizations.map(org => renderClubCard(org)).join('');
+    feed.innerHTML = title.outerHTML + clubsHTML + footer.outerHTML;
+  });
 </script>
 </body>
 </html>
