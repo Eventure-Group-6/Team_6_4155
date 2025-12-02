@@ -32,7 +32,7 @@ public class OrgController {
 	
 	@GetMapping("/orgs/{id}")
 	public ResponseEntity<Org> getOrgById(@PathVariable Long id) {
-		Optional<Org> org = orgServices.getOrgById(id);
+		Optional<Org> org = Optional.of(orgServices.getOrgById(id));
 		return org.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 	
