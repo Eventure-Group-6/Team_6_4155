@@ -3,3 +3,13 @@
 ::1 - - [02/Dec/2025 21:15:38] "GET /assets/js/storage.js HTTP/1.1" 304 -
 ::1 - - [02/Dec/2025 21:15:38] "GET /assets/css/styles.css HTTP/1.1" 304 -
 ::1 - - [02/Dec/2025 21:25:09] "GET /pages/login.html HTTP/1.1" 200 -
+::1 - - [02/Dec/2025 21:28:19] "GET /pages/login.html HTTP/1.1" 200 -
+::1 - - [02/Dec/2025 21:28:28] "GET /pages/signup.html HTTP/1.1" 304 -
+::1 - - [02/Dec/2025 21:30:38] "GET /pages/login.html HTTP/1.1" 304 -
+::1 - - [02/Dec/2025 21:30:46] "GET /pages/main.html HTTP/1.1" 304 -
+::1 - - [02/Dec/2025 21:30:46] "GET /assets/image%20copy%202.png HTTP/1.1" 304 -
+::1 - - [02/Dec/2025 21:30:46] "GET /assets/image%20copy%203.png HTTP/1.1" 304 -
+::1 - - [02/Dec/2025 21:30:46] "GET /assets/image%20copy.png HTTP/1.1" 304 -
+::1 - - [02/Dec/2025 21:30:46] "GET /assets/image.png HTTP/1.1" 304 -
+::1 - - [02/Dec/2025 21:30:47] "GET /assets/image%20copy%204.png HTTP/1.1" 304 -
+::1 - - [02/Dec/2025 21:30:47] "GET /assets/image%20copy%206.png HTTP/1.1" 304 -
