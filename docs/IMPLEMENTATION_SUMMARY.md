@@ -1,6 +1,6 @@
 # Eventure - Implementation Summary
 
-## ✅ Requirements Completed
+## Requirements Completed
 
 ### 1. Authentication (Login/Signup)
 - **Backend**: UserController with login/signup endpoints
@@ -59,7 +59,7 @@
 - **Constraints**: Primary keys, foreign keys, unique constraints
 - **Indexing**: Optimized for common queries
 
-## 🚀 Key Features
+## Key Features
 
 1. **User Authentication**: Secure login/signup with session management
 2. **Event Discovery**: Browse and interact with club flyers
@@ -70,12 +70,12 @@
 7. **Real-time Updates**: Dynamic content loading
 8. **Data Persistence**: All data stored in MySQL database
 
-## 🧪 Testing
+## Testing
 - **Unit Tests**: UserControllerTest for authentication logic
 - **Integration**: API endpoints tested with sample data
 - **Manual Testing**: Frontend forms and user flows
 
-## 📊 Database Schema
+## Database Schema
 - **Users**: User accounts and authentication
 - **Flyers**: Event advertisements with popularity scores
 - **Org**: Organization/club information
