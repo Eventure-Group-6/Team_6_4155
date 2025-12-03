@@ -84,18 +84,6 @@ Open browser to: **http://localhost:3000/pages/login.html**
 - **CORS errors**: Backend must be running for full functionality
 - **Blank page**: Check browser console (F12) for JavaScript errors
 
-### Features
-- **Authentication**: User login and signup
-- **CRUD Operations**: Create, read, update, delete for users, flyers, and organizations
-- **User Sessions**: Session management with Spring Security
-- **Data Persistence**: MySQL database with JPA/Hibernate
-- **Responsive Design**: Mobile-first UI design
 
-### API Endpoints
-- `POST /api/login` - User authentication
-- `POST /api/signup` - User registration
-- `GET /api/flyers` - Get all flyers
-- `POST /api/flyers` - Create new flyer
-- `GET /api/orgs` - Get all organizations
-- `POST /api/orgs` - Create new organization
-- `GET /api/session` - Check session status
+
+
