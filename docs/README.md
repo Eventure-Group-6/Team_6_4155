@@ -16,34 +16,41 @@ Eventure is a college club and event discovery platform that allows students to 
 ### Prerequisites
 - Java 21 or higher
 - Maven 3.6+
-- MySQL 8.0+
-- Node.js (for frontend development)
+- Python 3.x (for frontend server)
 
-### Backend Setup
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
+### Quick Start
 
-2. Configure MySQL database:
-   - Create a database named `eventure_db`
-   - Update `src/main/resources/application.properties` with your MySQL credentials
+#### 1. Start Backend (H2 Database)
+```bash
+cd backend
+mvn spring-boot:run
+```
+Backend runs on: **http://localhost:8080**
 
-3. Build and run the Spring Boot application:
-   ```bash
-   mvn clean install
-   mvn spring-boot:run
-   ```
+#### 2. Start Frontend Server
+```bash
+cd frontend
+python -m http.server 3000
+```
+Frontend runs on: **http://localhost:3000**
 
-   The backend will start on `http://localhost:8080`
+#### 3. Access Application
+Open browser to: **http://localhost:3000/pages/login.html**
 
-### Frontend Setup
-1. Open the HTML files directly in a web browser, or
-2. Use a simple HTTP server:
-   ```bash
-   python -m http.server 3000
-   ```
-   Then navigate to `http://localhost:3000`
+### Usage
+1. **Create Account**: Click "Create account" on login page
+2. **Login**: Use your credentials to access main app
+3. **Demo Mode**: Works offline with localStorage when backend is down
+
+### Database
+- **H2 Console**: http://localhost:8080/h2-console
+- **JDBC URL**: `jdbc:h2:mem:testdb`
+- **Username**: `sa` (no password)
+
+### Troubleshooting
+- **Port 8080 in use**: Kill existing processes with `pkill -f java`
+- **CSS not loading**: Always use HTTP server, not direct file opening
+- **Backend offline**: App works in demo mode with localStorage
 
 ### Features
 - **Authentication**: User login and signup
