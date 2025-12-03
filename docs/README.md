@@ -14,9 +14,27 @@ Eventure is a college club and event discovery platform that allows students to 
 ## Build Instructions:
 
 ### Prerequisites
-- Java 21 or higher
-- Maven 3.6+
-- Python 3.x (for frontend server)
+
+#### Required Software:
+1. **Java 21 or higher**
+   - Download from: https://adoptium.net/
+   - Verify: `java -version`
+
+2. **Maven 3.6+**
+   - Download from: https://maven.apache.org/download.cgi
+   - Or install via package manager:
+     - macOS: `brew install maven`
+     - Ubuntu: `sudo apt install maven`
+   - Verify: `mvn -version`
+
+3. **Python 3.x**
+   - Usually pre-installed on macOS/Linux
+   - Windows: Download from https://python.org/
+   - Verify: `python --version` or `python3 --version`
+
+#### Optional:
+- **Git** (to clone repository)
+- **Modern web browser** (Chrome, Firefox, Safari, Edge)
 
 ### Quick Start
 
@@ -48,9 +66,23 @@ Open browser to: **http://localhost:3000/pages/login.html**
 - **Username**: `sa` (no password)
 
 ### Troubleshooting
+
+#### Frontend Server Issues:
+- **Python command not found**: Try `python3 -m http.server 3000`
+- **Port 3000 in use**: Use different port `python -m http.server 8000`
+- **Permission denied**: Run from user directory, not system folders
+- **CSS not loading**: Always use HTTP server, never open HTML files directly
+- **Server stops**: Run in background with `nohup python -m http.server 3000 &`
+
+#### Backend Issues:
 - **Port 8080 in use**: Kill existing processes with `pkill -f java`
-- **CSS not loading**: Always use HTTP server, not direct file opening
+- **Maven not found**: Install Maven or use `./mvnw spring-boot:run`
+- **Java version error**: Ensure Java 21+ is installed and set as default
+
+#### General Issues:
 - **Backend offline**: App works in demo mode with localStorage
+- **CORS errors**: Backend must be running for full functionality
+- **Blank page**: Check browser console (F12) for JavaScript errors
 
 ### Features
 - **Authentication**: User login and signup
